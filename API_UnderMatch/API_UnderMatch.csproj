@@ -232,6 +232,9 @@
     <Compile Include="Models\Validations\EquiposValidator.cs" />
     <Compile Include="Models\Validations\JugadoresValidator.cs" />
     <Compile Include="Models\Validations\PersonasValidator.cs" />
+    <Compile Include="Models\viewJugadores.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

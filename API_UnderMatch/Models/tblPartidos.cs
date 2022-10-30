@@ -9,6 +9,7 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -27,11 +28,17 @@ namespace API_UnderMatch.Models
         public Nullable<int> Ganador { get; set; }
         public Nullable<int> Perdedor { get; set; }
         public Nullable<int> IdArbitro { get; set; }
-    
+        public Nullable<int> Estatus { get; set; }
+
+        [JsonIgnore]
         public virtual tblArbitros tblArbitros { get; set; }
+        [JsonIgnore]
         public virtual tblCanchas tblCanchas { get; set; }
+        [JsonIgnore]
         public virtual tblEquipos tblEquipos { get; set; }
+        [JsonIgnore]
         public virtual tblEquipos tblEquipos1 { get; set; }
+        [JsonIgnore]
         public virtual tblTemporadas tblTemporadas { get; set; }
     }
 }

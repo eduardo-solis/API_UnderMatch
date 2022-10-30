@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BDUnderMatchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BDUnderMatchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ctgCategorias">
           <Key>
             <PropertyRef Name="IdCategoria" />
@@ -50,6 +50,7 @@
           <Property Name="CostoArbitraje" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Categoria" Type="int" Nullable="false" />
           <Property Name="TipoArbitro" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblCanchas">
           <Key>
@@ -59,6 +60,7 @@
           <Property Name="IdPlantel" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="TipoCancha" Type="varchar" MaxLength="50" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblEmpleados">
           <Key>
@@ -79,6 +81,7 @@
           <Property Name="Nss" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="Salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Horario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblEquipos">
           <Key>
@@ -91,6 +94,7 @@
           <Property Name="Zona" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ColorVisitante" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ColorLocal" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblJugadores">
           <Key>
@@ -102,6 +106,7 @@
           <Property Name="SobreNombre" Type="varchar" MaxLength="100" />
           <Property Name="Posicion" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Capitan" Type="int" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblPartidos">
           <Key>
@@ -120,6 +125,7 @@
           <Property Name="Ganador" Type="int" />
           <Property Name="Perdedor" Type="int" />
           <Property Name="IdArbitro" Type="int" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblPersonas">
           <Key>
@@ -147,6 +153,7 @@
           <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblProveedores">
           <Key>
@@ -166,6 +173,7 @@
           <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblTemporadas">
           <Key>
@@ -175,6 +183,38 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FechaInicio" Type="date" Nullable="false" />
           <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewJugadores">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdJugador" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="NumDorsal" />
+            <PropertyRef Name="Posicion" />
+          </Key>
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="80" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="10" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdJugador" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="NumDorsal" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SobreNombre" Type="varchar" MaxLength="100" />
+          <Property Name="Posicion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Capitan" Type="int" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <Association Name="FK_Jugador_Equipo_tblEquipo">
           <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
@@ -406,6 +446,25 @@
           <Parameter Name="Posicion" Type="varchar" Mode="In" />
           <Parameter Name="Capitan" Type="int" Mode="In" />
         </Function>
+        <Function Name="tblJugadoresEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblJugadoresModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdJugador" Type="int" Mode="In" />
+          <Parameter Name="NumDorsal" Type="varchar" Mode="In" />
+          <Parameter Name="SobreNombre" Type="varchar" Mode="In" />
+          <Parameter Name="Posicion" Type="varchar" Mode="In" />
+          <Parameter Name="Capitan" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="BDUnderMatchModelStoreContainer">
           <EntitySet Name="ctgCategorias" EntityType="Self.ctgCategorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoArbitros" EntityType="Self.ctgTipoArbitros" Schema="dbo" store:Type="Tables" />
@@ -422,6 +481,25 @@
           <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTemporadas" EntityType="Self.tblTemporadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viewJugadores" EntityType="Self.viewJugadores" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewJugadores].[Nombre] AS [Nombre], 
+    [viewJugadores].[PrimerApellido] AS [PrimerApellido], 
+    [viewJugadores].[SegundoApellido] AS [SegundoApellido], 
+    [viewJugadores].[FechaNacimiento] AS [FechaNacimiento], 
+    [viewJugadores].[Sexo] AS [Sexo], 
+    [viewJugadores].[Telefono] AS [Telefono], 
+    [viewJugadores].[Telefono2] AS [Telefono2], 
+    [viewJugadores].[Correo] AS [Correo], 
+    [viewJugadores].[IdJugador] AS [IdJugador], 
+    [viewJugadores].[IdPersona] AS [IdPersona], 
+    [viewJugadores].[NumDorsal] AS [NumDorsal], 
+    [viewJugadores].[SobreNombre] AS [SobreNombre], 
+    [viewJugadores].[Posicion] AS [Posicion], 
+    [viewJugadores].[Capitan] AS [Capitan], 
+    [viewJugadores].[Estatus] AS [Estatus]
+    FROM [dbo].[viewJugadores] AS [viewJugadores]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Jugador_Equipo_tblEquipo" Association="Self.FK_Jugador_Equipo_tblEquipo">
             <End Role="tblEquipos" EntitySet="tblEquipos" />
             <End Role="Jugadores_Equipos" EntitySet="Jugadores_Equipos" />
@@ -495,8 +573,7 @@
             <End Role="tblProveedores" EntitySet="tblProveedores" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BDUnderMatchModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -556,6 +633,7 @@
           <NavigationProperty Name="ctgTipoArbitros" Relationship="Self.FK_tblArbitro_ctgTipoArbitro" FromRole="tblArbitros" ToRole="ctgTipoArbitros" />
           <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblArbitro_tblPersona" FromRole="tblArbitros" ToRole="tblPersonas" />
           <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblArbitros" FromRole="tblArbitros" ToRole="tblPartidos" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblCanchas">
           <Key>
@@ -567,6 +645,7 @@
           <Property Name="TipoCancha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblCanchas" ToRole="tblPlanteles" />
           <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblCanchas" FromRole="tblCanchas" ToRole="tblPartidos" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblEmpleados">
           <Key>
@@ -590,6 +669,7 @@
           <NavigationProperty Name="ctgTipoEmpleados" Relationship="Self.FK_tblEmpleado_ctgTipoEmpleado" FromRole="tblEmpleados" ToRole="ctgTipoEmpleados" />
           <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblEmpleado_tblPersona" FromRole="tblEmpleados" ToRole="tblPersonas" />
           <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblEmpleados_tblPlanteles" FromRole="tblEmpleados" ToRole="tblPlanteles" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblEquipos">
           <Key>
@@ -606,6 +686,7 @@
           <NavigationProperty Name="Jugadores_Equipos" Relationship="Self.FK_Jugador_Equipo_tblEquipo" FromRole="tblEquipos" ToRole="Jugadores_Equipos" />
           <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblEquipos" FromRole="tblEquipos" ToRole="tblPartidos" />
           <NavigationProperty Name="tblPartidos1" Relationship="Self.FK_tblPartidos_tblEquipos1" FromRole="tblEquipos" ToRole="tblPartidos" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblJugadores">
           <Key>
@@ -619,6 +700,7 @@
           <Property Name="Capitan" Type="Int32" />
           <NavigationProperty Name="Jugadores_Equipos" Relationship="Self.FK_Jugador_Equipo_tblJugador" FromRole="tblJugadores" ToRole="Jugadores_Equipos" />
           <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblJugador_tblPersona" FromRole="tblJugadores" ToRole="tblPersonas" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblPartidos">
           <Key>
@@ -642,6 +724,7 @@
           <NavigationProperty Name="tblEquipos" Relationship="Self.FK_tblPartidos_tblEquipos" FromRole="tblPartidos" ToRole="tblEquipos" />
           <NavigationProperty Name="tblEquipos1" Relationship="Self.FK_tblPartidos_tblEquipos1" FromRole="tblPartidos" ToRole="tblEquipos" />
           <NavigationProperty Name="tblTemporadas" Relationship="Self.FK_tblPartidos_tblTemporadas" FromRole="tblPartidos" ToRole="tblTemporadas" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblPersonas">
           <Key>
@@ -675,6 +758,7 @@
           <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblPlanteles" ToRole="tblCanchas" />
           <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleados_tblPlanteles" FromRole="tblPlanteles" ToRole="tblEmpleados" />
           <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblPlanteles" ToRole="tblProveedores" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblProveedores">
           <Key>
@@ -696,6 +780,7 @@
           <Property Name="IdPlantel" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ctgTipoProveedores" Relationship="Self.FK_tblProveedor_ctgTipoProveedor" FromRole="tblProveedores" ToRole="ctgTipoProveedores" />
           <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblProveedores" ToRole="tblPlanteles" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblTemporadas">
           <Key>
@@ -706,6 +791,7 @@
           <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblTemporadas" FromRole="tblTemporadas" ToRole="tblPartidos" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <Association Name="FK_tblArbitro_ctgCategoria">
           <End Role="ctgCategorias" Type="Self.ctgCategorias" Multiplicity="1" />
@@ -1025,7 +1111,56 @@
             <Parameter Name="Posicion" Mode="In" Type="String" />
             <Parameter Name="Capitan" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="viewJugadores" EntityType="BDUnderMatchModel.viewJugadores" />
+          <FunctionImport Name="tblJugadoresEliminar">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblJugadoresModificar">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdJugador" Mode="In" Type="Int32" />
+            <Parameter Name="NumDorsal" Mode="In" Type="String" />
+            <Parameter Name="SobreNombre" Mode="In" Type="String" />
+            <Parameter Name="Posicion" Mode="In" Type="String" />
+            <Parameter Name="Capitan" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="viewJugadores">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdJugador" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="NumDorsal" />
+            <PropertyRef Name="Posicion" />
+          </Key>
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdJugador" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="NumDorsal" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="SobreNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Posicion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Capitan" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1076,6 +1211,7 @@
           <EntitySetMapping Name="tblArbitros">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblArbitros">
               <MappingFragment StoreEntitySet="tblArbitros">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdArbitro" ColumnName="IdArbitro" />
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="CostoArbitraje" ColumnName="CostoArbitraje" />
@@ -1087,6 +1223,7 @@
           <EntitySetMapping Name="tblCanchas">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblCanchas">
               <MappingFragment StoreEntitySet="tblCanchas">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1097,6 +1234,7 @@
           <EntitySetMapping Name="tblEmpleados">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
               <MappingFragment StoreEntitySet="tblEmpleados">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
@@ -1118,6 +1256,7 @@
           <EntitySetMapping Name="tblEquipos">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblEquipos">
               <MappingFragment StoreEntitySet="tblEquipos">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
@@ -1131,6 +1270,7 @@
           <EntitySetMapping Name="tblJugadores">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblJugadores">
               <MappingFragment StoreEntitySet="tblJugadores">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdJugador" ColumnName="IdJugador" />
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="NumDorsal" ColumnName="NumDorsal" />
@@ -1143,6 +1283,7 @@
           <EntitySetMapping Name="tblPartidos">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblPartidos">
               <MappingFragment StoreEntitySet="tblPartidos">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdPartido" ColumnName="IdPartido" />
                 <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
                 <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
@@ -1177,6 +1318,7 @@
           <EntitySetMapping Name="tblPlanteles">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblPlanteles">
               <MappingFragment StoreEntitySet="tblPlanteles">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
@@ -1191,6 +1333,7 @@
           <EntitySetMapping Name="tblProveedores">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblProveedores">
               <MappingFragment StoreEntitySet="tblProveedores">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
                 <ScalarProperty Name="Rfc" ColumnName="Rfc" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -1211,6 +1354,7 @@
           <EntitySetMapping Name="tblTemporadas">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblTemporadas">
               <MappingFragment StoreEntitySet="tblTemporadas">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
@@ -1219,6 +1363,29 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="tblJugadoresAgregar" FunctionName="BDUnderMatchModel.Store.tblJugadoresAgregar" />
+          <EntitySetMapping Name="viewJugadores">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewJugadores">
+              <MappingFragment StoreEntitySet="viewJugadores">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Capitan" ColumnName="Capitan" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="SobreNombre" ColumnName="SobreNombre" />
+                <ScalarProperty Name="NumDorsal" ColumnName="NumDorsal" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdJugador" ColumnName="IdJugador" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tblJugadoresEliminar" FunctionName="BDUnderMatchModel.Store.tblJugadoresEliminar" />
+          <FunctionImportMapping FunctionImportName="tblJugadoresModificar" FunctionName="BDUnderMatchModel.Store.tblJugadoresModificar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -42,6 +42,7 @@ namespace API_UnderMatch.Models
         public virtual DbSet<tblPlanteles> tblPlanteles { get; set; }
         public virtual DbSet<tblProveedores> tblProveedores { get; set; }
         public virtual DbSet<tblTemporadas> tblTemporadas { get; set; }
+        public virtual DbSet<viewJugadores> viewJugadores { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan)
         {
@@ -94,6 +95,76 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("Capitan", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, numDorsalParameter, sobreNombreParameter, posicionParameter, capitanParameter);
+        }
+    
+        public virtual int tblJugadoresEliminar(Nullable<int> idPersona)
+        {
+            var idPersonaParameter = idPersona.HasValue ?
+                new ObjectParameter("IdPersona", idPersona) :
+                new ObjectParameter("IdPersona", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresEliminar", idPersonaParameter);
+        }
+    
+        public virtual int tblJugadoresModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idJugador, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan)
+        {
+            var idPersonaParameter = idPersona.HasValue ?
+                new ObjectParameter("IdPersona", idPersona) :
+                new ObjectParameter("IdPersona", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idJugadorParameter = idJugador.HasValue ?
+                new ObjectParameter("IdJugador", idJugador) :
+                new ObjectParameter("IdJugador", typeof(int));
+    
+            var numDorsalParameter = numDorsal != null ?
+                new ObjectParameter("NumDorsal", numDorsal) :
+                new ObjectParameter("NumDorsal", typeof(string));
+    
+            var sobreNombreParameter = sobreNombre != null ?
+                new ObjectParameter("SobreNombre", sobreNombre) :
+                new ObjectParameter("SobreNombre", typeof(string));
+    
+            var posicionParameter = posicion != null ?
+                new ObjectParameter("Posicion", posicion) :
+                new ObjectParameter("Posicion", typeof(string));
+    
+            var capitanParameter = capitan.HasValue ?
+                new ObjectParameter("Capitan", capitan) :
+                new ObjectParameter("Capitan", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idJugadorParameter, numDorsalParameter, sobreNombreParameter, posicionParameter, capitanParameter);
         }
     }
 }

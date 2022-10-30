@@ -9,18 +9,19 @@
 
 namespace API_UnderMatch.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
-    public partial class tblJugadores
+    public partial class viewJugadores
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblJugadores()
-        {
-            this.Jugadores_Equipos = new HashSet<Jugadores_Equipos>();
-        }
-    
+        public string Nombre { get; set; }
+        public string PrimerApellido { get; set; }
+        public string SegundoApellido { get; set; }
+        public string FechaNacimiento { get; set; }
+        public string Sexo { get; set; }
+        public string Telefono { get; set; }
+        public string Telefono2 { get; set; }
+        public string Correo { get; set; }
         public int IdJugador { get; set; }
         public int IdPersona { get; set; }
         public string NumDorsal { get; set; }
@@ -28,11 +29,5 @@ namespace API_UnderMatch.Models
         public string Posicion { get; set; }
         public Nullable<int> Capitan { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
-        public virtual ICollection<Jugadores_Equipos> Jugadores_Equipos { get; set; }
-        [JsonIgnore]
-        public virtual tblPersonas tblPersonas { get; set; }
     }
 }

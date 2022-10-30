@@ -9,6 +9,7 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -25,11 +26,16 @@ namespace API_UnderMatch.Models
         public decimal CostoArbitraje { get; set; }
         public int Categoria { get; set; }
         public int TipoArbitro { get; set; }
-    
+        public Nullable<int> Estatus { get; set; }
+
+        [JsonIgnore]
         public virtual ctgCategorias ctgCategorias { get; set; }
+        [JsonIgnore]
         public virtual ctgTipoArbitros ctgTipoArbitros { get; set; }
+        [JsonIgnore]
         public virtual tblPersonas tblPersonas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<tblPartidos> tblPartidos { get; set; }
     }
 }

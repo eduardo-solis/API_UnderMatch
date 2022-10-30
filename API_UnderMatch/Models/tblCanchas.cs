@@ -9,6 +9,7 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -24,9 +25,12 @@ namespace API_UnderMatch.Models
         public int IdPlantel { get; set; }
         public string Nombre { get; set; }
         public string TipoCancha { get; set; }
-    
+        public Nullable<int> Estatus { get; set; }
+
+        [JsonIgnore]
         public virtual tblPlanteles tblPlanteles { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<tblPartidos> tblPartidos { get; set; }
     }
 }

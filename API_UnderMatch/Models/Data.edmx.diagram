@@ -38,6 +38,7 @@
         <AssociationConnector Association="BDUnderMatchModel.FK_tblJugador_tblPersona" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblProveedores_tblPlanteles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewJugadores" Width="1.5" PointX="10.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
