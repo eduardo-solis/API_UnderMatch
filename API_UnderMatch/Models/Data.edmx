@@ -1,0 +1,1245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BDUnderMatchModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ctgCategorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctgTipoArbitros">
+          <Key>
+            <PropertyRef Name="IdTipoArbitro" />
+          </Key>
+          <Property Name="IdTipoArbitro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctgTipoEmpleados">
+          <Key>
+            <PropertyRef Name="IdTipoEmpleado" />
+          </Key>
+          <Property Name="IdTipoEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctgTipoProveedores">
+          <Key>
+            <PropertyRef Name="IdTipoProveedor" />
+          </Key>
+          <Property Name="IdTipoProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Jugadores_Equipos">
+          <Key>
+            <PropertyRef Name="IdRelacionJugadorEquipo" />
+          </Key>
+          <Property Name="IdRelacionJugadorEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdJugador" Type="int" Nullable="false" />
+          <Property Name="IdEquipo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblArbitros">
+          <Key>
+            <PropertyRef Name="IdArbitro" />
+          </Key>
+          <Property Name="IdArbitro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="CostoArbitraje" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Categoria" Type="int" Nullable="false" />
+          <Property Name="TipoArbitro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCanchas">
+          <Key>
+            <PropertyRef Name="IdCancha" />
+          </Key>
+          <Property Name="IdCancha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoCancha" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblEmpleados">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Curp" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="TipoEmpleado" Type="int" Nullable="false" />
+          <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Nss" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Horario" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblEquipos">
+          <Key>
+            <PropertyRef Name="IdEquipo" />
+          </Key>
+          <Property Name="IdEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Categoria" Type="int" Nullable="false" />
+          <Property Name="AnioFundacion" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="Zona" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ColorVisitante" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ColorLocal" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblJugadores">
+          <Key>
+            <PropertyRef Name="IdJugador" />
+          </Key>
+          <Property Name="IdJugador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="NumDorsal" Type="varchar" MaxLength="3" Nullable="false" />
+          <Property Name="SobreNombre" Type="varchar" MaxLength="100" />
+          <Property Name="Posicion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Capitan" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPartidos">
+          <Key>
+            <PropertyRef Name="IdPartido" />
+          </Key>
+          <Property Name="IdPartido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdCancha" Type="int" Nullable="false" />
+          <Property Name="IdTemporada" Type="int" />
+          <Property Name="Jornada" Type="int" />
+          <Property Name="Dia" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Hora" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Equipo1" Type="int" Nullable="false" />
+          <Property Name="Equipo2" Type="int" Nullable="false" />
+          <Property Name="GolesEquipo1" Type="int" />
+          <Property Name="GolesEquipo2" Type="int" />
+          <Property Name="Ganador" Type="int" />
+          <Property Name="Perdedor" Type="int" />
+          <Property Name="IdArbitro" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPersonas">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="80" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="10" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPlanteles">
+          <Key>
+            <PropertyRef Name="IdPlantel" />
+          </Key>
+          <Property Name="IdPlantel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoProveedor" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTemporadas">
+          <Key>
+            <PropertyRef Name="IdTemporada" />
+          </Key>
+          <Property Name="IdTemporada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FechaInicio" Type="date" Nullable="false" />
+          <Property Name="FechaFin" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Jugador_Equipo_tblEquipo">
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
+          <End Role="Jugadores_Equipos" Type="Self.Jugadores_Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipos">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="Jugadores_Equipos">
+              <PropertyRef Name="IdEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jugador_Equipo_tblJugador">
+          <End Role="tblJugadores" Type="Self.tblJugadores" Multiplicity="1" />
+          <End Role="Jugadores_Equipos" Type="Self.Jugadores_Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblJugadores">
+              <PropertyRef Name="IdJugador" />
+            </Principal>
+            <Dependent Role="Jugadores_Equipos">
+              <PropertyRef Name="IdJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblArbitro_ctgCategoria">
+          <End Role="ctgCategorias" Type="Self.ctgCategorias" Multiplicity="1" />
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgCategorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="tblArbitros">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblArbitro_ctgTipoArbitro">
+          <End Role="ctgTipoArbitros" Type="Self.ctgTipoArbitros" Multiplicity="1" />
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoArbitros">
+              <PropertyRef Name="IdTipoArbitro" />
+            </Principal>
+            <Dependent Role="tblArbitros">
+              <PropertyRef Name="TipoArbitro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblArbitro_tblPersona">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblArbitros">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCanchas_tblPlanteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="tblCanchas" Type="Self.tblCanchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="tblCanchas">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleado_ctgTipoEmpleado">
+          <End Role="ctgTipoEmpleados" Type="Self.ctgTipoEmpleados" Multiplicity="1" />
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoEmpleados">
+              <PropertyRef Name="IdTipoEmpleado" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="TipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleado_tblPersona">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleados_tblPlanteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipo_ctgCategoria">
+          <End Role="ctgCategorias" Type="Self.ctgCategorias" Multiplicity="1" />
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgCategorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="tblEquipos">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblJugador_tblPersona">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
+          <End Role="tblJugadores" Type="Self.tblJugadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblJugadores">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblArbitros">
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="0..1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArbitros">
+              <PropertyRef Name="IdArbitro" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdArbitro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblCanchas">
+          <End Role="tblCanchas" Type="Self.tblCanchas" Multiplicity="1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCanchas">
+              <PropertyRef Name="IdCancha" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdCancha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblEquipos">
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipos">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="Equipo1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblEquipos1">
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipos">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="Equipo2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblTemporadas">
+          <End Role="tblTemporadas" Type="Self.tblTemporadas" Multiplicity="0..1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTemporadas">
+              <PropertyRef Name="IdTemporada" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdTemporada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProveedor_ctgTipoProveedor">
+          <End Role="ctgTipoProveedores" Type="Self.ctgTipoProveedores" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoProveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="TipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProveedores_tblPlanteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="tblJugadoresAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="NumDorsal" Type="varchar" Mode="In" />
+          <Parameter Name="SobreNombre" Type="varchar" Mode="In" />
+          <Parameter Name="Posicion" Type="varchar" Mode="In" />
+          <Parameter Name="Capitan" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="BDUnderMatchModelStoreContainer">
+          <EntitySet Name="ctgCategorias" EntityType="Self.ctgCategorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctgTipoArbitros" EntityType="Self.ctgTipoArbitros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctgTipoEmpleados" EntityType="Self.ctgTipoEmpleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctgTipoProveedores" EntityType="Self.ctgTipoProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Jugadores_Equipos" EntityType="Self.Jugadores_Equipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblArbitros" EntityType="Self.tblArbitros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCanchas" EntityType="Self.tblCanchas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblEquipos" EntityType="Self.tblEquipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblJugadores" EntityType="Self.tblJugadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPartidos" EntityType="Self.tblPartidos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPersonas" EntityType="Self.tblPersonas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTemporadas" EntityType="Self.tblTemporadas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Jugador_Equipo_tblEquipo" Association="Self.FK_Jugador_Equipo_tblEquipo">
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+            <End Role="Jugadores_Equipos" EntitySet="Jugadores_Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jugador_Equipo_tblJugador" Association="Self.FK_Jugador_Equipo_tblJugador">
+            <End Role="tblJugadores" EntitySet="tblJugadores" />
+            <End Role="Jugadores_Equipos" EntitySet="Jugadores_Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblArbitro_ctgCategoria" Association="Self.FK_tblArbitro_ctgCategoria">
+            <End Role="ctgCategorias" EntitySet="ctgCategorias" />
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblArbitro_ctgTipoArbitro" Association="Self.FK_tblArbitro_ctgTipoArbitro">
+            <End Role="ctgTipoArbitros" EntitySet="ctgTipoArbitros" />
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblArbitro_tblPersona" Association="Self.FK_tblArbitro_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCanchas_tblPlanteles" Association="Self.FK_tblCanchas_tblPlanteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="tblCanchas" EntitySet="tblCanchas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleado_ctgTipoEmpleado" Association="Self.FK_tblEmpleado_ctgTipoEmpleado">
+            <End Role="ctgTipoEmpleados" EntitySet="ctgTipoEmpleados" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleado_tblPersona" Association="Self.FK_tblEmpleado_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleados_tblPlanteles" Association="Self.FK_tblEmpleados_tblPlanteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipo_ctgCategoria" Association="Self.FK_tblEquipo_ctgCategoria">
+            <End Role="ctgCategorias" EntitySet="ctgCategorias" />
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblJugador_tblPersona" Association="Self.FK_tblJugador_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblJugadores" EntitySet="tblJugadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblArbitros" Association="Self.FK_tblPartidos_tblArbitros">
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblCanchas" Association="Self.FK_tblPartidos_tblCanchas">
+            <End Role="tblCanchas" EntitySet="tblCanchas" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblEquipos" Association="Self.FK_tblPartidos_tblEquipos">
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblEquipos1" Association="Self.FK_tblPartidos_tblEquipos1">
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblTemporadas" Association="Self.FK_tblPartidos_tblTemporadas">
+            <End Role="tblTemporadas" EntitySet="tblTemporadas" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProveedor_ctgTipoProveedor" Association="Self.FK_tblProveedor_ctgTipoProveedor">
+            <End Role="ctgTipoProveedores" EntitySet="ctgTipoProveedores" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProveedores_tblPlanteles" Association="Self.FK_tblProveedores_tblPlanteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BDUnderMatchModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ctgCategorias">
+          <Key>
+            <PropertyRef Name="IdCategoria" />
+          </Key>
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblArbitro_ctgCategoria" FromRole="ctgCategorias" ToRole="tblArbitros" />
+          <NavigationProperty Name="tblEquipos" Relationship="Self.FK_tblEquipo_ctgCategoria" FromRole="ctgCategorias" ToRole="tblEquipos" />
+        </EntityType>
+        <EntityType Name="ctgTipoArbitros">
+          <Key>
+            <PropertyRef Name="IdTipoArbitro" />
+          </Key>
+          <Property Name="IdTipoArbitro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblArbitro_ctgTipoArbitro" FromRole="ctgTipoArbitros" ToRole="tblArbitros" />
+        </EntityType>
+        <EntityType Name="ctgTipoEmpleados">
+          <Key>
+            <PropertyRef Name="IdTipoEmpleado" />
+          </Key>
+          <Property Name="IdTipoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleado_ctgTipoEmpleado" FromRole="ctgTipoEmpleados" ToRole="tblEmpleados" />
+        </EntityType>
+        <EntityType Name="ctgTipoProveedores">
+          <Key>
+            <PropertyRef Name="IdTipoProveedor" />
+          </Key>
+          <Property Name="IdTipoProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedor_ctgTipoProveedor" FromRole="ctgTipoProveedores" ToRole="tblProveedores" />
+        </EntityType>
+        <EntityType Name="Jugadores_Equipos">
+          <Key>
+            <PropertyRef Name="IdRelacionJugadorEquipo" />
+          </Key>
+          <Property Name="IdRelacionJugadorEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdJugador" Type="Int32" Nullable="false" />
+          <Property Name="IdEquipo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblEquipos" Relationship="Self.FK_Jugador_Equipo_tblEquipo" FromRole="Jugadores_Equipos" ToRole="tblEquipos" />
+          <NavigationProperty Name="tblJugadores" Relationship="Self.FK_Jugador_Equipo_tblJugador" FromRole="Jugadores_Equipos" ToRole="tblJugadores" />
+        </EntityType>
+        <EntityType Name="tblArbitros">
+          <Key>
+            <PropertyRef Name="IdArbitro" />
+          </Key>
+          <Property Name="IdArbitro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="CostoArbitraje" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="TipoArbitro" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctgCategorias" Relationship="Self.FK_tblArbitro_ctgCategoria" FromRole="tblArbitros" ToRole="ctgCategorias" />
+          <NavigationProperty Name="ctgTipoArbitros" Relationship="Self.FK_tblArbitro_ctgTipoArbitro" FromRole="tblArbitros" ToRole="ctgTipoArbitros" />
+          <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblArbitro_tblPersona" FromRole="tblArbitros" ToRole="tblPersonas" />
+          <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblArbitros" FromRole="tblArbitros" ToRole="tblPartidos" />
+        </EntityType>
+        <EntityType Name="tblCanchas">
+          <Key>
+            <PropertyRef Name="IdCancha" />
+          </Key>
+          <Property Name="IdCancha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoCancha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblCanchas" ToRole="tblPlanteles" />
+          <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblCanchas" FromRole="tblCanchas" ToRole="tblPartidos" />
+        </EntityType>
+        <EntityType Name="tblEmpleados">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Curp" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Salario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Horario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ctgTipoEmpleados" Relationship="Self.FK_tblEmpleado_ctgTipoEmpleado" FromRole="tblEmpleados" ToRole="ctgTipoEmpleados" />
+          <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblEmpleado_tblPersona" FromRole="tblEmpleados" ToRole="tblPersonas" />
+          <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblEmpleados_tblPlanteles" FromRole="tblEmpleados" ToRole="tblPlanteles" />
+        </EntityType>
+        <EntityType Name="tblEquipos">
+          <Key>
+            <PropertyRef Name="IdEquipo" />
+          </Key>
+          <Property Name="IdEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="AnioFundacion" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Zona" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ColorVisitante" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ColorLocal" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ctgCategorias" Relationship="Self.FK_tblEquipo_ctgCategoria" FromRole="tblEquipos" ToRole="ctgCategorias" />
+          <NavigationProperty Name="Jugadores_Equipos" Relationship="Self.FK_Jugador_Equipo_tblEquipo" FromRole="tblEquipos" ToRole="Jugadores_Equipos" />
+          <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblEquipos" FromRole="tblEquipos" ToRole="tblPartidos" />
+          <NavigationProperty Name="tblPartidos1" Relationship="Self.FK_tblPartidos_tblEquipos1" FromRole="tblEquipos" ToRole="tblPartidos" />
+        </EntityType>
+        <EntityType Name="tblJugadores">
+          <Key>
+            <PropertyRef Name="IdJugador" />
+          </Key>
+          <Property Name="IdJugador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="NumDorsal" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SobreNombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Posicion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Capitan" Type="Int32" />
+          <NavigationProperty Name="Jugadores_Equipos" Relationship="Self.FK_Jugador_Equipo_tblJugador" FromRole="tblJugadores" ToRole="Jugadores_Equipos" />
+          <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblJugador_tblPersona" FromRole="tblJugadores" ToRole="tblPersonas" />
+        </EntityType>
+        <EntityType Name="tblPartidos">
+          <Key>
+            <PropertyRef Name="IdPartido" />
+          </Key>
+          <Property Name="IdPartido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdCancha" Type="Int32" Nullable="false" />
+          <Property Name="IdTemporada" Type="Int32" />
+          <Property Name="Jornada" Type="Int32" />
+          <Property Name="Dia" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Hora" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Equipo1" Type="Int32" Nullable="false" />
+          <Property Name="Equipo2" Type="Int32" Nullable="false" />
+          <Property Name="GolesEquipo1" Type="Int32" />
+          <Property Name="GolesEquipo2" Type="Int32" />
+          <Property Name="Ganador" Type="Int32" />
+          <Property Name="Perdedor" Type="Int32" />
+          <Property Name="IdArbitro" Type="Int32" />
+          <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblPartidos_tblArbitros" FromRole="tblPartidos" ToRole="tblArbitros" />
+          <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblPartidos_tblCanchas" FromRole="tblPartidos" ToRole="tblCanchas" />
+          <NavigationProperty Name="tblEquipos" Relationship="Self.FK_tblPartidos_tblEquipos" FromRole="tblPartidos" ToRole="tblEquipos" />
+          <NavigationProperty Name="tblEquipos1" Relationship="Self.FK_tblPartidos_tblEquipos1" FromRole="tblPartidos" ToRole="tblEquipos" />
+          <NavigationProperty Name="tblTemporadas" Relationship="Self.FK_tblPartidos_tblTemporadas" FromRole="tblPartidos" ToRole="tblTemporadas" />
+        </EntityType>
+        <EntityType Name="tblPersonas">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PrimerApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Sexo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblArbitro_tblPersona" FromRole="tblPersonas" ToRole="tblArbitros" />
+          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleado_tblPersona" FromRole="tblPersonas" ToRole="tblEmpleados" />
+          <NavigationProperty Name="tblJugadores" Relationship="Self.FK_tblJugador_tblPersona" FromRole="tblPersonas" ToRole="tblJugadores" />
+        </EntityType>
+        <EntityType Name="tblPlanteles">
+          <Key>
+            <PropertyRef Name="IdPlantel" />
+          </Key>
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblPlanteles" ToRole="tblCanchas" />
+          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleados_tblPlanteles" FromRole="tblPlanteles" ToRole="tblEmpleados" />
+          <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblPlanteles" ToRole="tblProveedores" />
+        </EntityType>
+        <EntityType Name="tblProveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TipoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctgTipoProveedores" Relationship="Self.FK_tblProveedor_ctgTipoProveedor" FromRole="tblProveedores" ToRole="ctgTipoProveedores" />
+          <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblProveedores" ToRole="tblPlanteles" />
+        </EntityType>
+        <EntityType Name="tblTemporadas">
+          <Key>
+            <PropertyRef Name="IdTemporada" />
+          </Key>
+          <Property Name="IdTemporada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblTemporadas" FromRole="tblTemporadas" ToRole="tblPartidos" />
+        </EntityType>
+        <Association Name="FK_tblArbitro_ctgCategoria">
+          <End Role="ctgCategorias" Type="Self.ctgCategorias" Multiplicity="1" />
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgCategorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="tblArbitros">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEquipo_ctgCategoria">
+          <End Role="ctgCategorias" Type="Self.ctgCategorias" Multiplicity="1" />
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgCategorias">
+              <PropertyRef Name="IdCategoria" />
+            </Principal>
+            <Dependent Role="tblEquipos">
+              <PropertyRef Name="Categoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblArbitro_ctgTipoArbitro">
+          <End Role="ctgTipoArbitros" Type="Self.ctgTipoArbitros" Multiplicity="1" />
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoArbitros">
+              <PropertyRef Name="IdTipoArbitro" />
+            </Principal>
+            <Dependent Role="tblArbitros">
+              <PropertyRef Name="TipoArbitro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleado_ctgTipoEmpleado">
+          <End Role="ctgTipoEmpleados" Type="Self.ctgTipoEmpleados" Multiplicity="1" />
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoEmpleados">
+              <PropertyRef Name="IdTipoEmpleado" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="TipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProveedor_ctgTipoProveedor">
+          <End Role="ctgTipoProveedores" Type="Self.ctgTipoProveedores" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoProveedores">
+              <PropertyRef Name="IdTipoProveedor" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="TipoProveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jugador_Equipo_tblEquipo">
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
+          <End Role="Jugadores_Equipos" Type="Self.Jugadores_Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipos">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="Jugadores_Equipos">
+              <PropertyRef Name="IdEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Jugador_Equipo_tblJugador">
+          <End Role="tblJugadores" Type="Self.tblJugadores" Multiplicity="1" />
+          <End Role="Jugadores_Equipos" Type="Self.Jugadores_Equipos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblJugadores">
+              <PropertyRef Name="IdJugador" />
+            </Principal>
+            <Dependent Role="Jugadores_Equipos">
+              <PropertyRef Name="IdJugador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblArbitro_tblPersona">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblArbitros">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblArbitros">
+          <End Role="tblArbitros" Type="Self.tblArbitros" Multiplicity="0..1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblArbitros">
+              <PropertyRef Name="IdArbitro" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdArbitro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCanchas_tblPlanteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="tblCanchas" Type="Self.tblCanchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="tblCanchas">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblCanchas">
+          <End Role="tblCanchas" Type="Self.tblCanchas" Multiplicity="1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCanchas">
+              <PropertyRef Name="IdCancha" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdCancha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleado_tblPersona">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleados_tblPlanteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblEquipos">
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipos">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="Equipo1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblEquipos1">
+          <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEquipos">
+              <PropertyRef Name="IdEquipo" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="Equipo2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblJugador_tblPersona">
+          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
+          <End Role="tblJugadores" Type="Self.tblJugadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblJugadores">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPartidos_tblTemporadas">
+          <End Role="tblTemporadas" Type="Self.tblTemporadas" Multiplicity="0..1" />
+          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTemporadas">
+              <PropertyRef Name="IdTemporada" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdTemporada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProveedores_tblPlanteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="tblProveedores">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BDUnderMatchEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ctgCategorias" EntityType="Self.ctgCategorias" />
+          <EntitySet Name="ctgTipoArbitros" EntityType="Self.ctgTipoArbitros" />
+          <EntitySet Name="ctgTipoEmpleados" EntityType="Self.ctgTipoEmpleados" />
+          <EntitySet Name="ctgTipoProveedores" EntityType="Self.ctgTipoProveedores" />
+          <EntitySet Name="Jugadores_Equipos" EntityType="Self.Jugadores_Equipos" />
+          <EntitySet Name="tblArbitros" EntityType="Self.tblArbitros" />
+          <EntitySet Name="tblCanchas" EntityType="Self.tblCanchas" />
+          <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" />
+          <EntitySet Name="tblEquipos" EntityType="Self.tblEquipos" />
+          <EntitySet Name="tblJugadores" EntityType="Self.tblJugadores" />
+          <EntitySet Name="tblPartidos" EntityType="Self.tblPartidos" />
+          <EntitySet Name="tblPersonas" EntityType="Self.tblPersonas" />
+          <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" />
+          <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" />
+          <EntitySet Name="tblTemporadas" EntityType="Self.tblTemporadas" />
+          <AssociationSet Name="FK_tblArbitro_ctgCategoria" Association="Self.FK_tblArbitro_ctgCategoria">
+            <End Role="ctgCategorias" EntitySet="ctgCategorias" />
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEquipo_ctgCategoria" Association="Self.FK_tblEquipo_ctgCategoria">
+            <End Role="ctgCategorias" EntitySet="ctgCategorias" />
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblArbitro_ctgTipoArbitro" Association="Self.FK_tblArbitro_ctgTipoArbitro">
+            <End Role="ctgTipoArbitros" EntitySet="ctgTipoArbitros" />
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleado_ctgTipoEmpleado" Association="Self.FK_tblEmpleado_ctgTipoEmpleado">
+            <End Role="ctgTipoEmpleados" EntitySet="ctgTipoEmpleados" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProveedor_ctgTipoProveedor" Association="Self.FK_tblProveedor_ctgTipoProveedor">
+            <End Role="ctgTipoProveedores" EntitySet="ctgTipoProveedores" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jugador_Equipo_tblEquipo" Association="Self.FK_Jugador_Equipo_tblEquipo">
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+            <End Role="Jugadores_Equipos" EntitySet="Jugadores_Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Jugador_Equipo_tblJugador" Association="Self.FK_Jugador_Equipo_tblJugador">
+            <End Role="tblJugadores" EntitySet="tblJugadores" />
+            <End Role="Jugadores_Equipos" EntitySet="Jugadores_Equipos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblArbitro_tblPersona" Association="Self.FK_tblArbitro_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblArbitros" Association="Self.FK_tblPartidos_tblArbitros">
+            <End Role="tblArbitros" EntitySet="tblArbitros" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCanchas_tblPlanteles" Association="Self.FK_tblCanchas_tblPlanteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="tblCanchas" EntitySet="tblCanchas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblCanchas" Association="Self.FK_tblPartidos_tblCanchas">
+            <End Role="tblCanchas" EntitySet="tblCanchas" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleado_tblPersona" Association="Self.FK_tblEmpleado_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleados_tblPlanteles" Association="Self.FK_tblEmpleados_tblPlanteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblEquipos" Association="Self.FK_tblPartidos_tblEquipos">
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblEquipos1" Association="Self.FK_tblPartidos_tblEquipos1">
+            <End Role="tblEquipos" EntitySet="tblEquipos" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblJugador_tblPersona" Association="Self.FK_tblJugador_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblJugadores" EntitySet="tblJugadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPartidos_tblTemporadas" Association="Self.FK_tblPartidos_tblTemporadas">
+            <End Role="tblTemporadas" EntitySet="tblTemporadas" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProveedores_tblPlanteles" Association="Self.FK_tblProveedores_tblPlanteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="tblProveedores" EntitySet="tblProveedores" />
+          </AssociationSet>
+          <FunctionImport Name="tblJugadoresAgregar">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="NumDorsal" Mode="In" Type="String" />
+            <Parameter Name="SobreNombre" Mode="In" Type="String" />
+            <Parameter Name="Posicion" Mode="In" Type="String" />
+            <Parameter Name="Capitan" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BDUnderMatchModelStoreContainer" CdmEntityContainer="BDUnderMatchEntities1">
+          <EntitySetMapping Name="ctgCategorias">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.ctgCategorias">
+              <MappingFragment StoreEntitySet="ctgCategorias">
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctgTipoArbitros">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoArbitros">
+              <MappingFragment StoreEntitySet="ctgTipoArbitros">
+                <ScalarProperty Name="IdTipoArbitro" ColumnName="IdTipoArbitro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctgTipoEmpleados">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoEmpleados">
+              <MappingFragment StoreEntitySet="ctgTipoEmpleados">
+                <ScalarProperty Name="IdTipoEmpleado" ColumnName="IdTipoEmpleado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctgTipoProveedores">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoProveedores">
+              <MappingFragment StoreEntitySet="ctgTipoProveedores">
+                <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jugadores_Equipos">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.Jugadores_Equipos">
+              <MappingFragment StoreEntitySet="Jugadores_Equipos">
+                <ScalarProperty Name="IdRelacionJugadorEquipo" ColumnName="IdRelacionJugadorEquipo" />
+                <ScalarProperty Name="IdJugador" ColumnName="IdJugador" />
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblArbitros">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblArbitros">
+              <MappingFragment StoreEntitySet="tblArbitros">
+                <ScalarProperty Name="IdArbitro" ColumnName="IdArbitro" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="CostoArbitraje" ColumnName="CostoArbitraje" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="TipoArbitro" ColumnName="TipoArbitro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCanchas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblCanchas">
+              <MappingFragment StoreEntitySet="tblCanchas">
+                <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="TipoCancha" ColumnName="TipoCancha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEmpleados">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
+              <MappingFragment StoreEntitySet="tblEmpleados">
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
+                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
+                <ScalarProperty Name="Nss" ColumnName="Nss" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEquipos">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblEquipos">
+              <MappingFragment StoreEntitySet="tblEquipos">
+                <ScalarProperty Name="IdEquipo" ColumnName="IdEquipo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="AnioFundacion" ColumnName="AnioFundacion" />
+                <ScalarProperty Name="Zona" ColumnName="Zona" />
+                <ScalarProperty Name="ColorVisitante" ColumnName="ColorVisitante" />
+                <ScalarProperty Name="ColorLocal" ColumnName="ColorLocal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblJugadores">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblJugadores">
+              <MappingFragment StoreEntitySet="tblJugadores">
+                <ScalarProperty Name="IdJugador" ColumnName="IdJugador" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="NumDorsal" ColumnName="NumDorsal" />
+                <ScalarProperty Name="SobreNombre" ColumnName="SobreNombre" />
+                <ScalarProperty Name="Posicion" ColumnName="Posicion" />
+                <ScalarProperty Name="Capitan" ColumnName="Capitan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPartidos">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblPartidos">
+              <MappingFragment StoreEntitySet="tblPartidos">
+                <ScalarProperty Name="IdPartido" ColumnName="IdPartido" />
+                <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
+                <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
+                <ScalarProperty Name="Jornada" ColumnName="Jornada" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Equipo1" ColumnName="Equipo1" />
+                <ScalarProperty Name="Equipo2" ColumnName="Equipo2" />
+                <ScalarProperty Name="GolesEquipo1" ColumnName="GolesEquipo1" />
+                <ScalarProperty Name="GolesEquipo2" ColumnName="GolesEquipo2" />
+                <ScalarProperty Name="Ganador" ColumnName="Ganador" />
+                <ScalarProperty Name="Perdedor" ColumnName="Perdedor" />
+                <ScalarProperty Name="IdArbitro" ColumnName="IdArbitro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPersonas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblPersonas">
+              <MappingFragment StoreEntitySet="tblPersonas">
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPlanteles">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblPlanteles">
+              <MappingFragment StoreEntitySet="tblPlanteles">
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProveedores">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblProveedores">
+              <MappingFragment StoreEntitySet="tblProveedores">
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTemporadas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblTemporadas">
+              <MappingFragment StoreEntitySet="tblTemporadas">
+                <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tblJugadoresAgregar" FunctionName="BDUnderMatchModel.Store.tblJugadoresAgregar" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
