@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using API_UnderMatch.Models;
 
 namespace API_UnderMatch.Controllers
 {
+    [EnableCors(origins:"*", headers:"*", methods:"*")]
     public class tblJugadoresController : ApiController
     {
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
@@ -19,7 +21,7 @@ namespace API_UnderMatch.Controllers
         // GET: api/tblJugadores
         public IQueryable<viewJugadores> GettblJugadores()
         {
-            return db.viewJugadores.Where(j => j.Estatus == 1);
+            return db.viewJugadores;
         }
 
         // GET: api/tblJugadores/5
