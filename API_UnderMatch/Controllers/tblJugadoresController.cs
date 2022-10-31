@@ -21,7 +21,17 @@ namespace API_UnderMatch.Controllers
         // GET: api/tblJugadores
         public IQueryable<viewJugadores> GettblJugadores()
         {
-            return db.viewJugadores;
+            DbSet<viewJugadores> viewJugadores = db.viewJugadores;
+
+            for (int i = 0; i < viewJugadores.ToList().Count; i++)
+            {
+                Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Find(viewJugadores.ToList()[i].IdJugador);
+                viewJugadores.ToList()[i].IdEquipo = Jugadores_Equipos.IdEquipo;
+                viewJugadores.ToList()[i].Equipo = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo).Nombre;
+            }
+
+            //return db.viewJugadores;
+            return viewJugadores;
         }
 
         // GET: api/tblJugadores/5
@@ -30,6 +40,8 @@ namespace API_UnderMatch.Controllers
         {
             tblJugadores tblJugadores = db.tblJugadores.Find(id);
             tblPersonas tblPersonas = db.tblPersonas.Find(tblJugadores.IdPersona);
+            Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Find(tblJugadores.IdJugador);
+            tblEquipos tblEquipos = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo);
 
             if (tblJugadores == null || tblPersonas == null)
             {
@@ -52,7 +64,9 @@ namespace API_UnderMatch.Controllers
                 SobreNombre = tblJugadores.SobreNombre,
                 Posicion = tblJugadores.Posicion,
                 Capitan = tblJugadores.Capitan,
-                Estatus = tblJugadores.Estatus
+                Estatus = tblJugadores.Estatus,
+                IdEquipo = Jugadores_Equipos.IdEquipo,
+                Equipo = tblEquipos.Nombre
             };
 
             return Ok(viewJugadores);
@@ -60,7 +74,7 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblJugadores/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblJugadores(int idPersona, int idJugador, string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string NumDorsal, string SobreNombre, string Posicion, int Capitan)
+        public IHttpActionResult PuttblJugadores(int idPersona, int idJugador, string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string NumDorsal, string SobreNombre, string Posicion, int Capitan, int idEquipo)
         {
             //if (!ModelState.IsValid)
             //{
@@ -72,7 +86,7 @@ namespace API_UnderMatch.Controllers
             //    return BadRequest();
             //}
 
-            db.tblJugadoresModificar(idPersona, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, idJugador, NumDorsal, SobreNombre, Posicion, Capitan);
+            db.tblJugadoresModificar(idPersona, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, idJugador, NumDorsal, SobreNombre, Posicion, Capitan, idEquipo);
             //db.Entry(tblJugadores).State = EntityState.Modified;
 
             try
@@ -97,7 +111,7 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblJugadores
         [ResponseType(typeof(tblJugadores))]
-        public IHttpActionResult PosttblJugadores(string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string NumDorsal, string SobreNombre, string Posicion, int Capitan)
+        public IHttpActionResult PosttblJugadores(string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string NumDorsal, string SobreNombre, string Posicion, int Capitan, int idEquipo)
         {
             //if (!ModelState.IsValid)
             //{
@@ -108,7 +122,7 @@ namespace API_UnderMatch.Controllers
 
             try
             {
-                db.tblJugadoresAgregar(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, NumDorsal, SobreNombre, Posicion, Capitan);
+                db.tblJugadoresAgregar(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, NumDorsal, SobreNombre, Posicion, Capitan, idEquipo);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
             }
@@ -117,6 +131,23 @@ namespace API_UnderMatch.Controllers
                 return BadRequest("Algo salio mal\n" + e);
             }
             //return CreatedAtRoute("DefaultApi", new { id = tblJugadores.IdJugador }, tblJugadores);
+        }
+
+        // POST: api/tblJugadores
+        [ResponseType(typeof(tblJugadores))]
+        public IHttpActionResult PosttblJugadores(int idJugador)
+        {
+            tblJugadores tblJugadores = db.tblJugadores.Find(idJugador);
+            if (tblJugadores == null)
+            {
+                return NotFound();
+            }
+
+            //db.tblJugadores.Remove(tblJugadores);
+            db.tblJugadoresEliminar(idJugador, 0);
+            db.SaveChanges();
+
+            return Ok(tblJugadores);
         }
 
         // DELETE: api/tblJugadores/5
@@ -130,7 +161,7 @@ namespace API_UnderMatch.Controllers
             }
 
             //db.tblJugadores.Remove(tblJugadores);
-            db.tblJugadoresEliminar(idJugador);
+            db.tblJugadoresEliminar(idJugador, 1);
             db.SaveChanges();
 
             return Ok(tblJugadores);

@@ -29,5 +29,7 @@ namespace API_UnderMatch.Models
         public string Posicion { get; set; }
         public Nullable<int> Capitan { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public Nullable<int> IdEquipo { get; set; }
+        public string Equipo { get; set; }
     }
 }
