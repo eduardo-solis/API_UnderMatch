@@ -25,9 +25,15 @@ namespace API_UnderMatch.Controllers
 
             for (int i = 0; i < viewJugadores.ToList().Count; i++)
             {
-                Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Find(viewJugadores.ToList()[i].IdJugador);
-                viewJugadores.ToList()[i].IdEquipo = Jugadores_Equipos.IdEquipo;
-                viewJugadores.ToList()[i].NombreEquipo = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo).Nombre;
+                // Se extrae el dato para manipular la informacion
+                viewJugadores view = viewJugadores.ToList()[i];
+                int idJugador = view.IdJugador;
+                Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Where(jE => jE.IdJugador == idJugador).First();//Find(viewJugadores.ToList()[i].IdJugador);
+                view.IdEquipo = Jugadores_Equipos.IdEquipo;
+                view.NombreEquipo = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo).Nombre;
+
+                // Se regresa el dato con la informacion actualizada
+                viewJugadores.ToList()[i] = view;
             }
 
             //return db.viewJugadores;
@@ -40,7 +46,7 @@ namespace API_UnderMatch.Controllers
         {
             tblJugadores tblJugadores = db.tblJugadores.Find(id);
             tblPersonas tblPersonas = db.tblPersonas.Find(tblJugadores.IdPersona);
-            Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Find(tblJugadores.IdJugador);
+            Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Where(jE => jE.IdJugador == tblJugadores.IdJugador).First();//Find(tblJugadores.IdJugador);
             tblEquipos tblEquipos = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo);
 
             if (tblJugadores == null || tblPersonas == null)
