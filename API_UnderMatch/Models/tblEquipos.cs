@@ -31,7 +31,7 @@ namespace API_UnderMatch.Models
         public string ColorVisitante { get; set; }
         public string ColorLocal { get; set; }
         public Nullable<int> Estatus { get; set; }
-
+    
         [JsonIgnore]
         public virtual ctgCategorias ctgCategorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

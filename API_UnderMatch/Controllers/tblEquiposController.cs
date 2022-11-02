@@ -89,7 +89,7 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/tblEquipos/5
         [ResponseType(typeof(tblEquipos))]
-        public IHttpActionResult DeletetblEquipos(int id)
+        public IHttpActionResult DeletetblEquipos(int id, int operacion)
         {
             tblEquipos tblEquipos = db.tblEquipos.Find(id);
             if (tblEquipos == null)
@@ -97,7 +97,14 @@ namespace API_UnderMatch.Controllers
                 return NotFound();
             }
 
-            db.tblEquipos.Remove(tblEquipos);
+            if(operacion == 0)
+            {
+                db.tblEquiposEliminar(tblEquipos.IdEquipo);
+            }
+            else
+            {
+                db.tblEquiposActivar(tblEquipos.IdEquipo);
+            }
             db.SaveChanges();
 
             return Ok(tblEquipos);

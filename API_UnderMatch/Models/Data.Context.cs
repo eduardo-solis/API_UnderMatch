@@ -93,11 +93,11 @@ namespace API_UnderMatch.Models
             var capitanParameter = capitan.HasValue ?
                 new ObjectParameter("Capitan", capitan) :
                 new ObjectParameter("Capitan", typeof(int));
-
-            var idEquipoParameter = idEquipo.HasValue ? 
+    
+            var idEquipoParameter = idEquipo.HasValue ?
                 new ObjectParameter("IdEquipo", idEquipo) :
                 new ObjectParameter("IdEquipo", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, numDorsalParameter, sobreNombreParameter, posicionParameter, capitanParameter, idEquipoParameter);
         }
     
@@ -106,22 +106,14 @@ namespace API_UnderMatch.Models
             var idJugadorParameter = idJugador.HasValue ?
                 new ObjectParameter("IdJugador", idJugador) :
                 new ObjectParameter("IdJugador", typeof(int));
+    
             var eliminarParameter = eliminar.HasValue ?
                 new ObjectParameter("Eliminar", eliminar) :
                 new ObjectParameter("Eliminar", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresEliminar", idJugadorParameter, eliminarParameter);
         }
-
-        public virtual int tblJugadoresActivar(Nullable<int> idJugador)
-        {
-            var idJugadorParameter = idJugador.HasValue ?
-                new ObjectParameter("IdJugador", idJugador) :
-                new ObjectParameter("IdJugador", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresActivar", idJugadorParameter);
-        }
-
+    
         public virtual int tblJugadoresModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idJugador, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {
             var idPersonaParameter = idPersona.HasValue ?
@@ -179,12 +171,30 @@ namespace API_UnderMatch.Models
             var capitanParameter = capitan.HasValue ?
                 new ObjectParameter("Capitan", capitan) :
                 new ObjectParameter("Capitan", typeof(int));
-
+    
             var idEquipoParameter = idEquipo.HasValue ?
                 new ObjectParameter("IdEquipo", idEquipo) :
                 new ObjectParameter("IdEquipo", typeof(int));
-
+    
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idJugadorParameter, numDorsalParameter, sobreNombreParameter, posicionParameter, capitanParameter, idEquipoParameter);
+        }
+    
+        public virtual int tblEquiposActivar(Nullable<int> iD_EQUIPO)
+        {
+            var iD_EQUIPOParameter = iD_EQUIPO.HasValue ?
+                new ObjectParameter("ID_EQUIPO", iD_EQUIPO) :
+                new ObjectParameter("ID_EQUIPO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEquiposActivar", iD_EQUIPOParameter);
+        }
+    
+        public virtual int tblEquiposEliminar(Nullable<int> iD_EQUIPO)
+        {
+            var iD_EQUIPOParameter = iD_EQUIPO.HasValue ?
+                new ObjectParameter("ID_EQUIPO", iD_EQUIPO) :
+                new ObjectParameter("ID_EQUIPO", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEquiposEliminar", iD_EQUIPOParameter);
         }
     }
 }

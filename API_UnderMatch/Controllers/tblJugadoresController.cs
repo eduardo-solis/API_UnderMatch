@@ -27,7 +27,7 @@ namespace API_UnderMatch.Controllers
             {
                 Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Find(viewJugadores.ToList()[i].IdJugador);
                 viewJugadores.ToList()[i].IdEquipo = Jugadores_Equipos.IdEquipo;
-                viewJugadores.ToList()[i].Equipo = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo).Nombre;
+                viewJugadores.ToList()[i].NombreEquipo = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo).Nombre;
             }
 
             //return db.viewJugadores;
@@ -66,7 +66,7 @@ namespace API_UnderMatch.Controllers
                 Capitan = tblJugadores.Capitan,
                 Estatus = tblJugadores.Estatus,
                 IdEquipo = Jugadores_Equipos.IdEquipo,
-                Equipo = tblEquipos.Nombre
+                NombreEquipo = tblEquipos.Nombre
             };
 
             return Ok(viewJugadores);
