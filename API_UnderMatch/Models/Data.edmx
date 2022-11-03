@@ -435,6 +435,19 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ctgTipoProveedoresActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoProveedoresAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoProveedoresEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoProveedoresModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="tblEquiposActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_EQUIPO" Type="int" Mode="In" />
         </Function>
@@ -1131,7 +1144,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           </FunctionImport>
           <EntitySet Name="viewJugadores" EntityType="BDUnderMatchModel.viewJugadores" />
           <FunctionImport Name="tblJugadoresEliminar">
-            <Parameter Name="IdJugador" Mode="In" Type="Int32" />
+          <Parameter Name="IdJugador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblJugadoresModificar">
             <Parameter Name="IdPersona" Mode="In" Type="Int32" />
@@ -1157,7 +1170,20 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblJugadoresActivar">
-            <Parameter Name="IdJugador" Mode="In" Type="Int32" />
+          <Parameter Name="IdJugador" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoProveedoresActivar">
+            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoProveedoresAgregar">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoProveedoresEliminar">
+            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoProveedoresModificar">
+            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
@@ -1422,6 +1448,10 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <FunctionImportMapping FunctionImportName="tblEquiposActivar" FunctionName="BDUnderMatchModel.Store.tblEquiposActivar" />
           <FunctionImportMapping FunctionImportName="tblEquiposEliminar" FunctionName="BDUnderMatchModel.Store.tblEquiposEliminar" />
           <FunctionImportMapping FunctionImportName="tblJugadoresActivar" FunctionName="BDUnderMatchModel.Store.tblJugadoresActivar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoProveedoresActivar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresActivar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresAgregar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoProveedoresEliminar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresEliminar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoProveedoresModificar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresModificar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

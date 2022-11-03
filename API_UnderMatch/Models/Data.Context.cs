@@ -201,5 +201,45 @@ namespace API_UnderMatch.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresActivar", idJugadorParameter);
         }
+    
+        public virtual int ctgTipoProveedoresAgregar(string nombre)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresAgregar", nombreParameter);
+        }
+
+        public virtual int ctgTipoProveedoresModificar(Nullable<int> idTipoProveedor, string nombre)
+        {
+            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
+                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
+                new ObjectParameter("IdTipoProveedor", typeof(int));
+
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresModificar", idTipoProveedorParameter, nombreParameter);
+        }
+
+        public virtual int ctgTipoProveedoresEliminar(Nullable<int> idTipoProveedor)
+        {
+            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
+                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
+                new ObjectParameter("IdTipoProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresEliminar", idTipoProveedorParameter);
+        }
+
+        public virtual int ctgTipoProveedoresActivar(Nullable<int> idTipoProveedor)
+        {
+            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
+                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
+                new ObjectParameter("IdTipoProveedor", typeof(int));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresActivar", idTipoProveedorParameter);
+        }
     }
 }
