@@ -150,10 +150,10 @@ namespace API_UnderMatch.Controllers
             }
 
             //db.tblJugadores.Remove(tblJugadores);
-            db.tblJugadoresEliminar(idJugador, 0);
+            db.tblJugadoresActivar(idJugador);
             db.SaveChanges();
 
-            return Ok(tblJugadores);
+            return StatusCode(HttpStatusCode.OK);
         }
 
         // DELETE: api/tblJugadores/5
@@ -166,11 +166,10 @@ namespace API_UnderMatch.Controllers
                 return NotFound();
             }
 
-            //db.tblJugadores.Remove(tblJugadores);
-            db.tblJugadoresEliminar(idJugador, 1);
+            db.tblJugadoresEliminar(idJugador);
             db.SaveChanges();
 
-            return Ok(tblJugadores);
+            return StatusCode(HttpStatusCode.OK);
         }
 
         protected override void Dispose(bool disposing)

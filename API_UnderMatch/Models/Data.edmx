@@ -32,6 +32,7 @@
           </Key>
           <Property Name="IdTipoProveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="Jugadores_Equipos">
           <Key>
@@ -440,6 +441,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
         <Function Name="tblEquiposEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_EQUIPO" Type="int" Mode="In" />
         </Function>
+        <Function Name="tblJugadoresActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdJugador" Type="int" Mode="In" />
+        </Function>
         <Function Name="tblJugadoresAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
           <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
@@ -457,7 +461,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
         </Function>
         <Function Name="tblJugadoresEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdJugador" Type="int" Mode="In" />
-          <Parameter Name="Eliminar" Type="int" Mode="In" />
         </Function>
         <Function Name="tblJugadoresModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPersona" Type="int" Mode="In" />
@@ -622,6 +625,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="IdTipoProveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedor_ctgTipoProveedor" FromRole="ctgTipoProveedores" ToRole="tblProveedores" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="Jugadores_Equipos">
           <Key>
@@ -1127,8 +1131,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           </FunctionImport>
           <EntitySet Name="viewJugadores" EntityType="BDUnderMatchModel.viewJugadores" />
           <FunctionImport Name="tblJugadoresEliminar">
-          <Parameter Name="IdJugador" Mode="In" Type="Int32" />
-            <Parameter Name="Eliminar" Mode="In" Type="Int32" />
+            <Parameter Name="IdJugador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblJugadoresModificar">
             <Parameter Name="IdPersona" Mode="In" Type="Int32" />
@@ -1148,10 +1151,13 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <Parameter Name="IdEquipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEquiposActivar">
-            <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
+          <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEquiposEliminar">
-            <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
+          <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblJugadoresActivar">
+            <Parameter Name="IdJugador" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
@@ -1218,6 +1224,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <EntitySetMapping Name="ctgTipoProveedores">
             <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoProveedores">
               <MappingFragment StoreEntitySet="ctgTipoProveedores">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdTipoProveedor" ColumnName="IdTipoProveedor" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
@@ -1414,6 +1421,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <FunctionImportMapping FunctionImportName="tblJugadoresModificar" FunctionName="BDUnderMatchModel.Store.tblJugadoresModificar" />
           <FunctionImportMapping FunctionImportName="tblEquiposActivar" FunctionName="BDUnderMatchModel.Store.tblEquiposActivar" />
           <FunctionImportMapping FunctionImportName="tblEquiposEliminar" FunctionName="BDUnderMatchModel.Store.tblEquiposEliminar" />
+          <FunctionImportMapping FunctionImportName="tblJugadoresActivar" FunctionName="BDUnderMatchModel.Store.tblJugadoresActivar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
