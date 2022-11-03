@@ -29,7 +29,7 @@ namespace API_UnderMatch.Models
         public string Telefono { get; set; }
         public int IdPlantel { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
+
         public virtual ctgTipoProveedores ctgTipoProveedores { get; set; }
         public virtual tblPlanteles tblPlanteles { get; set; }
     }

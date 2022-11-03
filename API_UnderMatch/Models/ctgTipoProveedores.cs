@@ -9,6 +9,7 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -23,7 +24,7 @@ namespace API_UnderMatch.Models
         public int IdTipoProveedor { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblProveedores> tblProveedores { get; set; }
     }

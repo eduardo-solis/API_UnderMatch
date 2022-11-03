@@ -26,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/ctgTipoProveedores/5
         [ResponseType(typeof(ctgTipoProveedores))]
-        public IHttpActionResult GetctgTipoProveedores(int id)
+        public IHttpActionResult GetctgTipoProveedores(int idTipoProveedor)
         {
-            ctgTipoProveedores ctgTipoProveedores = db.ctgTipoProveedores.Find(id);
+            ctgTipoProveedores ctgTipoProveedores = db.ctgTipoProveedores.Find(idTipoProveedor);
             if (ctgTipoProveedores == null)
             {
                 return NotFound();
@@ -79,10 +79,17 @@ namespace API_UnderMatch.Controllers
                 return NotFound();
             }
 
-            db.ctgTipoProveedoresEliminar(idTipoProveedor);
-            db.SaveChanges();
+            try
+            {
+                db.ctgTipoProveedoresEliminar(idTipoProveedor);
+                db.SaveChanges();
 
-            return StatusCode(HttpStatusCode.OK);
+                return StatusCode(HttpStatusCode.OK);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Algo salio mal\n" + e);
+            }
         }
 
         // PUT: api/ctgTipoProveedores/5
@@ -95,10 +102,17 @@ namespace API_UnderMatch.Controllers
                 return NotFound();
             }
 
-            db.ctgTipoProveedoresActivar(idTipoProveedor);
-            db.SaveChanges();
+            try
+            {
+                db.ctgTipoProveedoresActivar(idTipoProveedor);
+                db.SaveChanges();
 
-            return StatusCode(HttpStatusCode.OK);
+                return StatusCode(HttpStatusCode.OK);
+            }
+            catch (Exception e)
+            {
+                return BadRequest("Algo salio mal\n" + e);
+            }
         }
 
         protected override void Dispose(bool disposing)

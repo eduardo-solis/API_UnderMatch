@@ -492,6 +492,43 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Parameter Name="Capitan" Type="int" Mode="In" />
           <Parameter Name="IdEquipo" Type="int" Mode="In" />
         </Function>
+        <Function Name="tblProveedoresActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblProveedoresAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Rfc" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="RazonSocial" Type="varchar" Mode="In" />
+          <Parameter Name="Calle" Type="varchar" Mode="In" />
+          <Parameter Name="Numero" Type="varchar" Mode="In" />
+          <Parameter Name="Colonia" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+          <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="IdPlantel" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblProveedoresEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblProveedoresModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdProveedor" Type="int" Mode="In" />
+          <Parameter Name="Rfc" Type="varchar" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="RazonSocial" Type="varchar" Mode="In" />
+          <Parameter Name="Calle" Type="varchar" Mode="In" />
+          <Parameter Name="Numero" Type="varchar" Mode="In" />
+          <Parameter Name="Colonia" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostal" Type="varchar" Mode="In" />
+          <Parameter Name="Ciudad" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="varchar" Mode="In" />
+          <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="IdPlantel" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="BDUnderMatchModelStoreContainer">
           <EntitySet Name="ctgCategorias" EntityType="Self.ctgCategorias" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoArbitros" EntityType="Self.ctgTipoArbitros" Schema="dbo" store:Type="Tables" />
@@ -1173,17 +1210,54 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Parameter Name="IdJugador" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ctgTipoProveedoresActivar">
-            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ctgTipoProveedoresAgregar">
-            <Parameter Name="Nombre" Mode="In" Type="String" />
+          <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ctgTipoProveedoresEliminar">
-            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="ctgTipoProveedoresModificar">
             <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
             <Parameter Name="Nombre" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tblProveedoresActivar">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblProveedoresAgregar">
+            <Parameter Name="Rfc" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="RazonSocial" Mode="In" Type="String" />
+            <Parameter Name="Calle" Mode="In" Type="String" />
+            <Parameter Name="Numero" Mode="In" Type="String" />
+            <Parameter Name="Colonia" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblProveedoresEliminar">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblProveedoresModificar">
+            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="Rfc" Mode="In" Type="String" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="RazonSocial" Mode="In" Type="String" />
+            <Parameter Name="Calle" Mode="In" Type="String" />
+            <Parameter Name="Numero" Mode="In" Type="String" />
+            <Parameter Name="Colonia" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostal" Mode="In" Type="String" />
+            <Parameter Name="Ciudad" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="String" />
+            <Parameter Name="IdTipoProveedor" Mode="In" Type="Int32" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
@@ -1452,6 +1526,10 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <FunctionImportMapping FunctionImportName="ctgTipoProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresAgregar" />
           <FunctionImportMapping FunctionImportName="ctgTipoProveedoresEliminar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresEliminar" />
           <FunctionImportMapping FunctionImportName="ctgTipoProveedoresModificar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresModificar" />
+          <FunctionImportMapping FunctionImportName="tblProveedoresActivar" FunctionName="BDUnderMatchModel.Store.tblProveedoresActivar" />
+          <FunctionImportMapping FunctionImportName="tblProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.tblProveedoresAgregar" />
+          <FunctionImportMapping FunctionImportName="tblProveedoresEliminar" FunctionName="BDUnderMatchModel.Store.tblProveedoresEliminar" />
+          <FunctionImportMapping FunctionImportName="tblProveedoresModificar" FunctionName="BDUnderMatchModel.Store.tblProveedoresModificar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

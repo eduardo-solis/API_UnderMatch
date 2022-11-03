@@ -20,6 +20,7 @@ namespace API_UnderMatch.Models
         public BDUnderMatchEntities1()
             : base("name=BDUnderMatchEntities1")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -202,6 +203,15 @@ namespace API_UnderMatch.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresActivar", idJugadorParameter);
         }
     
+        public virtual int ctgTipoProveedoresActivar(Nullable<int> idTipoProveedor)
+        {
+            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
+                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
+                new ObjectParameter("IdTipoProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresActivar", idTipoProveedorParameter);
+        }
+    
         public virtual int ctgTipoProveedoresAgregar(string nombre)
         {
             var nombreParameter = nombre != null ?
@@ -210,20 +220,7 @@ namespace API_UnderMatch.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresAgregar", nombreParameter);
         }
-
-        public virtual int ctgTipoProveedoresModificar(Nullable<int> idTipoProveedor, string nombre)
-        {
-            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
-                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
-                new ObjectParameter("IdTipoProveedor", typeof(int));
-
-            var nombreParameter = nombre != null ?
-                new ObjectParameter("Nombre", nombre) :
-                new ObjectParameter("Nombre", typeof(string));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresModificar", idTipoProveedorParameter, nombreParameter);
-        }
-
+    
         public virtual int ctgTipoProveedoresEliminar(Nullable<int> idTipoProveedor)
         {
             var idTipoProveedorParameter = idTipoProveedor.HasValue ?
@@ -232,14 +229,154 @@ namespace API_UnderMatch.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresEliminar", idTipoProveedorParameter);
         }
-
-        public virtual int ctgTipoProveedoresActivar(Nullable<int> idTipoProveedor)
+    
+        public virtual int ctgTipoProveedoresModificar(Nullable<int> idTipoProveedor, string nombre)
         {
             var idTipoProveedorParameter = idTipoProveedor.HasValue ?
                 new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
                 new ObjectParameter("IdTipoProveedor", typeof(int));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresActivar", idTipoProveedorParameter);
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoProveedoresModificar", idTipoProveedorParameter, nombreParameter);
+        }
+    
+        public virtual int tblProveedoresActivar(Nullable<int> idProveedor)
+        {
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("IdProveedor", idProveedor) :
+                new ObjectParameter("IdProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresActivar", idProveedorParameter);
+        }
+    
+        public virtual int tblProveedoresAgregar(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, Nullable<int> idTipoProveedor, string correo, string telefono, Nullable<int> idPlantel)
+        {
+            var rfcParameter = rfc != null ?
+                new ObjectParameter("Rfc", rfc) :
+                new ObjectParameter("Rfc", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var razonSocialParameter = razonSocial != null ?
+                new ObjectParameter("RazonSocial", razonSocial) :
+                new ObjectParameter("RazonSocial", typeof(string));
+    
+            var calleParameter = calle != null ?
+                new ObjectParameter("Calle", calle) :
+                new ObjectParameter("Calle", typeof(string));
+    
+            var numeroParameter = numero != null ?
+                new ObjectParameter("Numero", numero) :
+                new ObjectParameter("Numero", typeof(string));
+    
+            var coloniaParameter = colonia != null ?
+                new ObjectParameter("Colonia", colonia) :
+                new ObjectParameter("Colonia", typeof(string));
+    
+            var codigoPostalParameter = codigoPostal != null ?
+                new ObjectParameter("CodigoPostal", codigoPostal) :
+                new ObjectParameter("CodigoPostal", typeof(string));
+    
+            var ciudadParameter = ciudad != null ?
+                new ObjectParameter("Ciudad", ciudad) :
+                new ObjectParameter("Ciudad", typeof(string));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
+                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
+                new ObjectParameter("IdTipoProveedor", typeof(int));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresAgregar", rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, ciudadParameter, estadoParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
+        }
+    
+        public virtual int tblProveedoresEliminar(Nullable<int> idProveedor)
+        {
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("IdProveedor", idProveedor) :
+                new ObjectParameter("IdProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresEliminar", idProveedorParameter);
+        }
+    
+        public virtual int tblProveedoresModificar(Nullable<int> idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, Nullable<int> idTipoProveedor, string correo, string telefono, Nullable<int> idPlantel)
+        {
+            var idProveedorParameter = idProveedor.HasValue ?
+                new ObjectParameter("IdProveedor", idProveedor) :
+                new ObjectParameter("IdProveedor", typeof(int));
+    
+            var rfcParameter = rfc != null ?
+                new ObjectParameter("Rfc", rfc) :
+                new ObjectParameter("Rfc", typeof(string));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var razonSocialParameter = razonSocial != null ?
+                new ObjectParameter("RazonSocial", razonSocial) :
+                new ObjectParameter("RazonSocial", typeof(string));
+    
+            var calleParameter = calle != null ?
+                new ObjectParameter("Calle", calle) :
+                new ObjectParameter("Calle", typeof(string));
+    
+            var numeroParameter = numero != null ?
+                new ObjectParameter("Numero", numero) :
+                new ObjectParameter("Numero", typeof(string));
+    
+            var coloniaParameter = colonia != null ?
+                new ObjectParameter("Colonia", colonia) :
+                new ObjectParameter("Colonia", typeof(string));
+    
+            var codigoPostalParameter = codigoPostal != null ?
+                new ObjectParameter("CodigoPostal", codigoPostal) :
+                new ObjectParameter("CodigoPostal", typeof(string));
+    
+            var ciudadParameter = ciudad != null ?
+                new ObjectParameter("Ciudad", ciudad) :
+                new ObjectParameter("Ciudad", typeof(string));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("Estado", estado) :
+                new ObjectParameter("Estado", typeof(string));
+    
+            var idTipoProveedorParameter = idTipoProveedor.HasValue ?
+                new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
+                new ObjectParameter("IdTipoProveedor", typeof(int));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresModificar", idProveedorParameter, rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, ciudadParameter, estadoParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
         }
     }
 }
