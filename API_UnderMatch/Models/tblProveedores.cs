@@ -9,6 +9,7 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -30,7 +31,9 @@ namespace API_UnderMatch.Models
         public int IdPlantel { get; set; }
         public Nullable<int> Estatus { get; set; }
 
+        [JsonIgnore]
         public virtual ctgTipoProveedores ctgTipoProveedores { get; set; }
+        [JsonIgnore]
         public virtual tblPlanteles tblPlanteles { get; set; }
     }
 }
