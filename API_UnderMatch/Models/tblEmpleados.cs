@@ -16,7 +16,6 @@ namespace API_UnderMatch.Models
     {
         public int IdEmpleado { get; set; }
         public int IdPersona { get; set; }
-        public int IdPlantel { get; set; }
         public string Calle { get; set; }
         public string Numero { get; set; }
         public string Colonia { get; set; }
@@ -33,6 +32,5 @@ namespace API_UnderMatch.Models
     
         public virtual ctgTipoEmpleados ctgTipoEmpleados { get; set; }
         public virtual tblPersonas tblPersonas { get; set; }
-        public virtual tblPlanteles tblPlanteles { get; set; }
     }
 }

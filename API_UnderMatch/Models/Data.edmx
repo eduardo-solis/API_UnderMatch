@@ -69,7 +69,6 @@
           </Key>
           <Property Name="IdEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPersona" Type="int" Nullable="false" />
-          <Property Name="IdPlantel" Type="int" Nullable="false" />
           <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
@@ -312,18 +311,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             </Principal>
             <Dependent Role="tblEmpleados">
               <PropertyRef Name="IdPersona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblEmpleados_tblPlanteles">
-          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
-          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPlanteles">
-              <PropertyRef Name="IdPlantel" />
-            </Principal>
-            <Dependent Role="tblEmpleados">
-              <PropertyRef Name="IdPlantel" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -598,10 +585,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <End Role="tblPersonas" EntitySet="tblPersonas" />
             <End Role="tblEmpleados" EntitySet="tblEmpleados" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblEmpleados_tblPlanteles" Association="Self.FK_tblEmpleados_tblPlanteles">
-            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
-            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblEquipo_ctgCategoria" Association="Self.FK_tblEquipo_ctgCategoria">
             <End Role="ctgCategorias" EntitySet="ctgCategorias" />
             <End Role="tblEquipos" EntitySet="tblEquipos" />
@@ -666,7 +649,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           </Key>
           <Property Name="IdTipoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleado_ctgTipoEmpleado" FromRole="ctgTipoEmpleados" ToRole="tblEmpleados" />
+          <NavigationProperty Name="tblEmpleados" Relationship="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" FromRole="ctgTipoEmpleados" ToRole="tblEmpleados" />
         </EntityType>
         <EntityType Name="ctgTipoProveedores">
           <Key>
@@ -712,30 +695,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="TipoCancha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblCanchas" ToRole="tblPlanteles" />
           <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblCanchas" FromRole="tblCanchas" ToRole="tblPartidos" />
-          <Property Name="Estatus" Type="Int32" />
-        </EntityType>
-        <EntityType Name="tblEmpleados">
-          <Key>
-            <PropertyRef Name="IdEmpleado" />
-          </Key>
-          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdPersona" Type="Int32" Nullable="false" />
-          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
-          <Property Name="Calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Curp" Type="String" MaxLength="18" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
-          <Property Name="Rfc" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nss" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Salario" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
-          <Property Name="Horario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ctgTipoEmpleados" Relationship="Self.FK_tblEmpleado_ctgTipoEmpleado" FromRole="tblEmpleados" ToRole="ctgTipoEmpleados" />
-          <NavigationProperty Name="tblPersonas" Relationship="Self.FK_tblEmpleado_tblPersona" FromRole="tblEmpleados" ToRole="tblPersonas" />
-          <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblEmpleados_tblPlanteles" FromRole="tblEmpleados" ToRole="tblPlanteles" />
           <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="tblEquipos">
@@ -807,8 +766,8 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblArbitro_tblPersona" FromRole="tblPersonas" ToRole="tblArbitros" />
-          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleado_tblPersona" FromRole="tblPersonas" ToRole="tblEmpleados" />
           <NavigationProperty Name="tblJugadores" Relationship="Self.FK_tblJugador_tblPersona" FromRole="tblPersonas" ToRole="tblJugadores" />
+          <NavigationProperty Name="tblEmpleados" Relationship="BDUnderMatchModel.FK_tblEmpleado_tblPersona" FromRole="tblPersonas" ToRole="tblEmpleados" />
         </EntityType>
         <EntityType Name="tblPlanteles">
           <Key>
@@ -823,7 +782,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblPlanteles" ToRole="tblCanchas" />
-          <NavigationProperty Name="tblEmpleados" Relationship="Self.FK_tblEmpleados_tblPlanteles" FromRole="tblPlanteles" ToRole="tblEmpleados" />
           <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblPlanteles" ToRole="tblProveedores" />
           <Property Name="Estatus" Type="Int32" />
         </EntityType>
@@ -893,18 +851,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             </Principal>
             <Dependent Role="tblArbitros">
               <PropertyRef Name="TipoArbitro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblEmpleado_ctgTipoEmpleado">
-          <End Role="ctgTipoEmpleados" Type="Self.ctgTipoEmpleados" Multiplicity="1" />
-          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ctgTipoEmpleados">
-              <PropertyRef Name="IdTipoEmpleado" />
-            </Principal>
-            <Dependent Role="tblEmpleados">
-              <PropertyRef Name="TipoEmpleado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -992,30 +938,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblEmpleado_tblPersona">
-          <End Role="tblPersonas" Type="Self.tblPersonas" Multiplicity="1" />
-          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPersonas">
-              <PropertyRef Name="IdPersona" />
-            </Principal>
-            <Dependent Role="tblEmpleados">
-              <PropertyRef Name="IdPersona" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblEmpleados_tblPlanteles">
-          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
-          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPlanteles">
-              <PropertyRef Name="IdPlantel" />
-            </Principal>
-            <Dependent Role="tblEmpleados">
-              <PropertyRef Name="IdPlantel" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblPartidos_tblEquipos">
           <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
           <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
@@ -1084,7 +1006,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <EntitySet Name="Jugadores_Equipos" EntityType="Self.Jugadores_Equipos" />
           <EntitySet Name="tblArbitros" EntityType="Self.tblArbitros" />
           <EntitySet Name="tblCanchas" EntityType="Self.tblCanchas" />
-          <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" />
           <EntitySet Name="tblEquipos" EntityType="Self.tblEquipos" />
           <EntitySet Name="tblJugadores" EntityType="Self.tblJugadores" />
           <EntitySet Name="tblPartidos" EntityType="Self.tblPartidos" />
@@ -1103,10 +1024,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <AssociationSet Name="FK_tblArbitro_ctgTipoArbitro" Association="Self.FK_tblArbitro_ctgTipoArbitro">
             <End Role="ctgTipoArbitros" EntitySet="ctgTipoArbitros" />
             <End Role="tblArbitros" EntitySet="tblArbitros" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblEmpleado_ctgTipoEmpleado" Association="Self.FK_tblEmpleado_ctgTipoEmpleado">
-            <End Role="ctgTipoEmpleados" EntitySet="ctgTipoEmpleados" />
-            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
           </AssociationSet>
           <AssociationSet Name="FK_tblProveedor_ctgTipoProveedor" Association="Self.FK_tblProveedor_ctgTipoProveedor">
             <End Role="ctgTipoProveedores" EntitySet="ctgTipoProveedores" />
@@ -1135,14 +1052,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <AssociationSet Name="FK_tblPartidos_tblCanchas" Association="Self.FK_tblPartidos_tblCanchas">
             <End Role="tblCanchas" EntitySet="tblCanchas" />
             <End Role="tblPartidos" EntitySet="tblPartidos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblEmpleado_tblPersona" Association="Self.FK_tblEmpleado_tblPersona">
-            <End Role="tblPersonas" EntitySet="tblPersonas" />
-            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblEmpleados_tblPlanteles" Association="Self.FK_tblEmpleados_tblPlanteles">
-            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
-            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
           </AssociationSet>
           <AssociationSet Name="FK_tblPartidos_tblEquipos" Association="Self.FK_tblPartidos_tblEquipos">
             <End Role="tblEquipos" EntitySet="tblEquipos" />
@@ -1223,7 +1132,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <Parameter Name="Nombre" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="tblProveedoresActivar">
-            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblProveedoresAgregar">
             <Parameter Name="Rfc" Mode="In" Type="String" />
@@ -1241,7 +1150,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblProveedoresEliminar">
-            <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+          <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblProveedoresModificar">
             <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
@@ -1259,6 +1168,15 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <Parameter Name="Telefono" Mode="In" Type="String" />
             <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tblEmpleados" EntityType="BDUnderMatchModel.tblEmpleados" />
+          <AssociationSet Name="FK_tblEmpleado_ctgTipoEmpleado" Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado">
+            <End Role="ctgTipoEmpleados" EntitySet="ctgTipoEmpleados" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmpleado_tblPersona" Association="BDUnderMatchModel.FK_tblEmpleado_tblPersona">
+            <End Role="tblPersonas" EntitySet="tblPersonas" />
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -1291,6 +1209,52 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="IdEquipo" Type="Int32" />
           <Property Name="NombreEquipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tblEmpleados">
+          <Key>
+            <PropertyRef Name="IdEmpleado" />
+          </Key>
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nss" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Salario" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Horario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="ctgTipoEmpleados" Relationship="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" FromRole="tblEmpleados" ToRole="ctgTipoEmpleados" />
+          <NavigationProperty Name="tblPersonas" Relationship="BDUnderMatchModel.FK_tblEmpleado_tblPersona" FromRole="tblEmpleados" ToRole="tblPersonas" />
+        </EntityType>
+        <Association Name="FK_tblEmpleado_ctgTipoEmpleado">
+          <End Type="BDUnderMatchModel.ctgTipoEmpleados" Role="ctgTipoEmpleados" Multiplicity="1" />
+          <End Type="BDUnderMatchModel.tblEmpleados" Role="tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoEmpleados">
+              <PropertyRef Name="IdTipoEmpleado" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="TipoEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmpleado_tblPersona">
+          <End Type="BDUnderMatchModel.tblPersonas" Role="tblPersonas" Multiplicity="1" />
+          <End Type="BDUnderMatchModel.tblEmpleados" Role="tblEmpleados" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPersonas">
+              <PropertyRef Name="IdPersona" />
+            </Principal>
+            <Dependent Role="tblEmpleados">
+              <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1359,28 +1323,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="TipoCancha" ColumnName="TipoCancha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblEmpleados">
-            <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
-              <MappingFragment StoreEntitySet="tblEmpleados">
-                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
-                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
-                <ScalarProperty Name="Calle" ColumnName="Calle" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
-                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Curp" ColumnName="Curp" />
-                <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
-                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
-                <ScalarProperty Name="Nss" ColumnName="Nss" />
-                <ScalarProperty Name="Salario" ColumnName="Salario" />
-                <ScalarProperty Name="Horario" ColumnName="Horario" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1530,6 +1472,27 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <FunctionImportMapping FunctionImportName="tblProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.tblProveedoresAgregar" />
           <FunctionImportMapping FunctionImportName="tblProveedoresEliminar" FunctionName="BDUnderMatchModel.Store.tblProveedoresEliminar" />
           <FunctionImportMapping FunctionImportName="tblProveedoresModificar" FunctionName="BDUnderMatchModel.Store.tblProveedoresModificar" />
+          <EntitySetMapping Name="tblEmpleados">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
+              <MappingFragment StoreEntitySet="tblEmpleados">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Nss" ColumnName="Nss" />
+                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
+                <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
