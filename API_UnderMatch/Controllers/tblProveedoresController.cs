@@ -21,23 +21,23 @@ namespace API_UnderMatch.Controllers
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
 
         // GET: api/tblProveedores
-        public IQueryable<tblProveedores> GettblProveedores()
+        public IQueryable<viewProveedores> GettblProveedores()
         {
-            return db.tblProveedores;
+            return db.viewProveedores;
         }
 
         // GET: api/tblProveedores/5
-        [ResponseType(typeof(tblProveedores))]
+        [ResponseType(typeof(viewProveedores))]
         public IHttpActionResult GettblProveedores(int idProveedor)
         {
             try
             {
-                tblProveedores proveedores = db.tblProveedores.Find(idProveedor);
+                viewProveedores proveedor = db.viewProveedores.Where(prov => prov.IdProveedor == idProveedor).FirstOrDefault();
 
-                if (proveedores == null)
+                if (proveedor == null)
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontró el proveedor"));
 
-                return Ok(proveedores);
+                return Ok(proveedor);
             }
             catch (Exception e)
             {
@@ -46,13 +46,13 @@ namespace API_UnderMatch.Controllers
         }
 
         // GET: api/tblProveedores/5
-        [ResponseType(typeof(tblProveedores))]
+        [ResponseType(typeof(viewProveedores))]
         public IHttpActionResult GettblProveedores(string rfc)
         {
             try
             {
-                IQueryable<tblProveedores> tblProveedores = db.tblProveedores.Where(proveedor => DbFunctions.Like(proveedor.Rfc.ToLower(), "%" + rfc.ToLower() + "%"));
-                return Ok(tblProveedores);
+                IQueryable<viewProveedores> proveedores = db.viewProveedores.Where(proveedor => DbFunctions.Like(proveedor.Rfc.ToLower(), "%" + rfc.ToLower() + "%"));
+                return Ok(proveedores);
             }
             catch (Exception e)
             {
@@ -62,7 +62,8 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblProveedores/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblProveedores(int idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
+        public IHttpActionResult PuttblProveedores(int idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, 
+            string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
         {
             try
             {
@@ -72,7 +73,8 @@ namespace API_UnderMatch.Controllers
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. RFC existente"));
                 else
                 {
-                    db.tblProveedoresModificar(idProveedor, rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono, idPlantel);
+                    db.tblProveedoresModificar(idProveedor, rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, 
+                        correo, telefono, idPlantel);
                     db.SaveChanges();
                     return Json(new { Message = "Proveedor modificado con éxito" });
                 }
@@ -85,7 +87,8 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblProveedores
         [ResponseType(typeof(tblProveedores))]
-        public IHttpActionResult PosttblProveedores(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
+        public IHttpActionResult PosttblProveedores(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, 
+            string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
         {
             try
             {
@@ -95,7 +98,8 @@ namespace API_UnderMatch.Controllers
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. RFC existente"));
                 else
                 {
-                    db.tblProveedoresAgregar(rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono, idPlantel);
+                    db.tblProveedoresAgregar(rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono, 
+                        idPlantel);
                     db.SaveChanges();
                     return Json(new { Message = "Proveedor agregado con éxito" });
                 }

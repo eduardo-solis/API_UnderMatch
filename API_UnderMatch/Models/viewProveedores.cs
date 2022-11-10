@@ -12,7 +12,7 @@ namespace API_UnderMatch.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblProveedores
+    public partial class viewProveedores
     {
         public int IdProveedor { get; set; }
         public string Rfc { get; set; }
@@ -29,8 +29,7 @@ namespace API_UnderMatch.Models
         public string Telefono { get; set; }
         public int IdPlantel { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
-        public virtual ctgTipoProveedores ctgTipoProveedores { get; set; }
-        public virtual tblPlanteles tblPlanteles { get; set; }
+        public string NombreTipoProveedor { get; set; }
+        public string NombrePlantel { get; set; }
     }
 }

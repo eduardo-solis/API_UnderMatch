@@ -20,7 +20,6 @@ namespace API_UnderMatch.Models
         public BDUnderMatchEntities1()
             : base("name=BDUnderMatchEntities1")
         {
-            this.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -44,6 +43,7 @@ namespace API_UnderMatch.Models
         public virtual DbSet<tblProveedores> tblProveedores { get; set; }
         public virtual DbSet<tblTemporadas> tblTemporadas { get; set; }
         public virtual DbSet<viewJugadores> viewJugadores { get; set; }
+        public virtual DbSet<viewProveedores> viewProveedores { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {
