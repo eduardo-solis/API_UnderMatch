@@ -24,9 +24,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/tblCanchas/5
         [ResponseType(typeof(tblCanchas))]
-        public IHttpActionResult GettblCanchas(int id)
+        public IHttpActionResult GettblCanchas(int idCancha)
         {
-            tblCanchas tblCanchas = db.tblCanchas.Find(id);
+            tblCanchas tblCanchas = db.tblCanchas.Find(idCancha);
             if (tblCanchas == null)
             {
                 return NotFound();
@@ -37,16 +37,22 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblCanchas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblCanchas(int id, tblCanchas tblCanchas)
+        public IHttpActionResult PuttblCanchas(int idCancha, int idPlantel, string nombre, string tipoCancha)
         {
+
+            tblCanchas tblCanchas = new tblCanchas
+            {
+                IdCancha = idCancha,
+                IdPlantel = idPlantel,
+                Nombre = nombre,
+                TipoCancha = tipoCancha,
+                Estatus = 1
+            };
+
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != tblCanchas.IdCancha)
-            {
-                return BadRequest();
             }
 
             db.Entry(tblCanchas).State = EntityState.Modified;
@@ -57,7 +63,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tblCanchasExists(id))
+                if (!tblCanchasExists(idCancha))
                 {
                     return NotFound();
                 }
@@ -72,8 +78,17 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblCanchas
         [ResponseType(typeof(tblCanchas))]
-        public IHttpActionResult PosttblCanchas(tblCanchas tblCanchas)
+        public IHttpActionResult PosttblCanchas(int idPlantel, string nombre, string tipoCancha)
         {
+
+            tblCanchas tblCanchas = new tblCanchas
+            {
+                IdPlantel = idPlantel,
+                Nombre = nombre,
+                TipoCancha = tipoCancha,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -87,15 +102,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/tblCanchas/5
         [ResponseType(typeof(tblCanchas))]
-        public IHttpActionResult DeletetblCanchas(int id)
+        public IHttpActionResult DeletetblCanchas(int idCancha, int operacion)
         {
-            tblCanchas tblCanchas = db.tblCanchas.Find(id);
+            tblCanchas tblCanchas = db.tblCanchas.Find(idCancha);
             if (tblCanchas == null)
             {
                 return NotFound();
             }
 
-            db.tblCanchas.Remove(tblCanchas);
+            if ( operacion == 0 )// Eliminar
+            {
+                db.tblCanchaEliminar(idCancha);
+            }
+            else
+            {
+                db.tblCanchaActivar(idCancha);
+            }
+
             db.SaveChanges();
 
             return Ok(tblCanchas);
