@@ -71,7 +71,7 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgTipoProveedores/5
         [ResponseType(typeof(ctgTipoProveedores))]
-        public IHttpActionResult DeletectgTipoProveedores(int idTipoProveedor)
+        public IHttpActionResult DeletectgTipoProveedores(int idTipoProveedor, int Operacion)
         {
             ctgTipoProveedores ctgTipoProveedores = db.ctgTipoProveedores.Find(idTipoProveedor);
             if (ctgTipoProveedores == null)
@@ -81,33 +81,20 @@ namespace API_UnderMatch.Controllers
 
             try
             {
-                db.ctgTipoProveedoresEliminar(idTipoProveedor);
+                if ( Operacion == 0 ) //Eliminar
+                {
+                    db.ctgTipoProveedoresEliminar(idTipoProveedor);
+                    
+                }
+                else
+                {
+                    db.ctgTipoProveedoresActivar(idTipoProveedor);
+                }
+
                 db.SaveChanges();
 
                 return StatusCode(HttpStatusCode.OK);
-            }
-            catch (Exception e)
-            {
-                return BadRequest("Algo salio mal\n" + e);
-            }
-        }
 
-        // PUT: api/ctgTipoProveedores/5
-        [ResponseType(typeof(ctgTipoProveedores))]
-        public IHttpActionResult PutctgTipoProveedores(int idTipoProveedor)
-        {
-            ctgTipoProveedores ctgTipoProveedores = db.ctgTipoProveedores.Find(idTipoProveedor);
-            if (ctgTipoProveedores == null)
-            {
-                return NotFound();
-            }
-
-            try
-            {
-                db.ctgTipoProveedoresActivar(idTipoProveedor);
-                db.SaveChanges();
-
-                return StatusCode(HttpStatusCode.OK);
             }
             catch (Exception e)
             {
