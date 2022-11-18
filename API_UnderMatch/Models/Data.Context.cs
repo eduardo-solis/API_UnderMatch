@@ -42,7 +42,11 @@ namespace API_UnderMatch.Models
         public virtual DbSet<tblProveedores> tblProveedores { get; set; }
         public virtual DbSet<tblTemporadas> tblTemporadas { get; set; }
         public virtual DbSet<viewJugadores> viewJugadores { get; set; }
+<<<<<<< HEAD
         public virtual DbSet<tblEmpleados> tblEmpleados { get; set; }
+=======
+        public virtual DbSet<viewProveedores> viewProveedores { get; set; }
+>>>>>>> tblProveedores
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {

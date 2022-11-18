@@ -218,6 +218,45 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="IdEquipo" Type="int" />
           <Property Name="NombreEquipo" Type="varchar" MaxLength="100" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewProveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+            <PropertyRef Name="Rfc" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="TipoProveedor" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="NombreTipoProveedor" />
+            <PropertyRef Name="NombrePlantel" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoProveedor" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="NombreTipoProveedor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NombrePlantel" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Jugador_Equipo_tblEquipo">
           <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
           <End Role="Jugadores_Equipos" Type="Self.Jugadores_Equipos" Multiplicity="*" />
@@ -552,6 +591,27 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
     [viewJugadores].[IdEquipo] AS [IdEquipo], 
     [viewJugadores].[NombreEquipo] AS [NombreEquipo]
     FROM [dbo].[viewJugadores] AS [viewJugadores]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewProveedores" EntityType="Self.viewProveedores" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewProveedores].[IdProveedor] AS [IdProveedor], 
+    [viewProveedores].[Rfc] AS [Rfc], 
+    [viewProveedores].[Nombre] AS [Nombre], 
+    [viewProveedores].[RazonSocial] AS [RazonSocial], 
+    [viewProveedores].[Calle] AS [Calle], 
+    [viewProveedores].[Numero] AS [Numero], 
+    [viewProveedores].[Colonia] AS [Colonia], 
+    [viewProveedores].[CodigoPostal] AS [CodigoPostal], 
+    [viewProveedores].[Ciudad] AS [Ciudad], 
+    [viewProveedores].[Estado] AS [Estado], 
+    [viewProveedores].[TipoProveedor] AS [TipoProveedor], 
+    [viewProveedores].[Correo] AS [Correo], 
+    [viewProveedores].[Telefono] AS [Telefono], 
+    [viewProveedores].[IdPlantel] AS [IdPlantel], 
+    [viewProveedores].[Estatus] AS [Estatus], 
+    [viewProveedores].[NombreTipoProveedor] AS [NombreTipoProveedor], 
+    [viewProveedores].[NombrePlantel] AS [NombrePlantel]
+    FROM [dbo].[viewProveedores] AS [viewProveedores]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Jugador_Equipo_tblEquipo" Association="Self.FK_Jugador_Equipo_tblEquipo">
             <End Role="tblEquipos" EntitySet="tblEquipos" />
@@ -1168,6 +1228,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <Parameter Name="Telefono" Mode="In" Type="String" />
             <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
+<<<<<<< HEAD
           <EntitySet Name="tblEmpleados" EntityType="BDUnderMatchModel.tblEmpleados" />
           <AssociationSet Name="FK_tblEmpleado_ctgTipoEmpleado" Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado">
             <End Role="ctgTipoEmpleados" EntitySet="ctgTipoEmpleados" />
@@ -1177,6 +1238,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <End Role="tblPersonas" EntitySet="tblPersonas" />
             <End Role="tblEmpleados" EntitySet="tblEmpleados" />
           </AssociationSet>
+=======
+          <EntitySet Name="viewProveedores" EntityType="BDUnderMatchModel.viewProveedores" />
+>>>>>>> tblProveedores
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -1209,18 +1273,45 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="IdEquipo" Type="Int32" />
           <Property Name="NombreEquipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+<<<<<<< HEAD
         <EntityType Name="tblEmpleados">
           <Key>
             <PropertyRef Name="IdEmpleado" />
           </Key>
           <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
+=======
+        <EntityType Name="viewProveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+            <PropertyRef Name="Rfc" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="TipoProveedor" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="NombreTipoProveedor" />
+            <PropertyRef Name="NombrePlantel" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+>>>>>>> tblProveedores
           <Property Name="Calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+<<<<<<< HEAD
           <Property Name="Curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
           <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
           <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
@@ -1255,6 +1346,16 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+=======
+          <Property Name="TipoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="NombreTipoProveedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombrePlantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+>>>>>>> tblProveedores
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1472,6 +1573,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <FunctionImportMapping FunctionImportName="tblProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.tblProveedoresAgregar" />
           <FunctionImportMapping FunctionImportName="tblProveedoresEliminar" FunctionName="BDUnderMatchModel.Store.tblProveedoresEliminar" />
           <FunctionImportMapping FunctionImportName="tblProveedoresModificar" FunctionName="BDUnderMatchModel.Store.tblProveedoresModificar" />
+<<<<<<< HEAD
           <EntitySetMapping Name="tblEmpleados">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
               <MappingFragment StoreEntitySet="tblEmpleados">
@@ -1482,14 +1584,33 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
                 <ScalarProperty Name="Rfc" ColumnName="Rfc" />
                 <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
+=======
+          <EntitySetMapping Name="viewProveedores">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewProveedores">
+              <MappingFragment StoreEntitySet="viewProveedores">
+                <ScalarProperty Name="NombrePlantel" ColumnName="NombrePlantel" />
+                <ScalarProperty Name="NombreTipoProveedor" ColumnName="NombreTipoProveedor" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
+>>>>>>> tblProveedores
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
+<<<<<<< HEAD
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+=======
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+>>>>>>> tblProveedores
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

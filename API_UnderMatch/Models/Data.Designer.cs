@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿// La generación de código T4 está habilitada para el modelo 'D:\GitHub\API_UnderMatch\API_UnderMatch\Models\Data.edmx'. 
+=======
+﻿// La generación de código T4 está habilitada para el modelo 'D:\UTL\Ingeniería\10° Cuatrimestre\Proyecto UnderMatch\API_UnderMatch\API_UnderMatch\Models\Data.edmx'. 
+>>>>>>> tblProveedores
 // Para habilitar la generación de código heredada, cambie el valor de la propiedad del diseñador 'Estrategia de generación de código'
 // por 'ObjectContext heredado'. Esta propiedad está disponible en la ventana Propiedades cuando se abre
 // el modelo en el diseñador.
