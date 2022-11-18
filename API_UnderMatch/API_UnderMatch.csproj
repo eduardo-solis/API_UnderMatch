@@ -179,6 +179,7 @@
     <Compile Include="Controllers\tblPartidosController.cs" />
     <Compile Include="Controllers\tblPlantelesController.cs" />
     <Compile Include="Controllers\tblProveedoresController.cs" />
+    <Compile Include="Controllers\tblTemporadasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
