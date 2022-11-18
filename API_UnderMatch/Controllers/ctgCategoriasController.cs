@@ -19,7 +19,6 @@ namespace API_UnderMatch.Controllers
         // GET: api/ctgCategorias
         public IQueryable<ctgCategorias> GetctgCategorias()
         {
-            // Hola
             return db.ctgCategorias;
         }
 

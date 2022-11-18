@@ -19,6 +19,7 @@ namespace API_UnderMatch.Models
         {
             this.tblCanchas = new HashSet<tblCanchas>();
             this.tblProveedores = new HashSet<tblProveedores>();
+            this.Empleados_Planteles = new HashSet<Empleados_Planteles>();
         }
     
         public int IdPlantel { get; set; }
@@ -35,5 +36,7 @@ namespace API_UnderMatch.Models
         public virtual ICollection<tblCanchas> tblCanchas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblProveedores> tblProveedores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Empleados_Planteles> Empleados_Planteles { get; set; }
     }
 }

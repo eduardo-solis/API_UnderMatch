@@ -12,14 +12,16 @@ namespace API_UnderMatch.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblEmpleados
+    public partial class viewEmpleados
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblEmpleados()
-        {
-            this.Empleados_Planteles = new HashSet<Empleados_Planteles>();
-        }
-    
+        public string Nombre { get; set; }
+        public string PrimerApellido { get; set; }
+        public string SegundoApellido { get; set; }
+        public string FechaNacimiento { get; set; }
+        public string Sexo { get; set; }
+        public string Telefono { get; set; }
+        public string Telefono2 { get; set; }
+        public string Correo { get; set; }
         public int IdEmpleado { get; set; }
         public int IdPersona { get; set; }
         public string Calle { get; set; }
@@ -35,10 +37,7 @@ namespace API_UnderMatch.Models
         public decimal Salario { get; set; }
         public string Horario { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
-        public virtual ctgTipoEmpleados ctgTipoEmpleados { get; set; }
-        public virtual tblPersonas tblPersonas { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleados_Planteles> Empleados_Planteles { get; set; }
+        public int IdPlantel { get; set; }
+        public string NombrePlantel { get; set; }
     }
 }

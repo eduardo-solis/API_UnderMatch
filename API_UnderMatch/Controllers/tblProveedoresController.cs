@@ -6,8 +6,11 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Http.Results;
+using System.Web.Mvc;
 using API_UnderMatch.Models;
 using Newtonsoft.Json;
 
@@ -18,53 +21,93 @@ namespace API_UnderMatch.Controllers
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
 
         // GET: api/tblProveedores
-        public IQueryable<tblProveedores> GettblProveedores()
+        public IQueryable<viewProveedores> GettblProveedores()
         {
-            return db.tblProveedores;
+            return db.viewProveedores;
         }
 
         // GET: api/tblProveedores/5
-        [ResponseType(typeof(tblProveedores))]
+        [ResponseType(typeof(viewProveedores))]
         public IHttpActionResult GettblProveedores(int idProveedor)
         {
-            tblProveedores tblProveedores = db.tblProveedores.Find(idProveedor);
-            if (tblProveedores == null)
+            try
             {
-                return NotFound();
-            }
+                viewProveedores proveedor = db.viewProveedores.Where(prov => prov.IdProveedor == idProveedor).FirstOrDefault();
 
-            return Ok(tblProveedores);
+                if (proveedor == null)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontró el proveedor"));
+
+                return Ok(proveedor);
+            }
+            catch (Exception e)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
+            }
+        }
+
+        // GET: api/tblProveedores/5
+        [ResponseType(typeof(viewProveedores))]
+        public IHttpActionResult GettblProveedores(string rfc)
+        {
+            try
+            {
+                IQueryable<viewProveedores> proveedores = db.viewProveedores.Where(proveedor => DbFunctions.Like(proveedor.Rfc.ToLower(), "%" + rfc.ToLower() + "%"));
+                return Ok(proveedores);
+            }
+            catch (Exception e)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
+            }
         }
 
         // PUT: api/tblProveedores/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblProveedores(int idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
+        public IHttpActionResult PuttblProveedores(int idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia,
+            string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
         {
             try
             {
-                db.tblProveedoresModificar(idProveedor, rfc, nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono, idPlantel);
-                db.SaveChanges();
-                return StatusCode(HttpStatusCode.OK);
+                List<tblProveedores> proveedor = db.tblProveedores.Where(prov => prov.Rfc.ToLower() == rfc.ToLower() && prov.IdProveedor != idProveedor).ToList();
+
+                if (proveedor.Count > 0)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. RFC existente"));
+                else
+                {
+                    db.tblProveedoresModificar(idProveedor, rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor,
+                        correo, telefono, idPlantel);
+                    db.SaveChanges();
+                    return Json(new { Message = "Proveedor modificado con éxito" });
+                }
             }
             catch (Exception e)
             {
-                return BadRequest("Algo salio mal\n" + e);
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
             }
         }
 
         // POST: api/tblProveedores
         [ResponseType(typeof(tblProveedores))]
-        public IHttpActionResult PosttblProveedores(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
+        public IHttpActionResult PosttblProveedores(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal,
+            string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
         {
             try
             {
-                db.tblProveedoresAgregar(rfc, nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono, idPlantel);
-                db.SaveChanges();
-                return StatusCode(HttpStatusCode.OK);
+                List<tblProveedores> proveedor = db.tblProveedores.Where(prov => prov.Rfc.ToLower() == rfc.ToLower()).ToList();
+
+                if (proveedor.Count > 0)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. RFC existente"));
+                else
+                {
+                    db.tblProveedoresAgregar(rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono,
+                        idPlantel);
+                    db.SaveChanges();
+                    return Json(new { Message = "Proveedor agregado con éxito" });
+                }
+
             }
             catch (Exception e)
             {
-                return BadRequest("Algo salio mal\n" + e);
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
             }
         }
 
@@ -72,21 +115,20 @@ namespace API_UnderMatch.Controllers
         [ResponseType(typeof(tblProveedores))]
         public IHttpActionResult DeletetblProveedores(int idProveedor)
         {
-            tblProveedores tblProveedores = db.tblProveedores.Find(idProveedor);
-            if (tblProveedores == null)
-            {
-                return NotFound();
-            }
-
             try
             {
+                tblProveedores proveedor = db.tblProveedores.Find(idProveedor);
+
+                if (proveedor == null)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontró el proveedor"));
+
                 db.tblProveedoresEliminar(idProveedor);
                 db.SaveChanges();
-                return StatusCode(HttpStatusCode.OK);
+                return Json(new { Message = "Proveedor eliminado con éxito" });
             }
             catch (Exception e)
             {
-                return BadRequest("Algo salio mal\n" + e);
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
             }
         }
 
@@ -94,21 +136,20 @@ namespace API_UnderMatch.Controllers
         [ResponseType(typeof(tblProveedores))]
         public IHttpActionResult PuttblProveedores(int idProveedor)
         {
-            tblProveedores tblProveedores = db.tblProveedores.Find(idProveedor);
-            if (tblProveedores == null)
-            {
-                return NotFound();
-            }
-
             try
             {
+                tblProveedores proveedor = db.tblProveedores.Find(idProveedor);
+
+                if (proveedor == null)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontró el proveedor"));
+
                 db.tblProveedoresActivar(idProveedor);
                 db.SaveChanges();
-                return StatusCode(HttpStatusCode.OK);
+                return Json(new { Message = "Proveedor activado con éxito" });
             }
             catch (Exception e)
             {
-                return BadRequest("Algo salio mal\n" + e);
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
             }
         }
 

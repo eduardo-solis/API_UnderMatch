@@ -34,6 +34,14 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
+        <EntityType Name="Empleados_Planteles">
+          <Key>
+            <PropertyRef Name="IdRelacionEmpleadoPlantel" />
+          </Key>
+          <Property Name="IdRelacionEmpleadoPlantel" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdEmpleado" Type="int" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Jugadores_Equipos">
           <Key>
             <PropertyRef Name="IdRelacionJugadorEquipo" />
@@ -186,6 +194,100 @@
           <Property Name="Estatus" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewArbitros' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewArbitros">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="Expr3" />
+            <PropertyRef Name="IdTipoArbitro" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="IdArbitro" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="CostoArbitraje" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="TipoArbitro" />
+          </Key>
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="80" />
+          <Property Name="Expr2" Type="int" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" Nullable="false" />
+          <Property Name="Expr3" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdTipoArbitro" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdArbitro" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="CostoArbitraje" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Categoria" Type="int" Nullable="false" />
+          <Property Name="TipoArbitro" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewEmpleados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewEmpleados">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="Curp" />
+            <PropertyRef Name="TipoEmpleado" />
+            <PropertyRef Name="Rfc" />
+            <PropertyRef Name="Nss" />
+            <PropertyRef Name="Salario" />
+            <PropertyRef Name="Horario" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="NombrePlantel" />
+          </Key>
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="80" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="10" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdEmpleado" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Curp" Type="varchar" MaxLength="18" Nullable="false" />
+          <Property Name="TipoEmpleado" Type="int" Nullable="false" />
+          <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Nss" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="Salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Horario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="NombrePlantel" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="viewJugadores">
           <Key>
@@ -218,6 +320,69 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="IdEquipo" Type="int" />
           <Property Name="NombreEquipo" Type="varchar" MaxLength="100" />
         </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewProveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+            <PropertyRef Name="Rfc" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="TipoProveedor" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="NombreTipoProveedor" />
+            <PropertyRef Name="NombrePlantel" />
+          </Key>
+          <Property Name="IdProveedor" Type="int" Nullable="false" />
+          <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoProveedor" Type="int" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="NombreTipoProveedor" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="NombrePlantel" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Empleados_Planteles_Empleados_Planteles">
+          <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
+          <End Role="Empleados_Planteles" Type="Self.Empleados_Planteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="Empleados_Planteles">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleados_Planteles_tblEmpleados">
+          <End Role="tblEmpleados" Type="Self.tblEmpleados" Multiplicity="1" />
+          <End Role="Empleados_Planteles" Type="Self.Empleados_Planteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpleados">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="Empleados_Planteles">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Jugador_Equipo_tblEquipo">
           <End Role="tblEquipos" Type="Self.tblEquipos" Multiplicity="1" />
           <End Role="Jugadores_Equipos" Type="Self.Jugadores_Equipos" Multiplicity="*" />
@@ -435,6 +600,125 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="tblArbitrosActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblArbitrosAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="CostoArbitraje" Type="decimal" Mode="In" />
+          <Parameter Name="Categoria" Type="int" Mode="In" />
+          <Parameter Name="TipoArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblArbitrosEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdArbitro" Type="int" Mode="In" />
+          <Parameter Name="Eliminar" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblArbitrosModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdArbitro" Type="int" Mode="In" />
+          <Parameter Name="CostoArbitraje" Type="decimal" Mode="In" />
+          <Parameter Name="Categoria" Type="int" Mode="In" />
+          <Parameter Name="TipoArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblEmpleadosActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblEmpleadosAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="CalleE" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroE" Type="varchar" Mode="In" />
+          <Parameter Name="ColoniaE" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostalE" Type="varchar" Mode="In" />
+          <Parameter Name="CiudadE" Type="varchar" Mode="In" />
+          <Parameter Name="EstadoE" Type="varchar" Mode="In" />
+          <Parameter Name="Curpe" Type="varchar" Mode="In" />
+          <Parameter Name="TipoEmpleado" Type="int" Mode="In" />
+          <Parameter Name="RfcE" Type="varchar" Mode="In" />
+          <Parameter Name="NssE" Type="varchar" Mode="In" />
+          <Parameter Name="SalarioE" Type="decimal" Mode="In" />
+          <Parameter Name="HorarioE" Type="varchar" Mode="In" />
+          <Parameter Name="IdPlantel" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblEmpleadosEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblEmpleadosModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdEmpleado" Type="int" Mode="In" />
+          <Parameter Name="CalleE" Type="varchar" Mode="In" />
+          <Parameter Name="NumeroE" Type="varchar" Mode="In" />
+          <Parameter Name="ColoniaE" Type="varchar" Mode="In" />
+          <Parameter Name="CodigoPostalE" Type="varchar" Mode="In" />
+          <Parameter Name="CiudadE" Type="varchar" Mode="In" />
+          <Parameter Name="EstadoE" Type="varchar" Mode="In" />
+          <Parameter Name="Curpe" Type="varchar" Mode="In" />
+          <Parameter Name="TipoEmpleado" Type="int" Mode="In" />
+          <Parameter Name="RfcE" Type="varchar" Mode="In" />
+          <Parameter Name="NssE" Type="varchar" Mode="In" />
+          <Parameter Name="SalarioE" Type="decimal" Mode="In" />
+          <Parameter Name="HorarioE" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="tblEquiposActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_EQUIPO" Type="int" Mode="In" />
         </Function>
@@ -521,6 +805,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <EntitySet Name="ctgTipoArbitros" EntityType="Self.ctgTipoArbitros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoEmpleados" EntityType="Self.ctgTipoEmpleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoProveedores" EntityType="Self.ctgTipoProveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleados_Planteles" EntityType="Self.Empleados_Planteles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Jugadores_Equipos" EntityType="Self.Jugadores_Equipos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblArbitros" EntityType="Self.tblArbitros" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCanchas" EntityType="Self.tblCanchas" Schema="dbo" store:Type="Tables" />
@@ -532,6 +817,58 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTemporadas" EntityType="Self.tblTemporadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viewArbitros" EntityType="Self.viewArbitros" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewArbitros].[Nombre] AS [Nombre], 
+    [viewArbitros].[PrimerApellido] AS [PrimerApellido], 
+    [viewArbitros].[SegundoApellido] AS [SegundoApellido], 
+    [viewArbitros].[Expr2] AS [Expr2], 
+    [viewArbitros].[FechaNacimiento] AS [FechaNacimiento], 
+    [viewArbitros].[Sexo] AS [Sexo], 
+    [viewArbitros].[Telefono] AS [Telefono], 
+    [viewArbitros].[Correo] AS [Correo], 
+    [viewArbitros].[IdCategoria] AS [IdCategoria], 
+    [viewArbitros].[Expr3] AS [Expr3], 
+    [viewArbitros].[IdTipoArbitro] AS [IdTipoArbitro], 
+    [viewArbitros].[Expr1] AS [Expr1], 
+    [viewArbitros].[IdArbitro] AS [IdArbitro], 
+    [viewArbitros].[IdPersona] AS [IdPersona], 
+    [viewArbitros].[CostoArbitraje] AS [CostoArbitraje], 
+    [viewArbitros].[Categoria] AS [Categoria], 
+    [viewArbitros].[TipoArbitro] AS [TipoArbitro], 
+    [viewArbitros].[Estatus] AS [Estatus], 
+    [viewArbitros].[Telefono2] AS [Telefono2]
+    FROM [dbo].[viewArbitros] AS [viewArbitros]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewEmpleados" EntityType="Self.viewEmpleados" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewEmpleados].[Nombre] AS [Nombre], 
+    [viewEmpleados].[PrimerApellido] AS [PrimerApellido], 
+    [viewEmpleados].[SegundoApellido] AS [SegundoApellido], 
+    [viewEmpleados].[FechaNacimiento] AS [FechaNacimiento], 
+    [viewEmpleados].[Sexo] AS [Sexo], 
+    [viewEmpleados].[Telefono] AS [Telefono], 
+    [viewEmpleados].[Telefono2] AS [Telefono2], 
+    [viewEmpleados].[Correo] AS [Correo], 
+    [viewEmpleados].[IdEmpleado] AS [IdEmpleado], 
+    [viewEmpleados].[IdPersona] AS [IdPersona], 
+    [viewEmpleados].[Calle] AS [Calle], 
+    [viewEmpleados].[Numero] AS [Numero], 
+    [viewEmpleados].[Colonia] AS [Colonia], 
+    [viewEmpleados].[CodigoPostal] AS [CodigoPostal], 
+    [viewEmpleados].[Ciudad] AS [Ciudad], 
+    [viewEmpleados].[Estado] AS [Estado], 
+    [viewEmpleados].[Curp] AS [Curp], 
+    [viewEmpleados].[TipoEmpleado] AS [TipoEmpleado], 
+    [viewEmpleados].[Rfc] AS [Rfc], 
+    [viewEmpleados].[Nss] AS [Nss], 
+    [viewEmpleados].[Salario] AS [Salario], 
+    [viewEmpleados].[Horario] AS [Horario], 
+    [viewEmpleados].[Estatus] AS [Estatus], 
+    [viewEmpleados].[IdPlantel] AS [IdPlantel], 
+    [viewEmpleados].[NombrePlantel] AS [NombrePlantel]
+    FROM [dbo].[viewEmpleados] AS [viewEmpleados]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="viewJugadores" EntityType="Self.viewJugadores" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [viewJugadores].[Nombre] AS [Nombre], 
@@ -553,6 +890,35 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
     [viewJugadores].[NombreEquipo] AS [NombreEquipo]
     FROM [dbo].[viewJugadores] AS [viewJugadores]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="viewProveedores" EntityType="Self.viewProveedores" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewProveedores].[IdProveedor] AS [IdProveedor], 
+    [viewProveedores].[Rfc] AS [Rfc], 
+    [viewProveedores].[Nombre] AS [Nombre], 
+    [viewProveedores].[RazonSocial] AS [RazonSocial], 
+    [viewProveedores].[Calle] AS [Calle], 
+    [viewProveedores].[Numero] AS [Numero], 
+    [viewProveedores].[Colonia] AS [Colonia], 
+    [viewProveedores].[CodigoPostal] AS [CodigoPostal], 
+    [viewProveedores].[Ciudad] AS [Ciudad], 
+    [viewProveedores].[Estado] AS [Estado], 
+    [viewProveedores].[TipoProveedor] AS [TipoProveedor], 
+    [viewProveedores].[Correo] AS [Correo], 
+    [viewProveedores].[Telefono] AS [Telefono], 
+    [viewProveedores].[IdPlantel] AS [IdPlantel], 
+    [viewProveedores].[Estatus] AS [Estatus], 
+    [viewProveedores].[NombreTipoProveedor] AS [NombreTipoProveedor], 
+    [viewProveedores].[NombrePlantel] AS [NombrePlantel]
+    FROM [dbo].[viewProveedores] AS [viewProveedores]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Empleados_Planteles_Empleados_Planteles" Association="Self.FK_Empleados_Planteles_Empleados_Planteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="Empleados_Planteles" EntitySet="Empleados_Planteles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleados_Planteles_tblEmpleados" Association="Self.FK_Empleados_Planteles_tblEmpleados">
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+            <End Role="Empleados_Planteles" EntitySet="Empleados_Planteles" />
+          </AssociationSet>
           <AssociationSet Name="FK_Jugador_Equipo_tblEquipo" Association="Self.FK_Jugador_Equipo_tblEquipo">
             <End Role="tblEquipos" EntitySet="tblEquipos" />
             <End Role="Jugadores_Equipos" EntitySet="Jugadores_Equipos" />
@@ -784,6 +1150,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblPlanteles" ToRole="tblCanchas" />
           <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblPlanteles" ToRole="tblProveedores" />
           <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="Empleados_Planteles" Relationship="BDUnderMatchModel.FK_Empleados_Planteles_Empleados_Planteles" FromRole="tblPlanteles" ToRole="Empleados_Planteles" />
         </EntityType>
         <EntityType Name="tblProveedores">
           <Key>
@@ -1177,6 +1544,136 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             <End Role="tblPersonas" EntitySet="tblPersonas" />
             <End Role="tblEmpleados" EntitySet="tblEmpleados" />
           </AssociationSet>
+          <EntitySet Name="Empleados_Planteles" EntityType="BDUnderMatchModel.Empleados_Planteles" />
+          <EntitySet Name="viewArbitros" EntityType="BDUnderMatchModel.viewArbitros" />
+          <EntitySet Name="viewEmpleados" EntityType="BDUnderMatchModel.viewEmpleados" />
+          <EntitySet Name="viewProveedores" EntityType="BDUnderMatchModel.viewProveedores" />
+          <AssociationSet Name="FK_Empleados_Planteles_Empleados_Planteles" Association="BDUnderMatchModel.FK_Empleados_Planteles_Empleados_Planteles">
+            <End Role="tblPlanteles" EntitySet="tblPlanteles" />
+            <End Role="Empleados_Planteles" EntitySet="Empleados_Planteles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Empleados_Planteles_tblEmpleados" Association="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados">
+            <End Role="tblEmpleados" EntitySet="tblEmpleados" />
+            <End Role="Empleados_Planteles" EntitySet="Empleados_Planteles" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(BDUnderMatchModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(BDUnderMatchModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="tblArbitrosActivar">
+            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblArbitrosAgregar">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="CostoArbitraje" Mode="In" Type="Decimal" />
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="TipoArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblArbitrosEliminar">
+            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+            <Parameter Name="Eliminar" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblArbitrosModificar">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+            <Parameter Name="CostoArbitraje" Mode="In" Type="Decimal" />
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="TipoArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblEmpleadosActivar">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblEmpleadosAgregar">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="CalleE" Mode="In" Type="String" />
+            <Parameter Name="NumeroE" Mode="In" Type="String" />
+            <Parameter Name="ColoniaE" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostalE" Mode="In" Type="String" />
+            <Parameter Name="CiudadE" Mode="In" Type="String" />
+            <Parameter Name="EstadoE" Mode="In" Type="String" />
+            <Parameter Name="Curpe" Mode="In" Type="String" />
+            <Parameter Name="TipoEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="RfcE" Mode="In" Type="String" />
+            <Parameter Name="NssE" Mode="In" Type="String" />
+            <Parameter Name="SalarioE" Mode="In" Type="Decimal" />
+            <Parameter Name="HorarioE" Mode="In" Type="String" />
+            <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblEmpleadosEliminar">
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblEmpleadosModificar">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="CalleE" Mode="In" Type="String" />
+            <Parameter Name="NumeroE" Mode="In" Type="String" />
+            <Parameter Name="ColoniaE" Mode="In" Type="String" />
+            <Parameter Name="CodigoPostalE" Mode="In" Type="String" />
+            <Parameter Name="CiudadE" Mode="In" Type="String" />
+            <Parameter Name="EstadoE" Mode="In" Type="String" />
+            <Parameter Name="Curpe" Mode="In" Type="String" />
+            <Parameter Name="TipoEmpleado" Mode="In" Type="Int32" />
+            <Parameter Name="RfcE" Mode="In" Type="String" />
+            <Parameter Name="NssE" Mode="In" Type="String" />
+            <Parameter Name="SalarioE" Mode="In" Type="Decimal" />
+            <Parameter Name="HorarioE" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -1230,6 +1727,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="Estatus" Type="Int32" />
           <NavigationProperty Name="ctgTipoEmpleados" Relationship="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" FromRole="tblEmpleados" ToRole="ctgTipoEmpleados" />
           <NavigationProperty Name="tblPersonas" Relationship="BDUnderMatchModel.FK_tblEmpleado_tblPersona" FromRole="tblEmpleados" ToRole="tblPersonas" />
+          <NavigationProperty Name="Empleados_Planteles" Relationship="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados" FromRole="tblEmpleados" ToRole="Empleados_Planteles" />
         </EntityType>
         <Association Name="FK_tblEmpleado_ctgTipoEmpleado">
           <End Type="BDUnderMatchModel.ctgTipoEmpleados" Role="ctgTipoEmpleados" Multiplicity="1" />
@@ -1255,6 +1753,178 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Empleados_Planteles">
+          <Key>
+            <PropertyRef Name="IdRelacionEmpleadoPlantel" />
+          </Key>
+          <Property Name="IdRelacionEmpleadoPlantel" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblPlanteles" Relationship="BDUnderMatchModel.FK_Empleados_Planteles_Empleados_Planteles" FromRole="Empleados_Planteles" ToRole="tblPlanteles" />
+          <NavigationProperty Name="tblEmpleados" Relationship="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados" FromRole="Empleados_Planteles" ToRole="tblEmpleados" />
+        </EntityType>
+        <EntityType Name="viewArbitros">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="Expr3" />
+            <PropertyRef Name="IdTipoArbitro" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="IdArbitro" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="CostoArbitraje" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="TipoArbitro" />
+          </Key>
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Expr2" Type="Int32" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="Expr3" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoArbitro" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdArbitro" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="CostoArbitraje" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="TipoArbitro" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="viewEmpleados">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdEmpleado" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="Curp" />
+            <PropertyRef Name="TipoEmpleado" />
+            <PropertyRef Name="Rfc" />
+            <PropertyRef Name="Nss" />
+            <PropertyRef Name="Salario" />
+            <PropertyRef Name="Horario" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="NombrePlantel" />
+          </Key>
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="Calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
+          <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nss" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="Salario" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Horario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="NombrePlantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="viewProveedores">
+          <Key>
+            <PropertyRef Name="IdProveedor" />
+            <PropertyRef Name="Rfc" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="RazonSocial" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="Estado" />
+            <PropertyRef Name="TipoProveedor" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="NombreTipoProveedor" />
+            <PropertyRef Name="NombrePlantel" />
+          </Key>
+          <Property Name="IdProveedor" Type="Int32" Nullable="false" />
+          <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TipoProveedor" Type="Int32" Nullable="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="NombreTipoProveedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombrePlantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Empleados_Planteles_Empleados_Planteles">
+          <End Type="BDUnderMatchModel.tblPlanteles" Role="tblPlanteles" Multiplicity="1" />
+          <End Type="BDUnderMatchModel.Empleados_Planteles" Role="Empleados_Planteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPlanteles">
+              <PropertyRef Name="IdPlantel" />
+            </Principal>
+            <Dependent Role="Empleados_Planteles">
+              <PropertyRef Name="IdPlantel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Empleados_Planteles_tblEmpleados">
+          <End Type="BDUnderMatchModel.tblEmpleados" Role="tblEmpleados" Multiplicity="1" />
+          <End Type="BDUnderMatchModel.Empleados_Planteles" Role="Empleados_Planteles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblEmpleados">
+              <PropertyRef Name="IdEmpleado" />
+            </Principal>
+            <Dependent Role="Empleados_Planteles">
+              <PropertyRef Name="IdEmpleado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1493,6 +2163,126 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Empleados_Planteles">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.Empleados_Planteles">
+              <MappingFragment StoreEntitySet="Empleados_Planteles">
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="IdRelacionEmpleadoPlantel" ColumnName="IdRelacionEmpleadoPlantel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewArbitros">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewArbitros">
+              <MappingFragment StoreEntitySet="viewArbitros">
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="TipoArbitro" ColumnName="TipoArbitro" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="CostoArbitraje" ColumnName="CostoArbitraje" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdArbitro" ColumnName="IdArbitro" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="IdTipoArbitro" ColumnName="IdTipoArbitro" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewEmpleados">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewEmpleados">
+              <MappingFragment StoreEntitySet="viewEmpleados">
+                <ScalarProperty Name="NombrePlantel" ColumnName="NombrePlantel" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Horario" ColumnName="Horario" />
+                <ScalarProperty Name="Salario" ColumnName="Salario" />
+                <ScalarProperty Name="Nss" ColumnName="Nss" />
+                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
+                <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
+                <ScalarProperty Name="Curp" ColumnName="Curp" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewProveedores">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewProveedores">
+              <MappingFragment StoreEntitySet="viewProveedores">
+                <ScalarProperty Name="NombrePlantel" ColumnName="NombrePlantel" />
+                <ScalarProperty Name="NombreTipoProveedor" ColumnName="NombreTipoProveedor" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Rfc" ColumnName="Rfc" />
+                <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="BDUnderMatchModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="BDUnderMatchModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="BDUnderMatchModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="BDUnderMatchModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDUnderMatchModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="BDUnderMatchModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BDUnderMatchModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="BDUnderMatchModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="BDUnderMatchModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosActivar" FunctionName="BDUnderMatchModel.Store.tblArbitrosActivar" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosAgregar" FunctionName="BDUnderMatchModel.Store.tblArbitrosAgregar" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosEliminar" FunctionName="BDUnderMatchModel.Store.tblArbitrosEliminar" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosModificar" FunctionName="BDUnderMatchModel.Store.tblArbitrosModificar" />
+          <FunctionImportMapping FunctionImportName="tblEmpleadosActivar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosActivar" />
+          <FunctionImportMapping FunctionImportName="tblEmpleadosAgregar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosAgregar" />
+          <FunctionImportMapping FunctionImportName="tblEmpleadosEliminar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosEliminar" />
+          <FunctionImportMapping FunctionImportName="tblEmpleadosModificar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosModificar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -43,6 +43,10 @@ namespace API_UnderMatch.Models
         public virtual DbSet<tblTemporadas> tblTemporadas { get; set; }
         public virtual DbSet<viewJugadores> viewJugadores { get; set; }
         public virtual DbSet<tblEmpleados> tblEmpleados { get; set; }
+        public virtual DbSet<Empleados_Planteles> Empleados_Planteles { get; set; }
+        public virtual DbSet<viewArbitros> viewArbitros { get; set; }
+        public virtual DbSet<viewEmpleados> viewEmpleados { get; set; }
+        public virtual DbSet<viewProveedores> viewProveedores { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {
@@ -376,6 +380,437 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("IdPlantel", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresModificar", idProveedorParameter, rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, ciudadParameter, estadoParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
+        }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int tblArbitrosActivar(Nullable<int> idArbitro)
+        {
+            var idArbitroParameter = idArbitro.HasValue ?
+                new ObjectParameter("IdArbitro", idArbitro) :
+                new ObjectParameter("IdArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosActivar", idArbitroParameter);
+        }
+    
+        public virtual int tblArbitrosAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<decimal> costoArbitraje, Nullable<int> categoria, Nullable<int> tipoArbitro)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var costoArbitrajeParameter = costoArbitraje.HasValue ?
+                new ObjectParameter("CostoArbitraje", costoArbitraje) :
+                new ObjectParameter("CostoArbitraje", typeof(decimal));
+    
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var tipoArbitroParameter = tipoArbitro.HasValue ?
+                new ObjectParameter("TipoArbitro", tipoArbitro) :
+                new ObjectParameter("TipoArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, costoArbitrajeParameter, categoriaParameter, tipoArbitroParameter);
+        }
+    
+        public virtual int tblArbitrosEliminar(Nullable<int> idArbitro, Nullable<int> eliminar)
+        {
+            var idArbitroParameter = idArbitro.HasValue ?
+                new ObjectParameter("IdArbitro", idArbitro) :
+                new ObjectParameter("IdArbitro", typeof(int));
+    
+            var eliminarParameter = eliminar.HasValue ?
+                new ObjectParameter("Eliminar", eliminar) :
+                new ObjectParameter("Eliminar", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosEliminar", idArbitroParameter, eliminarParameter);
+        }
+    
+        public virtual int tblArbitrosModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idArbitro, Nullable<decimal> costoArbitraje, Nullable<int> categoria, Nullable<int> tipoArbitro)
+        {
+            var idPersonaParameter = idPersona.HasValue ?
+                new ObjectParameter("IdPersona", idPersona) :
+                new ObjectParameter("IdPersona", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idArbitroParameter = idArbitro.HasValue ?
+                new ObjectParameter("IdArbitro", idArbitro) :
+                new ObjectParameter("IdArbitro", typeof(int));
+    
+            var costoArbitrajeParameter = costoArbitraje.HasValue ?
+                new ObjectParameter("CostoArbitraje", costoArbitraje) :
+                new ObjectParameter("CostoArbitraje", typeof(decimal));
+    
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var tipoArbitroParameter = tipoArbitro.HasValue ?
+                new ObjectParameter("TipoArbitro", tipoArbitro) :
+                new ObjectParameter("TipoArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idArbitroParameter, costoArbitrajeParameter, categoriaParameter, tipoArbitroParameter);
+        }
+    
+        public virtual int tblEmpleadosActivar(Nullable<int> idEmpleado)
+        {
+            var idEmpleadoParameter = idEmpleado.HasValue ?
+                new ObjectParameter("IdEmpleado", idEmpleado) :
+                new ObjectParameter("IdEmpleado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosActivar", idEmpleadoParameter);
+        }
+    
+        public virtual int tblEmpleadosAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, Nullable<int> tipoEmpleado, string rfcE, string nssE, Nullable<decimal> salarioE, string horarioE, Nullable<int> idPlantel)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var calleEParameter = calleE != null ?
+                new ObjectParameter("CalleE", calleE) :
+                new ObjectParameter("CalleE", typeof(string));
+    
+            var numeroEParameter = numeroE != null ?
+                new ObjectParameter("NumeroE", numeroE) :
+                new ObjectParameter("NumeroE", typeof(string));
+    
+            var coloniaEParameter = coloniaE != null ?
+                new ObjectParameter("ColoniaE", coloniaE) :
+                new ObjectParameter("ColoniaE", typeof(string));
+    
+            var codigoPostalEParameter = codigoPostalE != null ?
+                new ObjectParameter("CodigoPostalE", codigoPostalE) :
+                new ObjectParameter("CodigoPostalE", typeof(string));
+    
+            var ciudadEParameter = ciudadE != null ?
+                new ObjectParameter("CiudadE", ciudadE) :
+                new ObjectParameter("CiudadE", typeof(string));
+    
+            var estadoEParameter = estadoE != null ?
+                new ObjectParameter("EstadoE", estadoE) :
+                new ObjectParameter("EstadoE", typeof(string));
+    
+            var curpeParameter = curpe != null ?
+                new ObjectParameter("Curpe", curpe) :
+                new ObjectParameter("Curpe", typeof(string));
+    
+            var tipoEmpleadoParameter = tipoEmpleado.HasValue ?
+                new ObjectParameter("TipoEmpleado", tipoEmpleado) :
+                new ObjectParameter("TipoEmpleado", typeof(int));
+    
+            var rfcEParameter = rfcE != null ?
+                new ObjectParameter("RfcE", rfcE) :
+                new ObjectParameter("RfcE", typeof(string));
+    
+            var nssEParameter = nssE != null ?
+                new ObjectParameter("NssE", nssE) :
+                new ObjectParameter("NssE", typeof(string));
+    
+            var salarioEParameter = salarioE.HasValue ?
+                new ObjectParameter("SalarioE", salarioE) :
+                new ObjectParameter("SalarioE", typeof(decimal));
+    
+            var horarioEParameter = horarioE != null ?
+                new ObjectParameter("HorarioE", horarioE) :
+                new ObjectParameter("HorarioE", typeof(string));
+    
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, ciudadEParameter, estadoEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter, idPlantelParameter);
+        }
+    
+        public virtual int tblEmpleadosEliminar(Nullable<int> idEmpleado)
+        {
+            var idEmpleadoParameter = idEmpleado.HasValue ?
+                new ObjectParameter("IdEmpleado", idEmpleado) :
+                new ObjectParameter("IdEmpleado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosEliminar", idEmpleadoParameter);
+        }
+    
+        public virtual int tblEmpleadosModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, Nullable<int> tipoEmpleado, string rfcE, string nssE, Nullable<decimal> salarioE, string horarioE)
+        {
+            var idPersonaParameter = idPersona.HasValue ?
+                new ObjectParameter("IdPersona", idPersona) :
+                new ObjectParameter("IdPersona", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idEmpleadoParameter = idEmpleado.HasValue ?
+                new ObjectParameter("IdEmpleado", idEmpleado) :
+                new ObjectParameter("IdEmpleado", typeof(int));
+    
+            var calleEParameter = calleE != null ?
+                new ObjectParameter("CalleE", calleE) :
+                new ObjectParameter("CalleE", typeof(string));
+    
+            var numeroEParameter = numeroE != null ?
+                new ObjectParameter("NumeroE", numeroE) :
+                new ObjectParameter("NumeroE", typeof(string));
+    
+            var coloniaEParameter = coloniaE != null ?
+                new ObjectParameter("ColoniaE", coloniaE) :
+                new ObjectParameter("ColoniaE", typeof(string));
+    
+            var codigoPostalEParameter = codigoPostalE != null ?
+                new ObjectParameter("CodigoPostalE", codigoPostalE) :
+                new ObjectParameter("CodigoPostalE", typeof(string));
+    
+            var ciudadEParameter = ciudadE != null ?
+                new ObjectParameter("CiudadE", ciudadE) :
+                new ObjectParameter("CiudadE", typeof(string));
+    
+            var estadoEParameter = estadoE != null ?
+                new ObjectParameter("EstadoE", estadoE) :
+                new ObjectParameter("EstadoE", typeof(string));
+    
+            var curpeParameter = curpe != null ?
+                new ObjectParameter("Curpe", curpe) :
+                new ObjectParameter("Curpe", typeof(string));
+    
+            var tipoEmpleadoParameter = tipoEmpleado.HasValue ?
+                new ObjectParameter("TipoEmpleado", tipoEmpleado) :
+                new ObjectParameter("TipoEmpleado", typeof(int));
+    
+            var rfcEParameter = rfcE != null ?
+                new ObjectParameter("RfcE", rfcE) :
+                new ObjectParameter("RfcE", typeof(string));
+    
+            var nssEParameter = nssE != null ?
+                new ObjectParameter("NssE", nssE) :
+                new ObjectParameter("NssE", typeof(string));
+    
+            var salarioEParameter = salarioE.HasValue ?
+                new ObjectParameter("SalarioE", salarioE) :
+                new ObjectParameter("SalarioE", typeof(decimal));
+    
+            var horarioEParameter = horarioE != null ?
+                new ObjectParameter("HorarioE", horarioE) :
+                new ObjectParameter("HorarioE", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idEmpleadoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, ciudadEParameter, estadoEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter);
         }
     }
 }

@@ -38,6 +38,12 @@
         <EntityTypeShape EntityType="BDUnderMatchModel.tblEmpleados" Width="1.5" PointX="6" PointY="6" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_tblPersona" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.Empleados_Planteles" Width="1.5" PointX="11.25" PointY="3.875" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewArbitros" Width="1.5" PointX="12.375" PointY="6.75" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewEmpleados" Width="1.5" PointX="8.375" PointY="12.75" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewProveedores" Width="1.5" PointX="10.375" PointY="12.75" />
+        <AssociationConnector Association="BDUnderMatchModel.FK_Empleados_Planteles_Empleados_Planteles" />
+        <AssociationConnector Association="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
