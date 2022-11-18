@@ -40,9 +40,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/tblEmpleados/5
         [ResponseType(typeof(viewEmpleados))]
-        public IHttpActionResult GettblEmpleados(int id)
+        public IHttpActionResult GettblEmpleados(int idEmpleado)
         {
-            tblEmpleados tblEmpleados = db.tblEmpleados.Find(id);
+            tblEmpleados tblEmpleados = db.tblEmpleados.Find(idEmpleado);
             tblPersonas tblPersonas = db.tblPersonas.Find(tblEmpleados.IdPersona);
             Empleados_Planteles Empleados_Planteles = db.Empleados_Planteles.Where(eP => eP.IdEmpleado == tblEmpleados.IdEmpleado).First();//Find(tblEmpleados.IdEmpleado);
             tblPlanteles tblPlanteles = db.tblPlanteles.Find(Empleados_Planteles.IdPlantel);
@@ -86,10 +86,10 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblEmpleados/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblEmpleados(int idPersona, string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, int idEmpleado, string CalleE, string NumeroE, string ColoniaE, string CodigoPostalE, string CiudadE, string EstadoE, string Curpe, int TipoEmpleado, string RfcE, string NssE, decimal SalarioE, string HorarioE)
+        public IHttpActionResult PuttblEmpleados(int idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, int idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
         {
 
-            db.tblEmpleadosModificar(idPersona, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, idEmpleado, CalleE, NumeroE, ColoniaE, CodigoPostalE, CiudadE, EstadoE, Curpe, TipoEmpleado, RfcE, NssE, SalarioE, HorarioE);
+            db.tblEmpleadosModificar(idPersona, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, idEmpleado, calleE, numeroE, coloniaE, codigoPostalE, ciudadE, estadoE, curpe, tipoEmpleado, rfcE, nssE, salarioE, horarioE);
 
             try
             {
@@ -106,11 +106,11 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblEmpleados
         [ResponseType(typeof(tblEmpleados))]
-        public IHttpActionResult PosttblEmpleados(string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string CalleE, string NumeroE, string ColoniaE, string CodigoPostalE, string CiudadE, string EstadoE, string Curpe, int TipoEmpleado, string RfcE, string NssE, decimal SalarioE, string HorarioE, int IdPlantel)
+        public IHttpActionResult PosttblEmpleados(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
         {
             try
             {
-                db.tblEmpleadosAgregar(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, CalleE, NumeroE, ColoniaE, CodigoPostalE, CiudadE, EstadoE, Curpe, TipoEmpleado, RfcE, NssE, SalarioE, HorarioE, IdPlantel);
+                db.tblEmpleadosAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, calleE, numeroE, coloniaE, codigoPostalE, ciudadE, estadoE, curpe, tipoEmpleado, rfcE, nssE, salarioE, horarioE);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
             }
@@ -120,26 +120,9 @@ namespace API_UnderMatch.Controllers
             }
         }
 
-        // POST: api/tblEmpleados
-        [ResponseType(typeof(tblEmpleados))]
-        public IHttpActionResult PosttblEmpleados(int idEmpleado)
-        {
-            tblEmpleados tblEmpleados = db.tblEmpleados.Find(idEmpleado);
-            if (tblEmpleados == null)
-            {
-                return NotFound();
-            }
-
-            //db.tblEmpleados.Remove(tblEmpleados);
-            db.tblEmpleadosActivar(idEmpleado);
-            db.SaveChanges();
-
-            return StatusCode(HttpStatusCode.OK);
-        }
-
         // DELETE: api/tblEmpleados
         [ResponseType(typeof(tblEmpleados))]
-        public IHttpActionResult DeletetblEmpleados(int idEmpleado)
+        public IHttpActionResult DeletetblEmpleados(int idEmpleado, int operacion)
         {
             tblEmpleados tblEmpleados = db.tblEmpleados.Find(idEmpleado);
             if (tblEmpleados == null)
@@ -147,7 +130,15 @@ namespace API_UnderMatch.Controllers
                 return NotFound();
             }
 
-            db.tblEmpleadosEliminar(idEmpleado);
+            if ( operacion == 0 )
+            {
+                db.tblEmpleadosEliminar(idEmpleado);
+            }
+            else
+            {
+                db.tblEmpleadosActivar(idEmpleado);
+            }
+
             db.SaveChanges();
 
             return StatusCode(HttpStatusCode.OK);

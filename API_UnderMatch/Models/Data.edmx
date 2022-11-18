@@ -717,7 +717,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="NssE" Type="varchar" Mode="In" />
           <Parameter Name="SalarioE" Type="decimal" Mode="In" />
           <Parameter Name="HorarioE" Type="varchar" Mode="In" />
-          <Parameter Name="IdPlantel" Type="int" Mode="In" />
         </Function>
         <Function Name="tblEmpleadosEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEmpleado" Type="int" Mode="In" />
@@ -1686,7 +1685,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="NssE" Mode="In" Type="String" />
             <Parameter Name="SalarioE" Mode="In" Type="Decimal" />
             <Parameter Name="HorarioE" Mode="In" Type="String" />
-            <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEmpleadosEliminar">
           <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
@@ -1734,25 +1732,25 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="IdTipoEmpleado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblCanchaActivar">
-            <Parameter Name="IdCancha" Mode="In" Type="Int32" />
+          <Parameter Name="IdCancha" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblCanchaEliminar">
-            <Parameter Name="IdCancha" Mode="In" Type="Int32" />
+          <Parameter Name="IdCancha" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblPartidoEliminar">
-            <Parameter Name="IdPartido" Mode="In" Type="Int32" />
+          <Parameter Name="IdPartido" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblPlantelActivar">
-            <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
+          <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblPlantelEliminar">
-            <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
+          <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblTemporadaActivar">
-            <Parameter Name="IdTemporada" Mode="In" Type="Int32" />
+          <Parameter Name="IdTemporada" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblTemporadaEliminar">
-            <Parameter Name="IdTemporada" Mode="In" Type="Int32" />
+          <Parameter Name="IdTemporada" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
