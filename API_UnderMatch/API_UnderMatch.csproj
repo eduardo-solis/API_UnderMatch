@@ -173,6 +173,7 @@
     <Compile Include="Controllers\Jugadores_EquiposController.cs" />
     <Compile Include="Controllers\tblArbitrosController.cs" />
     <Compile Include="Controllers\tblCanchasController.cs" />
+    <Compile Include="Controllers\tblEmpleadosController.cs" />
     <Compile Include="Controllers\tblEquiposController.cs" />
     <Compile Include="Controllers\tblJugadoresController.cs" />
     <Compile Include="Controllers\tblPartidosController.cs" />
@@ -250,6 +251,7 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Validations\catCategoriasValidator.cs" />
+    <Compile Include="Models\Validations\EmpleadosValidator.cs" />
     <Compile Include="Models\Validations\EquiposValidator.cs" />
     <Compile Include="Models\Validations\JugadoresValidator.cs" />
     <Compile Include="Models\Validations\PersonasValidator.cs" />
