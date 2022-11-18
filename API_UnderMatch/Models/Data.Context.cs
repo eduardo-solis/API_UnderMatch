@@ -858,5 +858,68 @@ namespace API_UnderMatch.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoEmpleadoEliminar", idTipoEmpleadoParameter);
         }
+    
+        public virtual int tblCanchaActivar(Nullable<int> idCancha)
+        {
+            var idCanchaParameter = idCancha.HasValue ?
+                new ObjectParameter("IdCancha", idCancha) :
+                new ObjectParameter("IdCancha", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblCanchaActivar", idCanchaParameter);
+        }
+    
+        public virtual int tblCanchaEliminar(Nullable<int> idCancha)
+        {
+            var idCanchaParameter = idCancha.HasValue ?
+                new ObjectParameter("IdCancha", idCancha) :
+                new ObjectParameter("IdCancha", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblCanchaEliminar", idCanchaParameter);
+        }
+    
+        public virtual int tblPartidoEliminar(Nullable<int> idPartido)
+        {
+            var idPartidoParameter = idPartido.HasValue ?
+                new ObjectParameter("IdPartido", idPartido) :
+                new ObjectParameter("IdPartido", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPartidoEliminar", idPartidoParameter);
+        }
+    
+        public virtual int tblPlantelActivar(Nullable<int> idPlantel)
+        {
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPlantelActivar", idPlantelParameter);
+        }
+    
+        public virtual int tblPlantelEliminar(Nullable<int> idPlantel)
+        {
+            var idPlantelParameter = idPlantel.HasValue ?
+                new ObjectParameter("IdPlantel", idPlantel) :
+                new ObjectParameter("IdPlantel", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPlantelEliminar", idPlantelParameter);
+        }
+    
+        public virtual int tblTemporadaActivar(Nullable<int> idTemporada)
+        {
+            var idTemporadaParameter = idTemporada.HasValue ?
+                new ObjectParameter("IdTemporada", idTemporada) :
+                new ObjectParameter("IdTemporada", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblTemporadaActivar", idTemporadaParameter);
+        }
+    
+        public virtual int tblTemporadaEliminar(Nullable<int> idTemporada)
+        {
+            var idTemporadaParameter = idTemporada.HasValue ?
+                new ObjectParameter("IdTemporada", idTemporada) :
+                new ObjectParameter("IdTemporada", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblTemporadaEliminar", idTemporadaParameter);
+        }
     }
 }
