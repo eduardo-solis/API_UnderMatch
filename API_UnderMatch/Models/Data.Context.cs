@@ -43,6 +43,7 @@ namespace API_UnderMatch.Models
         public virtual DbSet<tblProveedores> tblProveedores { get; set; }
         public virtual DbSet<tblTemporadas> tblTemporadas { get; set; }
         public virtual DbSet<viewJugadores> viewJugadores { get; set; }
+        public virtual DbSet<viewArbitros> viewArbitros { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {
@@ -195,6 +196,134 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("ID_EQUIPO", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEquiposEliminar", iD_EQUIPOParameter);
+        }
+    
+        public virtual int tblArbitrosAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<decimal> costoArbitraje, Nullable<int> categoria, Nullable<int> tipoArbitro)
+        {
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var costoArbitrajeParameter = costoArbitraje.HasValue ?
+                new ObjectParameter("CostoArbitraje", costoArbitraje) :
+                new ObjectParameter("CostoArbitraje", typeof(decimal));
+    
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var tipoArbitroParameter = tipoArbitro.HasValue ?
+                new ObjectParameter("TipoArbitro", tipoArbitro) :
+                new ObjectParameter("TipoArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, costoArbitrajeParameter, categoriaParameter, tipoArbitroParameter);
+        }
+    
+        public virtual int tblArbitrosActivar(Nullable<int> idArbitro)
+        {
+            var idArbitroParameter = idArbitro.HasValue ?
+                new ObjectParameter("IdArbitro", idArbitro) :
+                new ObjectParameter("IdArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosActivar", idArbitroParameter);
+        }
+    
+        public virtual int tblArbitrosEliminar(Nullable<int> idArbitro, Nullable<int> eliminar)
+        {
+            var idArbitroParameter = idArbitro.HasValue ?
+                new ObjectParameter("IdArbitro", idArbitro) :
+                new ObjectParameter("IdArbitro", typeof(int));
+    
+            var eliminarParameter = eliminar.HasValue ?
+                new ObjectParameter("Eliminar", eliminar) :
+                new ObjectParameter("Eliminar", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosEliminar", idArbitroParameter, eliminarParameter);
+        }
+    
+        public virtual int tblArbitrosModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idArbitro, Nullable<decimal> costoArbitraje, Nullable<int> categoria, Nullable<int> tipoArbitro)
+        {
+            var idPersonaParameter = idPersona.HasValue ?
+                new ObjectParameter("IdPersona", idPersona) :
+                new ObjectParameter("IdPersona", typeof(int));
+    
+            var nombreParameter = nombre != null ?
+                new ObjectParameter("Nombre", nombre) :
+                new ObjectParameter("Nombre", typeof(string));
+    
+            var primerApellidoParameter = primerApellido != null ?
+                new ObjectParameter("PrimerApellido", primerApellido) :
+                new ObjectParameter("PrimerApellido", typeof(string));
+    
+            var segundoApellidoParameter = segundoApellido != null ?
+                new ObjectParameter("SegundoApellido", segundoApellido) :
+                new ObjectParameter("SegundoApellido", typeof(string));
+    
+            var fechaNacimientoParameter = fechaNacimiento != null ?
+                new ObjectParameter("FechaNacimiento", fechaNacimiento) :
+                new ObjectParameter("FechaNacimiento", typeof(string));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var telefonoParameter = telefono != null ?
+                new ObjectParameter("Telefono", telefono) :
+                new ObjectParameter("Telefono", typeof(string));
+    
+            var telefono2Parameter = telefono2 != null ?
+                new ObjectParameter("Telefono2", telefono2) :
+                new ObjectParameter("Telefono2", typeof(string));
+    
+            var correoParameter = correo != null ?
+                new ObjectParameter("Correo", correo) :
+                new ObjectParameter("Correo", typeof(string));
+    
+            var idArbitroParameter = idArbitro.HasValue ?
+                new ObjectParameter("IdArbitro", idArbitro) :
+                new ObjectParameter("IdArbitro", typeof(int));
+    
+            var costoArbitrajeParameter = costoArbitraje.HasValue ?
+                new ObjectParameter("CostoArbitraje", costoArbitraje) :
+                new ObjectParameter("CostoArbitraje", typeof(decimal));
+    
+            var categoriaParameter = categoria.HasValue ?
+                new ObjectParameter("Categoria", categoria) :
+                new ObjectParameter("Categoria", typeof(int));
+    
+            var tipoArbitroParameter = tipoArbitro.HasValue ?
+                new ObjectParameter("TipoArbitro", tipoArbitro) :
+                new ObjectParameter("TipoArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblArbitrosModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idArbitroParameter, costoArbitrajeParameter, categoriaParameter, tipoArbitroParameter);
         }
     }
 }

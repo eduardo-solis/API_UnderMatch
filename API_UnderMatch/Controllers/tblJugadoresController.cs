@@ -139,7 +139,7 @@ namespace API_UnderMatch.Controllers
             //return CreatedAtRoute("DefaultApi", new { id = tblJugadores.IdJugador }, tblJugadores);
         }
 
-        // POST: api/tblJugadores
+         // POST: api/tblJugadores
         [ResponseType(typeof(tblJugadores))]
         public IHttpActionResult PosttblJugadores(int idJugador)
         {
