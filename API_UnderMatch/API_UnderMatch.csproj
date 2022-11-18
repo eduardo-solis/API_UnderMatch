@@ -177,6 +177,7 @@
     <Compile Include="Controllers\tblEquiposController.cs" />
     <Compile Include="Controllers\tblJugadoresController.cs" />
     <Compile Include="Controllers\tblPartidosController.cs" />
+    <Compile Include="Controllers\tblPlantelesController.cs" />
     <Compile Include="Controllers\tblProveedoresController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
