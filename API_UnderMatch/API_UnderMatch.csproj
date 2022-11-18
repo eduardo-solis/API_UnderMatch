@@ -167,6 +167,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ctgCategoriasController.cs" />
     <Compile Include="Controllers\ctgTipoArbitrosController.cs" />
+    <Compile Include="Controllers\ctgTipoEmpleadosController.cs" />
     <Compile Include="Controllers\ctgTipoProveedoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Jugadores_EquiposController.cs" />
