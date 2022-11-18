@@ -172,6 +172,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Jugadores_EquiposController.cs" />
     <Compile Include="Controllers\tblArbitrosController.cs" />
+    <Compile Include="Controllers\tblCanchasController.cs" />
     <Compile Include="Controllers\tblEquiposController.cs" />
     <Compile Include="Controllers\tblJugadoresController.cs" />
     <Compile Include="Controllers\tblProveedoresController.cs" />
