@@ -9,9 +9,10 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+
     public partial class tblEquipos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,7 @@ namespace API_UnderMatch.Models
             this.tblPartidos = new HashSet<tblPartidos>();
             this.tblPartidos1 = new HashSet<tblPartidos>();
         }
-    
+
         public int IdEquipo { get; set; }
         public string Nombre { get; set; }
         public int Categoria { get; set; }
@@ -30,13 +31,17 @@ namespace API_UnderMatch.Models
         public string ColorVisitante { get; set; }
         public string ColorLocal { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
+
+        [JsonIgnore]
         public virtual ctgCategorias ctgCategorias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<Jugadores_Equipos> Jugadores_Equipos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<tblPartidos> tblPartidos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<tblPartidos> tblPartidos1 { get; set; }
     }
 }
