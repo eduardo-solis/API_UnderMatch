@@ -26,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/tblPlanteles/5
         [ResponseType(typeof(tblPlanteles))]
-        public IHttpActionResult GettblPlanteles(int id)
+        public IHttpActionResult GettblPlanteles(int idPlantel)
         {
-            tblPlanteles tblPlanteles = db.tblPlanteles.Find(id);
+            tblPlanteles tblPlanteles = db.tblPlanteles.Find(idPlantel);
             if (tblPlanteles == null)
             {
                 return NotFound();
@@ -39,16 +39,25 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblPlanteles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblPlanteles(int id, tblPlanteles tblPlanteles)
+        public IHttpActionResult PuttblPlanteles(int idPlantel, string nombre, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado)
         {
+
+            tblPlanteles tblPlanteles = new tblPlanteles
+            {
+                IdPlantel = idPlantel,
+                Nombre = nombre,
+                Calle = calle,
+                Numero = numero,
+                Colonia = colonia,
+                CodigoPostal = codigoPostal,
+                Ciudad = ciudad,
+                Estado = estado,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != tblPlanteles.IdPlantel)
-            {
-                return BadRequest();
             }
 
             db.Entry(tblPlanteles).State = EntityState.Modified;
@@ -59,7 +68,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tblPlantelesExists(id))
+                if (!tblPlantelesExists(idPlantel))
                 {
                     return NotFound();
                 }
@@ -74,8 +83,21 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblPlanteles
         [ResponseType(typeof(tblPlanteles))]
-        public IHttpActionResult PosttblPlanteles(tblPlanteles tblPlanteles)
+        public IHttpActionResult PosttblPlanteles(string nombre, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado)
         {
+
+            tblPlanteles tblPlanteles = new tblPlanteles
+            {
+                Nombre = nombre,
+                Calle = calle,
+                Numero = numero,
+                Colonia = colonia,
+                CodigoPostal = codigoPostal,
+                Ciudad = ciudad,
+                Estado = estado,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -89,15 +111,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/tblPlanteles/5
         [ResponseType(typeof(tblPlanteles))]
-        public IHttpActionResult DeletetblPlanteles(int id)
+        public IHttpActionResult DeletetblPlanteles(int idPlantel, int operacion)
         {
-            tblPlanteles tblPlanteles = db.tblPlanteles.Find(id);
+            tblPlanteles tblPlanteles = db.tblPlanteles.Find(idPlantel);
             if (tblPlanteles == null)
             {
                 return NotFound();
             }
 
-            db.tblPlanteles.Remove(tblPlanteles);
+            if ( operacion == 0)
+            {
+                db.tblPlantelEliminar(idPlantel);
+            }
+            else
+            {
+                db.tblPlantelActivar(idPlantel);
+            }
+
             db.SaveChanges();
 
             return Ok(tblPlanteles);
