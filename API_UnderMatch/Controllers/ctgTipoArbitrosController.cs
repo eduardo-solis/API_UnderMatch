@@ -37,16 +37,19 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/ctgTipoArbitros/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutctgTipoArbitros(int id, ctgTipoArbitros ctgTipoArbitros)
+        public IHttpActionResult PutctgTipoArbitros(int IdTipoArbitro, string Nombre)
         {
+
+            ctgTipoArbitros ctgTipoArbitros = new ctgTipoArbitros
+            {
+                IdTipoArbitro = IdTipoArbitro,
+                Nombre = Nombre,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != ctgTipoArbitros.IdTipoArbitro)
-            {
-                return BadRequest();
             }
 
             db.Entry(ctgTipoArbitros).State = EntityState.Modified;
@@ -57,7 +60,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ctgTipoArbitrosExists(id))
+                if (!ctgTipoArbitrosExists(IdTipoArbitro))
                 {
                     return NotFound();
                 }
@@ -72,8 +75,15 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/ctgTipoArbitros
         [ResponseType(typeof(ctgTipoArbitros))]
-        public IHttpActionResult PostctgTipoArbitros(ctgTipoArbitros ctgTipoArbitros)
+        public IHttpActionResult PostctgTipoArbitros(string Nombre)
         {
+
+            ctgTipoArbitros ctgTipoArbitros = new ctgTipoArbitros
+            {
+                Nombre = Nombre,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -87,15 +97,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgTipoArbitros/5
         [ResponseType(typeof(ctgTipoArbitros))]
-        public IHttpActionResult DeletectgTipoArbitros(int id)
+        public IHttpActionResult DeletectgTipoArbitros(int IdTipoArbitro, int Operacion)
         {
-            ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(id);
+            ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(IdTipoArbitro);
             if (ctgTipoArbitros == null)
             {
                 return NotFound();
             }
 
-            db.ctgTipoArbitros.Remove(ctgTipoArbitros);
+            if ( Operacion == 0 ) // Eliminar
+            {
+                db.ctgTipoArbitroEliminar(IdTipoArbitro);
+            }
+            else
+            {
+                db.ctgTipoArbitroActivar(IdTipoArbitro);
+            }
+
             db.SaveChanges();
 
             return Ok(ctgTipoArbitros);
