@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="BDUnderMatchModel.tblPersonas" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblPlanteles" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblProveedores" Width="1.5" PointX="9" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDUnderMatchModel.tblTemporadas" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblArbitro_ctgCategoria" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblEquipo_ctgCategoria" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblArbitro_ctgTipoArbitro" ManuallyRouted="false" />
@@ -32,7 +31,6 @@
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblEquipos" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblEquipos1" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblJugador_tblPersona" ManuallyRouted="false" />
-        <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblProveedores_tblPlanteles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BDUnderMatchModel.viewJugadores" Width="1.5" PointX="10.375" PointY="6.75" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblEmpleados" Width="1.5" PointX="6" PointY="6" />
@@ -44,6 +42,8 @@
         <EntityTypeShape EntityType="BDUnderMatchModel.viewProveedores" Width="1.5" PointX="10.375" PointY="12.75" />
         <AssociationConnector Association="BDUnderMatchModel.FK_Empleados_Planteles_Empleados_Planteles" />
         <AssociationConnector Association="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.tblTemporadas" Width="1.5" PointX="12.375" PointY="12.875" />
+        <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

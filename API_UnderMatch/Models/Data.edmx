@@ -192,8 +192,8 @@
           </Key>
           <Property Name="IdTemporada" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="FechaInicio" Type="date" Nullable="false" />
-          <Property Name="FechaFin" Type="date" Nullable="false" />
+          <Property Name="FechaInicio" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FechaFin" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
         <!--Errores durante la generación:
@@ -1160,8 +1160,8 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblPartidos_tblCanchas" FromRole="tblPartidos" ToRole="tblCanchas" />
           <NavigationProperty Name="tblEquipos" Relationship="Self.FK_tblPartidos_tblEquipos" FromRole="tblPartidos" ToRole="tblEquipos" />
           <NavigationProperty Name="tblEquipos1" Relationship="Self.FK_tblPartidos_tblEquipos1" FromRole="tblPartidos" ToRole="tblEquipos" />
-          <NavigationProperty Name="tblTemporadas" Relationship="Self.FK_tblPartidos_tblTemporadas" FromRole="tblPartidos" ToRole="tblTemporadas" />
           <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="tblTemporadas" Relationship="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" FromRole="tblPartidos" ToRole="tblTemporadas" />
         </EntityType>
         <EntityType Name="tblPersonas">
           <Key>
@@ -1217,17 +1217,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdPlantel" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ctgTipoProveedores" Relationship="Self.FK_tblProveedor_ctgTipoProveedor" FromRole="tblProveedores" ToRole="ctgTipoProveedores" />
           <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblProveedores" ToRole="tblPlanteles" />
-          <Property Name="Estatus" Type="Int32" />
-        </EntityType>
-        <EntityType Name="tblTemporadas">
-          <Key>
-            <PropertyRef Name="IdTemporada" />
-          </Key>
-          <Property Name="IdTemporada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="FechaFin" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblTemporadas" FromRole="tblTemporadas" ToRole="tblPartidos" />
           <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <Association Name="FK_tblArbitro_ctgCategoria">
@@ -1386,18 +1375,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblPartidos_tblTemporadas">
-          <End Role="tblTemporadas" Type="Self.tblTemporadas" Multiplicity="0..1" />
-          <End Role="tblPartidos" Type="Self.tblPartidos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblTemporadas">
-              <PropertyRef Name="IdTemporada" />
-            </Principal>
-            <Dependent Role="tblPartidos">
-              <PropertyRef Name="IdTemporada" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblProveedores_tblPlanteles">
           <End Role="tblPlanteles" Type="Self.tblPlanteles" Multiplicity="1" />
           <End Role="tblProveedores" Type="Self.tblProveedores" Multiplicity="*" />
@@ -1424,7 +1401,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySet Name="tblPersonas" EntityType="Self.tblPersonas" />
           <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" />
           <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" />
-          <EntitySet Name="tblTemporadas" EntityType="Self.tblTemporadas" />
           <AssociationSet Name="FK_tblArbitro_ctgCategoria" Association="Self.FK_tblArbitro_ctgCategoria">
             <End Role="ctgCategorias" EntitySet="ctgCategorias" />
             <End Role="tblArbitros" EntitySet="tblArbitros" />
@@ -1476,10 +1452,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <AssociationSet Name="FK_tblJugador_tblPersona" Association="Self.FK_tblJugador_tblPersona">
             <End Role="tblPersonas" EntitySet="tblPersonas" />
             <End Role="tblJugadores" EntitySet="tblJugadores" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblPartidos_tblTemporadas" Association="Self.FK_tblPartidos_tblTemporadas">
-            <End Role="tblTemporadas" EntitySet="tblTemporadas" />
-            <End Role="tblPartidos" EntitySet="tblPartidos" />
           </AssociationSet>
           <AssociationSet Name="FK_tblProveedores_tblPlanteles" Association="Self.FK_tblProveedores_tblPlanteles">
             <End Role="tblPlanteles" EntitySet="tblPlanteles" />
@@ -1756,8 +1728,13 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="IdTemporada" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblPartidoActivar">
-            <Parameter Name="IdPartido" Mode="In" Type="Int32" />
+          <Parameter Name="IdPartido" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tblTemporadas" EntityType="BDUnderMatchModel.tblTemporadas" />
+          <AssociationSet Name="FK_tblPartidos_tblTemporadas" Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas">
+            <End Role="tblTemporadas" EntitySet="tblTemporadas" />
+            <End Role="tblPartidos" EntitySet="tblPartidos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -2009,6 +1986,29 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="tblTemporadas">
+          <Key>
+            <PropertyRef Name="IdTemporada" />
+          </Key>
+          <Property Name="IdTemporada" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="FechaFin" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="tblPartidos" Relationship="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" FromRole="tblTemporadas" ToRole="tblPartidos" />
+        </EntityType>
+        <Association Name="FK_tblPartidos_tblTemporadas">
+          <End Type="BDUnderMatchModel.tblTemporadas" Role="tblTemporadas" Multiplicity="0..1" />
+          <End Type="BDUnderMatchModel.tblPartidos" Role="tblPartidos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTemporadas">
+              <PropertyRef Name="IdTemporada" />
+            </Principal>
+            <Dependent Role="tblPartidos">
+              <PropertyRef Name="IdTemporada" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2178,17 +2178,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblTemporadas">
-            <EntityTypeMapping TypeName="BDUnderMatchModel.tblTemporadas">
-              <MappingFragment StoreEntitySet="tblTemporadas">
-                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
-                <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2384,6 +2373,17 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImportMapping FunctionImportName="tblTemporadaActivar" FunctionName="BDUnderMatchModel.Store.tblTemporadaActivar" />
           <FunctionImportMapping FunctionImportName="tblTemporadaEliminar" FunctionName="BDUnderMatchModel.Store.tblTemporadaEliminar" />
           <FunctionImportMapping FunctionImportName="tblPartidoActivar" FunctionName="BDUnderMatchModel.Store.tblPartidoActivar" />
+          <EntitySetMapping Name="tblTemporadas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblTemporadas">
+              <MappingFragment StoreEntitySet="tblTemporadas">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
