@@ -37,16 +37,19 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/ctgTipoEmpleados/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutctgTipoEmpleados(int id, ctgTipoEmpleados ctgTipoEmpleados)
+        public IHttpActionResult PutctgTipoEmpleados(int IdTipoEmpleado, string Nombre)
         {
+
+            ctgTipoEmpleados ctgTipoEmpleados = new ctgTipoEmpleados
+            {
+                IdTipoEmpleado = IdTipoEmpleado,
+                Nombre = Nombre,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != ctgTipoEmpleados.IdTipoEmpleado)
-            {
-                return BadRequest();
             }
 
             db.Entry(ctgTipoEmpleados).State = EntityState.Modified;
@@ -57,7 +60,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ctgTipoEmpleadosExists(id))
+                if (!ctgTipoEmpleadosExists(IdTipoEmpleado))
                 {
                     return NotFound();
                 }
@@ -72,8 +75,15 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/ctgTipoEmpleados
         [ResponseType(typeof(ctgTipoEmpleados))]
-        public IHttpActionResult PostctgTipoEmpleados(ctgTipoEmpleados ctgTipoEmpleados)
+        public IHttpActionResult PostctgTipoEmpleados(string Nombre)
         {
+
+            ctgTipoEmpleados ctgTipoEmpleados = new ctgTipoEmpleados
+            {
+                Nombre = Nombre,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -87,15 +97,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgTipoEmpleados/5
         [ResponseType(typeof(ctgTipoEmpleados))]
-        public IHttpActionResult DeletectgTipoEmpleados(int id)
+        public IHttpActionResult DeletectgTipoEmpleados(int IdTipoEmpleado, int Operacion)
         {
-            ctgTipoEmpleados ctgTipoEmpleados = db.ctgTipoEmpleados.Find(id);
+            ctgTipoEmpleados ctgTipoEmpleados = db.ctgTipoEmpleados.Find(IdTipoEmpleado);
             if (ctgTipoEmpleados == null)
             {
                 return NotFound();
             }
 
-            db.ctgTipoEmpleados.Remove(ctgTipoEmpleados);
+            if ( Operacion == 0 )
+            {
+                db.ctgTipoEmpleadoEliminar(IdTipoEmpleado);
+            }
+            else
+            {
+                db.ctgTipoEmpleadoActivar(IdTipoEmpleado);
+            }
+
             db.SaveChanges();
 
             return Ok(ctgTipoEmpleados);
