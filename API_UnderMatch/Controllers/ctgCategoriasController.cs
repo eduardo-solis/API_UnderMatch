@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using API_UnderMatch.Models;
 
 namespace API_UnderMatch.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ctgCategoriasController : ApiController
     {
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
@@ -24,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/ctgCategorias/5
         [ResponseType(typeof(ctgCategorias))]
-        public IHttpActionResult GetctgCategorias(int id)
+        public IHttpActionResult GetctgCategorias(int idCategoria)
         {
-            ctgCategorias ctgCategorias = db.ctgCategorias.Find(id);
+            ctgCategorias ctgCategorias = db.ctgCategorias.Find(idCategoria);
             if (ctgCategorias == null)
             {
                 return NotFound();
@@ -37,12 +39,12 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/ctgCategorias/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutctgCategorias(int IdCategoria, string Categoria)
+        public IHttpActionResult PutctgCategorias(int idCategoria, string categoria)
         {
             ctgCategorias ctgCategorias = new ctgCategorias
             {
-                IdCategoria = IdCategoria,
-                Categoria = Categoria,
+                IdCategoria = idCategoria,
+                Categoria = categoria,
                 Estatus = 1
             };
 
@@ -60,7 +62,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ctgCategoriasExists(IdCategoria))
+                if (!ctgCategoriasExists(idCategoria))
                 {
                     return NotFound();
                 }
@@ -75,12 +77,12 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/ctgCategorias
         [ResponseType(typeof(ctgCategorias))]
-        public IHttpActionResult PostctgCategorias(string Categoria)
+        public IHttpActionResult PostctgCategorias(string categoria)
         {
 
             ctgCategorias ctgCategorias = new ctgCategorias
             {
-                Categoria = Categoria,
+                Categoria = categoria,
                 Estatus = 1
             };
 
@@ -97,21 +99,21 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgCategorias/5
         [ResponseType(typeof(ctgCategorias))]
-        public IHttpActionResult DeletectgCategorias(int IdCategoria, int Operacion)
+        public IHttpActionResult DeletectgCategorias(int idCategoria, int operacion)
         {
-            ctgCategorias ctgCategorias = db.ctgCategorias.Find(IdCategoria);
+            ctgCategorias ctgCategorias = db.ctgCategorias.Find(idCategoria);
             if (ctgCategorias == null)
             {
                 return NotFound();
             }
 
-            if ( Operacion == 0 ) //Eliminar
+            if ( operacion == 0 ) //Eliminar
             {
-                db.ctgCategoriasEliminar(IdCategoria);
+                db.ctgCategoriasEliminar(idCategoria);
             }
             else
             {
-                db.ctgCategoriasActivar(IdCategoria);
+                db.ctgCategoriasActivar(idCategoria);
             }
 
             db.SaveChanges();

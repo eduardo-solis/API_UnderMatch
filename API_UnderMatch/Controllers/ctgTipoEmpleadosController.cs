@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using API_UnderMatch.Models;
 
 namespace API_UnderMatch.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ctgTipoEmpleadosController : ApiController
     {
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
@@ -24,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/ctgTipoEmpleados/5
         [ResponseType(typeof(ctgTipoEmpleados))]
-        public IHttpActionResult GetctgTipoEmpleados(int id)
+        public IHttpActionResult GetctgTipoEmpleados(int idTipoEmpleado)
         {
-            ctgTipoEmpleados ctgTipoEmpleados = db.ctgTipoEmpleados.Find(id);
+            ctgTipoEmpleados ctgTipoEmpleados = db.ctgTipoEmpleados.Find(idTipoEmpleado);
             if (ctgTipoEmpleados == null)
             {
                 return NotFound();
@@ -37,13 +39,13 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/ctgTipoEmpleados/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutctgTipoEmpleados(int IdTipoEmpleado, string Nombre)
+        public IHttpActionResult PutctgTipoEmpleados(int idTipoEmpleado, string nombre)
         {
 
             ctgTipoEmpleados ctgTipoEmpleados = new ctgTipoEmpleados
             {
-                IdTipoEmpleado = IdTipoEmpleado,
-                Nombre = Nombre,
+                IdTipoEmpleado = idTipoEmpleado,
+                Nombre = nombre,
                 Estatus = 1
             };
 
@@ -60,7 +62,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ctgTipoEmpleadosExists(IdTipoEmpleado))
+                if (!ctgTipoEmpleadosExists(idTipoEmpleado))
                 {
                     return NotFound();
                 }
@@ -75,12 +77,12 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/ctgTipoEmpleados
         [ResponseType(typeof(ctgTipoEmpleados))]
-        public IHttpActionResult PostctgTipoEmpleados(string Nombre)
+        public IHttpActionResult PostctgTipoEmpleados(string nombre)
         {
 
             ctgTipoEmpleados ctgTipoEmpleados = new ctgTipoEmpleados
             {
-                Nombre = Nombre,
+                Nombre = nombre,
                 Estatus = 1
             };
 
@@ -97,21 +99,21 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgTipoEmpleados/5
         [ResponseType(typeof(ctgTipoEmpleados))]
-        public IHttpActionResult DeletectgTipoEmpleados(int IdTipoEmpleado, int Operacion)
+        public IHttpActionResult DeletectgTipoEmpleados(int idTipoEmpleado, int operacion)
         {
-            ctgTipoEmpleados ctgTipoEmpleados = db.ctgTipoEmpleados.Find(IdTipoEmpleado);
+            ctgTipoEmpleados ctgTipoEmpleados = db.ctgTipoEmpleados.Find(idTipoEmpleado);
             if (ctgTipoEmpleados == null)
             {
                 return NotFound();
             }
 
-            if ( Operacion == 0 )
+            if ( operacion == 0 )
             {
-                db.ctgTipoEmpleadoEliminar(IdTipoEmpleado);
+                db.ctgTipoEmpleadoEliminar(idTipoEmpleado);
             }
             else
             {
-                db.ctgTipoEmpleadoActivar(IdTipoEmpleado);
+                db.ctgTipoEmpleadoActivar(idTipoEmpleado);
             }
 
             db.SaveChanges();

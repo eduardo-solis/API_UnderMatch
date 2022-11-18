@@ -27,9 +27,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/tblArbitros/5
         [ResponseType(typeof(viewArbitros))]
-        public IHttpActionResult GettblArbitros(int id)
+        public IHttpActionResult GettblArbitros(int idArbitro)
         {
-            tblArbitros tblArbitros = db.tblArbitros.Find(id);
+            tblArbitros tblArbitros = db.tblArbitros.Find(idArbitro);
             tblPersonas tblPersonas = db.tblPersonas.Find(tblArbitros.IdPersona);
             ctgCategorias categorias = db.ctgCategorias.Find(tblArbitros.Categoria);
             ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(tblArbitros.TipoArbitro);
@@ -64,11 +64,11 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblArbitros/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblArbitros(int IdPersona, int IdArbitro, string Nombre, string PrimerApellido, string SegundoApellido,
-                string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, decimal CostoArbitraje, int IdCategoria, int IdTipoArbitro)
+        public IHttpActionResult PuttblArbitros(int idPersona, int idArbitro, string nombre, string primerApellido, string segundoApellido,
+                string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, decimal costoArbitraje, int idCategoria, int idTipoArbitro)
         {
-            db.tblArbitrosModificar(IdPersona, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo,
-                    IdArbitro, CostoArbitraje, IdCategoria, IdTipoArbitro);
+            db.tblArbitrosModificar(idPersona, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo,
+                    idArbitro, costoArbitraje, idCategoria, idTipoArbitro);
 
             try
             {
@@ -84,13 +84,13 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblArbitros
         [ResponseType(typeof(tblArbitros))]
-        public IHttpActionResult PosttblArbitros(string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento,
-                string Sexo, string Telefono, string Telefono2, string Correo, decimal CostoArbitraje, int IdCategoria, int IdTipoArbitro)
+        public IHttpActionResult PosttblArbitros(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento,
+                string sexo, string telefono, string telefono2, string correo, decimal costoArbitraje, int idCategoria, int idTipoArbitro)
         {
             try
             {
-                db.tblArbitrosAgregar(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, CostoArbitraje,
-                    IdCategoria, IdTipoArbitro);
+                db.tblArbitrosAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, costoArbitraje,
+                    idCategoria, idTipoArbitro);
                 db.SaveChanges();
                 return Ok(HttpStatusCode.OK);
             }
@@ -102,31 +102,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/tblArbitros/5
         [ResponseType(typeof(tblArbitros))]
-        public IHttpActionResult DeletetblArbitros(int IdArbitro)
+        public IHttpActionResult DeletetblArbitros(int idArbitro, int operacion)
         {
-            tblArbitros tblArbitros = db.tblArbitros.Find(IdArbitro);
+            tblArbitros tblArbitros = db.tblArbitros.Find(idArbitro);
             if (tblArbitros == null)
             {
                 return NotFound();
             }
 
-            db.tblArbitrosEliminar(IdArbitro, 1);
-            db.SaveChanges();
-
-            return Ok(HttpStatusCode.OK);
-        }
-
-        // POST: api/tblJugadores
-        [ResponseType(typeof(tblJugadores))]
-        public IHttpActionResult PosttblArbitros(int IdArbitro)
-        {
-            tblArbitros tblArbitros = db.tblArbitros.Find(IdArbitro);
-            if (tblArbitros == null)
+            if ( operacion == 0 ) // Eliminar
             {
-                return NotFound();
+                db.tblArbitrosEliminar(idArbitro, 1);
             }
-
-            db.tblArbitrosEliminar(IdArbitro, 0);
+            else
+            {
+                db.tblArbitrosEliminar(idArbitro, 0);
+            }
+            
             db.SaveChanges();
 
             return Ok(HttpStatusCode.OK);

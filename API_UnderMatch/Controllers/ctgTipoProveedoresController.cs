@@ -71,7 +71,7 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgTipoProveedores/5
         [ResponseType(typeof(ctgTipoProveedores))]
-        public IHttpActionResult DeletectgTipoProveedores(int idTipoProveedor, int Operacion)
+        public IHttpActionResult DeletectgTipoProveedores(int idTipoProveedor, int operacion)
         {
             ctgTipoProveedores ctgTipoProveedores = db.ctgTipoProveedores.Find(idTipoProveedor);
             if (ctgTipoProveedores == null)
@@ -81,7 +81,7 @@ namespace API_UnderMatch.Controllers
 
             try
             {
-                if ( Operacion == 0 ) //Eliminar
+                if ( operacion == 0 ) //Eliminar
                 {
                     db.ctgTipoProveedoresEliminar(idTipoProveedor);
                     

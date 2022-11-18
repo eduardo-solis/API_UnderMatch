@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using API_UnderMatch.Models;
 
 namespace API_UnderMatch.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ctgTipoArbitrosController : ApiController
     {
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
@@ -24,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/ctgTipoArbitros/5
         [ResponseType(typeof(ctgTipoArbitros))]
-        public IHttpActionResult GetctgTipoArbitros(int id)
+        public IHttpActionResult GetctgTipoArbitros(int idTipoArbitro)
         {
-            ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(id);
+            ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(idTipoArbitro);
             if (ctgTipoArbitros == null)
             {
                 return NotFound();
@@ -37,13 +39,13 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/ctgTipoArbitros/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutctgTipoArbitros(int IdTipoArbitro, string Nombre)
+        public IHttpActionResult PutctgTipoArbitros(int idTipoArbitro, string nombre)
         {
 
             ctgTipoArbitros ctgTipoArbitros = new ctgTipoArbitros
             {
-                IdTipoArbitro = IdTipoArbitro,
-                Nombre = Nombre,
+                IdTipoArbitro = idTipoArbitro,
+                Nombre = nombre,
                 Estatus = 1
             };
 
@@ -60,7 +62,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ctgTipoArbitrosExists(IdTipoArbitro))
+                if (!ctgTipoArbitrosExists(idTipoArbitro))
                 {
                     return NotFound();
                 }
@@ -75,12 +77,12 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/ctgTipoArbitros
         [ResponseType(typeof(ctgTipoArbitros))]
-        public IHttpActionResult PostctgTipoArbitros(string Nombre)
+        public IHttpActionResult PostctgTipoArbitros(string nombre)
         {
 
             ctgTipoArbitros ctgTipoArbitros = new ctgTipoArbitros
             {
-                Nombre = Nombre,
+                Nombre = nombre,
                 Estatus = 1
             };
 
@@ -97,21 +99,21 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgTipoArbitros/5
         [ResponseType(typeof(ctgTipoArbitros))]
-        public IHttpActionResult DeletectgTipoArbitros(int IdTipoArbitro, int Operacion)
+        public IHttpActionResult DeletectgTipoArbitros(int idTipoArbitro, int operacion)
         {
-            ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(IdTipoArbitro);
+            ctgTipoArbitros ctgTipoArbitros = db.ctgTipoArbitros.Find(idTipoArbitro);
             if (ctgTipoArbitros == null)
             {
                 return NotFound();
             }
 
-            if ( Operacion == 0 ) // Eliminar
+            if ( operacion == 0 ) // Eliminar
             {
-                db.ctgTipoArbitroEliminar(IdTipoArbitro);
+                db.ctgTipoArbitroEliminar(idTipoArbitro);
             }
             else
             {
-                db.ctgTipoArbitroActivar(IdTipoArbitro);
+                db.ctgTipoArbitroActivar(idTipoArbitro);
             }
 
             db.SaveChanges();
