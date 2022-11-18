@@ -804,5 +804,59 @@ namespace API_UnderMatch.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idEmpleadoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, ciudadEParameter, estadoEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter);
         }
+    
+        public virtual int ctgCategoriasActivar(Nullable<int> idCategoria)
+        {
+            var idCategoriaParameter = idCategoria.HasValue ?
+                new ObjectParameter("IdCategoria", idCategoria) :
+                new ObjectParameter("IdCategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgCategoriasActivar", idCategoriaParameter);
+        }
+    
+        public virtual int ctgCategoriasEliminar(Nullable<int> idCategoria)
+        {
+            var idCategoriaParameter = idCategoria.HasValue ?
+                new ObjectParameter("IdCategoria", idCategoria) :
+                new ObjectParameter("IdCategoria", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgCategoriasEliminar", idCategoriaParameter);
+        }
+    
+        public virtual int ctgTipoArbitroActivar(Nullable<int> idTipoArbitro)
+        {
+            var idTipoArbitroParameter = idTipoArbitro.HasValue ?
+                new ObjectParameter("IdTipoArbitro", idTipoArbitro) :
+                new ObjectParameter("IdTipoArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoArbitroActivar", idTipoArbitroParameter);
+        }
+    
+        public virtual int ctgTipoArbitroEliminar(Nullable<int> idTipoArbitro)
+        {
+            var idTipoArbitroParameter = idTipoArbitro.HasValue ?
+                new ObjectParameter("IdTipoArbitro", idTipoArbitro) :
+                new ObjectParameter("IdTipoArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoArbitroEliminar", idTipoArbitroParameter);
+        }
+    
+        public virtual int ctgTipoEmpleadoActivar(Nullable<int> idTipoEmpleado)
+        {
+            var idTipoEmpleadoParameter = idTipoEmpleado.HasValue ?
+                new ObjectParameter("IdTipoEmpleado", idTipoEmpleado) :
+                new ObjectParameter("IdTipoEmpleado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoEmpleadoActivar", idTipoEmpleadoParameter);
+        }
+    
+        public virtual int ctgTipoEmpleadoEliminar(Nullable<int> idTipoEmpleado)
+        {
+            var idTipoEmpleadoParameter = idTipoEmpleado.HasValue ?
+                new ObjectParameter("IdTipoEmpleado", idTipoEmpleado) :
+                new ObjectParameter("IdTipoEmpleado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("ctgTipoEmpleadoEliminar", idTipoEmpleadoParameter);
+        }
     }
 }

@@ -11,6 +11,7 @@
           </Key>
           <Property Name="IdCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Categoria" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="ctgTipoArbitros">
           <Key>
@@ -18,6 +19,7 @@
           </Key>
           <Property Name="IdTipoArbitro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="ctgTipoEmpleados">
           <Key>
@@ -25,6 +27,7 @@
           </Key>
           <Property Name="IdTipoEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="ctgTipoProveedores">
           <Key>
@@ -587,6 +590,24 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ctgCategoriasActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgCategoriasEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoArbitroActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoArbitroEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoEmpleadoActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoEmpleado" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ctgTipoEmpleadoEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdTipoEmpleado" Type="int" Mode="In" />
+        </Function>
         <Function Name="ctgTipoProveedoresActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
         </Function>
@@ -998,6 +1019,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblArbitro_ctgCategoria" FromRole="ctgCategorias" ToRole="tblArbitros" />
           <NavigationProperty Name="tblEquipos" Relationship="Self.FK_tblEquipo_ctgCategoria" FromRole="ctgCategorias" ToRole="tblEquipos" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="ctgTipoArbitros">
           <Key>
@@ -1006,6 +1028,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdTipoArbitro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblArbitros" Relationship="Self.FK_tblArbitro_ctgTipoArbitro" FromRole="ctgTipoArbitros" ToRole="tblArbitros" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="ctgTipoEmpleados">
           <Key>
@@ -1014,6 +1037,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdTipoEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblEmpleados" Relationship="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" FromRole="ctgTipoEmpleados" ToRole="tblEmpleados" />
+          <Property Name="Estatus" Type="Int32" />
         </EntityType>
         <EntityType Name="ctgTipoProveedores">
           <Key>
@@ -1670,6 +1694,24 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="SalarioE" Mode="In" Type="Decimal" />
             <Parameter Name="HorarioE" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ctgCategoriasActivar">
+            <Parameter Name="IdCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgCategoriasEliminar">
+            <Parameter Name="IdCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoArbitroActivar">
+            <Parameter Name="IdTipoArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoArbitroEliminar">
+            <Parameter Name="IdTipoArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoEmpleadoActivar">
+            <Parameter Name="IdTipoEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ctgTipoEmpleadoEliminar">
+            <Parameter Name="IdTipoEmpleado" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -1930,6 +1972,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="ctgCategorias">
             <EntityTypeMapping TypeName="BDUnderMatchModel.ctgCategorias">
               <MappingFragment StoreEntitySet="ctgCategorias">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
                 <ScalarProperty Name="Categoria" ColumnName="Categoria" />
               </MappingFragment>
@@ -1938,6 +1981,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="ctgTipoArbitros">
             <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoArbitros">
               <MappingFragment StoreEntitySet="ctgTipoArbitros">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdTipoArbitro" ColumnName="IdTipoArbitro" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
@@ -1946,6 +1990,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="ctgTipoEmpleados">
             <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoEmpleados">
               <MappingFragment StoreEntitySet="ctgTipoEmpleados">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdTipoEmpleado" ColumnName="IdTipoEmpleado" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
@@ -2279,6 +2324,12 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImportMapping FunctionImportName="tblEmpleadosAgregar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosAgregar" />
           <FunctionImportMapping FunctionImportName="tblEmpleadosEliminar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosEliminar" />
           <FunctionImportMapping FunctionImportName="tblEmpleadosModificar" FunctionName="BDUnderMatchModel.Store.tblEmpleadosModificar" />
+          <FunctionImportMapping FunctionImportName="ctgCategoriasActivar" FunctionName="BDUnderMatchModel.Store.ctgCategoriasActivar" />
+          <FunctionImportMapping FunctionImportName="ctgCategoriasEliminar" FunctionName="BDUnderMatchModel.Store.ctgCategoriasEliminar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoArbitroActivar" FunctionName="BDUnderMatchModel.Store.ctgTipoArbitroActivar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoArbitroEliminar" FunctionName="BDUnderMatchModel.Store.ctgTipoArbitroEliminar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoEmpleadoActivar" FunctionName="BDUnderMatchModel.Store.ctgTipoEmpleadoActivar" />
+          <FunctionImportMapping FunctionImportName="ctgTipoEmpleadoEliminar" FunctionName="BDUnderMatchModel.Store.ctgTipoEmpleadoEliminar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

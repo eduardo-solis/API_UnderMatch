@@ -22,6 +22,7 @@ namespace API_UnderMatch.Models
     
         public int IdTipoEmpleado { get; set; }
         public string Nombre { get; set; }
+        public Nullable<int> Estatus { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblEmpleados> tblEmpleados { get; set; }
