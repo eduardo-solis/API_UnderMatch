@@ -787,6 +787,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="Posicion" Type="varchar" Mode="In" />
           <Parameter Name="Capitan" Type="int" Mode="In" />
         </Function>
+        <Function Name="tblPartidoActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPartido" Type="int" Mode="In" />
+        </Function>
         <Function Name="tblPartidoEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPartido" Type="int" Mode="In" />
         </Function>
@@ -1752,6 +1755,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImport Name="tblTemporadaEliminar">
           <Parameter Name="IdTemporada" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="tblPartidoActivar">
+            <Parameter Name="IdPartido" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -2377,6 +2383,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImportMapping FunctionImportName="tblPlantelEliminar" FunctionName="BDUnderMatchModel.Store.tblPlantelEliminar" />
           <FunctionImportMapping FunctionImportName="tblTemporadaActivar" FunctionName="BDUnderMatchModel.Store.tblTemporadaActivar" />
           <FunctionImportMapping FunctionImportName="tblTemporadaEliminar" FunctionName="BDUnderMatchModel.Store.tblTemporadaEliminar" />
+          <FunctionImportMapping FunctionImportName="tblPartidoActivar" FunctionName="BDUnderMatchModel.Store.tblPartidoActivar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

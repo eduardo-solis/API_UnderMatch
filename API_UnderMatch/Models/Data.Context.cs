@@ -917,5 +917,14 @@ namespace API_UnderMatch.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblTemporadaEliminar", idTemporadaParameter);
         }
+    
+        public virtual int tblPartidoActivar(Nullable<int> idPartido)
+        {
+            var idPartidoParameter = idPartido.HasValue ?
+                new ObjectParameter("IdPartido", idPartido) :
+                new ObjectParameter("IdPartido", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPartidoActivar", idPartidoParameter);
+        }
     }
 }

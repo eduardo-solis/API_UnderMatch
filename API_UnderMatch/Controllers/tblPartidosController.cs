@@ -26,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/tblPartidos/5
         [ResponseType(typeof(tblPartidos))]
-        public IHttpActionResult GettblPartidos(int id)
+        public IHttpActionResult GettblPartidos(int idPartido)
         {
-            tblPartidos tblPartidos = db.tblPartidos.Find(id);
+            tblPartidos tblPartidos = db.tblPartidos.Find(idPartido);
             if (tblPartidos == null)
             {
                 return NotFound();
@@ -39,16 +39,33 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblPartidos/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblPartidos(int id, tblPartidos tblPartidos)
+        public IHttpActionResult PuttblPartidos(
+            int idPartido, int idCancha, int idTemporada, int jornada, string dia, string hora, int equipo1,
+            int equipo2, int golesEquipo1, int golesEquipo2, int ganador, int perdedor, int idArbitro
+            )
         {
+
+            tblPartidos tblPartidos = new tblPartidos
+            {
+                IdPartido = idPartido,
+                IdCancha = idCancha,
+                IdTemporada = idTemporada,
+                Jornada = jornada,
+                Dia = dia,
+                Hora = hora,
+                Equipo1 = equipo1,
+                Equipo2 = equipo2,
+                GolesEquipo1 = golesEquipo1,
+                GolesEquipo2 = golesEquipo2,
+                Ganador = ganador,
+                Perdedor = perdedor,
+                IdArbitro = idArbitro,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != tblPartidos.IdPartido)
-            {
-                return BadRequest();
             }
 
             db.Entry(tblPartidos).State = EntityState.Modified;
@@ -59,7 +76,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tblPartidosExists(id))
+                if (!tblPartidosExists(idPartido))
                 {
                     return NotFound();
                 }
@@ -74,8 +91,29 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblPartidos
         [ResponseType(typeof(tblPartidos))]
-        public IHttpActionResult PosttblPartidos(tblPartidos tblPartidos)
+        public IHttpActionResult PosttblPartidos(
+            int idCancha, int idTemporada, int jornada, string dia, string hora, int equipo1,
+            int equipo2, int golesEquipo1, int golesEquipo2, int ganador, int perdedor, int idArbitro
+            )
         {
+
+            tblPartidos tblPartidos = new tblPartidos
+            {
+                IdCancha = idCancha,
+                IdTemporada = idTemporada,
+                Jornada = jornada,
+                Dia = dia,
+                Hora = hora,
+                Equipo1 = equipo1,
+                Equipo2 = equipo2,
+                GolesEquipo1 = golesEquipo1,
+                GolesEquipo2 = golesEquipo2,
+                Ganador = ganador,
+                Perdedor = perdedor,
+                IdArbitro = idArbitro,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -89,15 +127,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/tblPartidos/5
         [ResponseType(typeof(tblPartidos))]
-        public IHttpActionResult DeletetblPartidos(int id)
+        public IHttpActionResult DeletetblPartidos(int idPartido, int operacion)
         {
-            tblPartidos tblPartidos = db.tblPartidos.Find(id);
+            tblPartidos tblPartidos = db.tblPartidos.Find(idPartido);
             if (tblPartidos == null)
             {
                 return NotFound();
             }
 
-            db.tblPartidos.Remove(tblPartidos);
+            if ( operacion == 0 )
+            {
+                db.tblPartidoEliminar(idPartido);
+            }
+            else
+            {
+                db.tblPartidoActivar(idPartido);
+            }
+
             db.SaveChanges();
 
             return Ok(tblPartidos);
