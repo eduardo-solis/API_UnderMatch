@@ -37,17 +37,20 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/ctgCategorias/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutctgCategorias(int id, ctgCategorias ctgCategorias)
+        public IHttpActionResult PutctgCategorias(int IdCategoria, string Categoria)
         {
+            ctgCategorias ctgCategorias = new ctgCategorias
+            {
+                IdCategoria = IdCategoria,
+                Categoria = Categoria,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != ctgCategorias.IdCategoria)
-            {
-                return BadRequest();
-            }
 
             db.Entry(ctgCategorias).State = EntityState.Modified;
 
@@ -57,7 +60,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ctgCategoriasExists(id))
+                if (!ctgCategoriasExists(IdCategoria))
                 {
                     return NotFound();
                 }
@@ -72,8 +75,15 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/ctgCategorias
         [ResponseType(typeof(ctgCategorias))]
-        public IHttpActionResult PostctgCategorias(ctgCategorias ctgCategorias)
+        public IHttpActionResult PostctgCategorias(string Categoria)
         {
+
+            ctgCategorias ctgCategorias = new ctgCategorias
+            {
+                Categoria = Categoria,
+                Estatus = 1
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -87,15 +97,23 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/ctgCategorias/5
         [ResponseType(typeof(ctgCategorias))]
-        public IHttpActionResult DeletectgCategorias(int id)
+        public IHttpActionResult DeletectgCategorias(int IdCategoria, int Operacion)
         {
-            ctgCategorias ctgCategorias = db.ctgCategorias.Find(id);
+            ctgCategorias ctgCategorias = db.ctgCategorias.Find(IdCategoria);
             if (ctgCategorias == null)
             {
                 return NotFound();
             }
 
-            db.ctgCategorias.Remove(ctgCategorias);
+            if ( Operacion == 0 ) //Eliminar
+            {
+                db.ctgCategoriasEliminar(IdCategoria);
+            }
+            else
+            {
+                db.ctgCategoriasActivar(IdCategoria);
+            }
+
             db.SaveChanges();
 
             return Ok(ctgCategorias);
