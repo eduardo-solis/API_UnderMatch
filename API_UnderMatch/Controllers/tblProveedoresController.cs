@@ -115,7 +115,7 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/tblProveedores/5
         [ResponseType(typeof(tblProveedores))]
-        public IHttpActionResult DeletetblProveedores(int idProveedor)
+        public IHttpActionResult DeletetblProveedores(int idProveedor, int operacion)
         {
             try
             {
@@ -124,30 +124,18 @@ namespace API_UnderMatch.Controllers
                 if (proveedor == null)
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontró el proveedor"));
 
-                db.tblProveedoresEliminar(idProveedor);
-                db.SaveChanges();
-                return Json(new { Message = "Proveedor eliminado con éxito" });
-            }
-            catch (Exception e)
-            {
-                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Ocurrió un error. " + e));
-            }
-        }
-
-        // PUT: api/tblProveedores/5
-        [ResponseType(typeof(tblProveedores))]
-        public IHttpActionResult PuttblProveedores(int idProveedor)
-        {
-            try
-            {
-                tblProveedores proveedor = db.tblProveedores.Find(idProveedor);
-
-                if (proveedor == null)
-                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.NotFound, "No se encontró el proveedor"));
-
-                db.tblProveedoresActivar(idProveedor);
-                db.SaveChanges();
-                return Json(new { Message = "Proveedor activado con éxito" });
+                if ( operacion == 0) // Eliminar
+                {
+                    db.tblProveedoresEliminar(idProveedor);
+                    db.SaveChanges();
+                    return Json(new { Message = "Proveedor eliminado con éxito" });
+                }
+                else
+                {
+                    db.tblProveedoresActivar(idProveedor);
+                    db.SaveChanges();
+                    return Json(new { Message = "Proveedor activado con éxito" });
+                }
             }
             catch (Exception e)
             {
