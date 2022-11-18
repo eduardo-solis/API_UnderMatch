@@ -28,7 +28,13 @@ namespace API_UnderMatch.Controllers
         [ResponseType(typeof(tblEquipos))]
         public IHttpActionResult GettblEquipos(int id)
         {
+            if (id < 0)
+            {
+                return BadRequest("Id invalido");
+            }
+
             tblEquipos tblEquipos = db.tblEquipos.Find(id);
+
             if (tblEquipos == null)
             {
                 return NotFound();
@@ -39,16 +45,22 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblEquipos/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblEquipos(int id, tblEquipos tblEquipos)
+        public IHttpActionResult PuttblEquipos(int id, string Nombre, int Categoria, string AnioFundacion, string Zona, string ColorVisitante, string ColorLocal)
         {
+            tblEquipos tblEquipos = new tblEquipos();
+
+            tblEquipos.IdEquipo = id;
+            tblEquipos.Nombre = Nombre;
+            tblEquipos.Categoria = Categoria;
+            tblEquipos.AnioFundacion = AnioFundacion;
+            tblEquipos.Zona = Zona;
+            tblEquipos.ColorVisitante = ColorVisitante;
+            tblEquipos.ColorLocal = ColorLocal;
+            tblEquipos.Estatus = 1;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != tblEquipos.IdEquipo)
-            {
-                return BadRequest();
             }
 
             db.Entry(tblEquipos).State = EntityState.Modified;
@@ -69,13 +81,23 @@ namespace API_UnderMatch.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(tblEquipos);
         }
 
         // POST: api/tblEquipos
         [ResponseType(typeof(tblEquipos))]
-        public IHttpActionResult PosttblEquipos(tblEquipos tblEquipos)
+        public IHttpActionResult PosttblEquipos(string Nombre, int Categoria, string AnioFundacion, string Zona, string ColorVisitante, string ColorLocal)
         {
+            tblEquipos tblEquipos = new tblEquipos();
+
+            tblEquipos.Nombre = Nombre;
+            tblEquipos.Categoria = Categoria;
+            tblEquipos.AnioFundacion = AnioFundacion;
+            tblEquipos.Zona = Zona;
+            tblEquipos.ColorVisitante = ColorVisitante;
+            tblEquipos.ColorLocal = ColorLocal;
+            tblEquipos.Estatus = 1;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -91,6 +113,8 @@ namespace API_UnderMatch.Controllers
         [ResponseType(typeof(tblEquipos))]
         public IHttpActionResult DeletetblEquipos(int id, int operacion)
         {
+            
+
             tblEquipos tblEquipos = db.tblEquipos.Find(id);
             if (tblEquipos == null)
             {
