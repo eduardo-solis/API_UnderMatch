@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
@@ -184,6 +184,47 @@
           <Property Name="FechaInicio" Type="date" Nullable="false" />
           <Property Name="FechaFin" Type="date" Nullable="false" />
           <Property Name="Estatus" Type="int" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewArbitros' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewArbitros">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="Expr3" />
+            <PropertyRef Name="IdTipoArbitro" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="IdArbitro" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="CostoArbitraje" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="TipoArbitro" />
+          </Key>
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="80" />
+          <Property Name="Expr2" Type="int" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdCategoria" Type="int" Nullable="false" />
+          <Property Name="Expr3" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdTipoArbitro" Type="int" Nullable="false" />
+          <Property Name="Expr1" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdArbitro" Type="int" Nullable="false" />
+          <Property Name="IdPersona" Type="int" Nullable="false" />
+          <Property Name="CostoArbitraje" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Categoria" Type="int" Nullable="false" />
+          <Property Name="TipoArbitro" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="10" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -461,6 +502,42 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
+
+        <Function Name="tblArbitrosActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblArbitrosAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="CostoArbitraje" Type="decimal" Mode="In" />
+          <Parameter Name="Categoria" Type="int" Mode="In" />
+          <Parameter Name="TipoArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblArbitrosEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdArbitro" Type="int" Mode="In" />
+          <Parameter Name="Eliminar" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblArbitrosModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdPersona" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="PrimerApellido" Type="varchar" Mode="In" />
+          <Parameter Name="SegundoApellido" Type="varchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="varchar" Mode="In" />
+          <Parameter Name="Sexo" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono" Type="varchar" Mode="In" />
+          <Parameter Name="Telefono2" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="IdArbitro" Type="int" Mode="In" />
+          <Parameter Name="CostoArbitraje" Type="decimal" Mode="In" />
+          <Parameter Name="Categoria" Type="int" Mode="In" />
+          <Parameter Name="TipoArbitro" Type="int" Mode="In" />
+
         <Function Name="ctgTipoProveedoresActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
         </Function>
@@ -473,6 +550,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
         <Function Name="ctgTipoProveedoresModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdTipoProveedor" Type="int" Mode="In" />
           <Parameter Name="Nombre" Type="varchar" Mode="In" />
+
         </Function>
         <Function Name="tblEquiposActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ID_EQUIPO" Type="int" Mode="In" />
@@ -571,6 +649,29 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProveedores" EntityType="Self.tblProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTemporadas" EntityType="Self.tblTemporadas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="viewArbitros" EntityType="Self.viewArbitros" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewArbitros].[Nombre] AS [Nombre], 
+    [viewArbitros].[PrimerApellido] AS [PrimerApellido], 
+    [viewArbitros].[SegundoApellido] AS [SegundoApellido], 
+    [viewArbitros].[Expr2] AS [Expr2], 
+    [viewArbitros].[FechaNacimiento] AS [FechaNacimiento], 
+    [viewArbitros].[Sexo] AS [Sexo], 
+    [viewArbitros].[Telefono] AS [Telefono], 
+    [viewArbitros].[Correo] AS [Correo], 
+    [viewArbitros].[IdCategoria] AS [IdCategoria], 
+    [viewArbitros].[Expr3] AS [Expr3], 
+    [viewArbitros].[IdTipoArbitro] AS [IdTipoArbitro], 
+    [viewArbitros].[Expr1] AS [Expr1], 
+    [viewArbitros].[IdArbitro] AS [IdArbitro], 
+    [viewArbitros].[IdPersona] AS [IdPersona], 
+    [viewArbitros].[CostoArbitraje] AS [CostoArbitraje], 
+    [viewArbitros].[Categoria] AS [Categoria], 
+    [viewArbitros].[TipoArbitro] AS [TipoArbitro], 
+    [viewArbitros].[Estatus] AS [Estatus], 
+    [viewArbitros].[Telefono2] AS [Telefono2]
+    FROM [dbo].[viewArbitros] AS [viewArbitros]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="viewJugadores" EntityType="Self.viewJugadores" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [viewJugadores].[Nombre] AS [Nombre], 
@@ -1150,7 +1251,12 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           </FunctionImport>
           <EntitySet Name="viewJugadores" EntityType="BDUnderMatchModel.viewJugadores" />
           <FunctionImport Name="tblJugadoresEliminar">
+
+            <Parameter Name="IdJugador" Mode="In" Type="Int32" />
+            <Parameter Name="Eliminar" Mode="In" Type="Int32" />
+
           <Parameter Name="IdJugador" Mode="In" Type="Int32" />
+
           </FunctionImport>
           <FunctionImport Name="tblJugadoresModificar">
             <Parameter Name="IdPersona" Mode="In" Type="Int32" />
@@ -1175,6 +1281,43 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImport Name="tblEquiposEliminar">
           <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
           </FunctionImport>
+
+          <EntitySet Name="viewArbitros" EntityType="BDUnderMatchModel.viewArbitros" />
+          <FunctionImport Name="tblArbitrosAgregar">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="CostoArbitraje" Mode="In" Type="Decimal" />
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="TipoArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblArbitrosActivar">
+            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblArbitrosEliminar">
+            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+            <Parameter Name="Eliminar" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblArbitrosModificar">
+            <Parameter Name="IdPersona" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="PrimerApellido" Mode="In" Type="String" />
+            <Parameter Name="SegundoApellido" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="String" />
+            <Parameter Name="Sexo" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Telefono2" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+            <Parameter Name="CostoArbitraje" Mode="In" Type="Decimal" />
+            <Parameter Name="Categoria" Mode="In" Type="Int32" />
+            <Parameter Name="TipoArbitro" Mode="In" Type="Int32" />
+
           <FunctionImport Name="tblJugadoresActivar">
           <Parameter Name="IdJugador" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1211,6 +1354,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           </FunctionImport>
           <FunctionImport Name="tblProveedoresEliminar">
           <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
+
           </FunctionImport>
           <FunctionImport Name="tblProveedoresModificar">
             <Parameter Name="IdProveedor" Mode="In" Type="Int32" />
@@ -1228,7 +1372,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="Telefono" Mode="In" Type="String" />
             <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
-<<<<<<< HEAD
+
           <EntitySet Name="tblEmpleados" EntityType="BDUnderMatchModel.tblEmpleados" />
           <AssociationSet Name="FK_tblEmpleado_ctgTipoEmpleado" Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado">
             <End Role="ctgTipoEmpleados" EntitySet="ctgTipoEmpleados" />
@@ -1238,9 +1382,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <End Role="tblPersonas" EntitySet="tblPersonas" />
             <End Role="tblEmpleados" EntitySet="tblEmpleados" />
           </AssociationSet>
-=======
+
           <EntitySet Name="viewProveedores" EntityType="BDUnderMatchModel.viewProveedores" />
->>>>>>> tblProveedores
+
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -1273,14 +1417,54 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdEquipo" Type="Int32" />
           <Property Name="NombreEquipo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
-<<<<<<< HEAD
+
+        <EntityType Name="viewArbitros">
+          <Key>
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+            <PropertyRef Name="IdCategoria" />
+            <PropertyRef Name="Expr3" />
+            <PropertyRef Name="IdTipoArbitro" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="IdArbitro" />
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="CostoArbitraje" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="TipoArbitro" />
+          </Key>
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Expr2" Type="Int32" Nullable="false" />
+          <Property Name="FechaNacimiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdCategoria" Type="Int32" Nullable="false" />
+          <Property Name="Expr3" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoArbitro" Type="Int32" Nullable="false" />
+          <Property Name="Expr1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdArbitro" Type="Int32" Nullable="false" />
+          <Property Name="IdPersona" Type="Int32" Nullable="false" />
+          <Property Name="CostoArbitraje" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Categoria" Type="Int32" Nullable="false" />
+          <Property Name="TipoArbitro" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+
         <EntityType Name="tblEmpleados">
           <Key>
             <PropertyRef Name="IdEmpleado" />
           </Key>
           <Property Name="IdEmpleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPersona" Type="Int32" Nullable="false" />
-=======
+
         <EntityType Name="viewProveedores">
           <Key>
             <PropertyRef Name="IdProveedor" />
@@ -1304,14 +1488,14 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RazonSocial" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
->>>>>>> tblProveedores
+
           <Property Name="Calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-<<<<<<< HEAD
+
           <Property Name="Curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
           <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
           <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
@@ -1346,7 +1530,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-=======
+
           <Property Name="TipoProveedor" Type="Int32" Nullable="false" />
           <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -1355,7 +1539,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="NombreTipoProveedor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="NombrePlantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
->>>>>>> tblProveedores
+
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1564,6 +1748,37 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImportMapping FunctionImportName="tblJugadoresModificar" FunctionName="BDUnderMatchModel.Store.tblJugadoresModificar" />
           <FunctionImportMapping FunctionImportName="tblEquiposActivar" FunctionName="BDUnderMatchModel.Store.tblEquiposActivar" />
           <FunctionImportMapping FunctionImportName="tblEquiposEliminar" FunctionName="BDUnderMatchModel.Store.tblEquiposEliminar" />
+
+          <EntitySetMapping Name="viewArbitros">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewArbitros">
+              <MappingFragment StoreEntitySet="viewArbitros">
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="TipoArbitro" ColumnName="TipoArbitro" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="CostoArbitraje" ColumnName="CostoArbitraje" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+                <ScalarProperty Name="IdArbitro" ColumnName="IdArbitro" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="IdTipoArbitro" ColumnName="IdTipoArbitro" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="IdCategoria" ColumnName="IdCategoria" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tblArbitrosAgregar" FunctionName="BDUnderMatchModel.Store.tblArbitrosAgregar" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosActivar" FunctionName="BDUnderMatchModel.Store.tblArbitrosActivar" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosEliminar" FunctionName="BDUnderMatchModel.Store.tblArbitrosEliminar" />
+          <FunctionImportMapping FunctionImportName="tblArbitrosModificar" FunctionName="BDUnderMatchModel.Store.tblArbitrosModificar" />
+
           <FunctionImportMapping FunctionImportName="tblJugadoresActivar" FunctionName="BDUnderMatchModel.Store.tblJugadoresActivar" />
           <FunctionImportMapping FunctionImportName="ctgTipoProveedoresActivar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresActivar" />
           <FunctionImportMapping FunctionImportName="ctgTipoProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.ctgTipoProveedoresAgregar" />
@@ -1573,7 +1788,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <FunctionImportMapping FunctionImportName="tblProveedoresAgregar" FunctionName="BDUnderMatchModel.Store.tblProveedoresAgregar" />
           <FunctionImportMapping FunctionImportName="tblProveedoresEliminar" FunctionName="BDUnderMatchModel.Store.tblProveedoresEliminar" />
           <FunctionImportMapping FunctionImportName="tblProveedoresModificar" FunctionName="BDUnderMatchModel.Store.tblProveedoresModificar" />
-<<<<<<< HEAD
+
           <EntitySetMapping Name="tblEmpleados">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
               <MappingFragment StoreEntitySet="tblEmpleados">
@@ -1584,7 +1799,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="Rfc" ColumnName="Rfc" />
                 <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
-=======
+
           <EntitySetMapping Name="viewProveedores">
             <EntityTypeMapping TypeName="BDUnderMatchModel.viewProveedores">
               <MappingFragment StoreEntitySet="viewProveedores">
@@ -1595,25 +1810,26 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="TipoProveedor" ColumnName="TipoProveedor" />
->>>>>>> tblProveedores
+
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
-<<<<<<< HEAD
+
                 <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
                 <ScalarProperty Name="IdEmpleado" ColumnName="IdEmpleado" />
-=======
+
                 <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Rfc" ColumnName="Rfc" />
                 <ScalarProperty Name="IdProveedor" ColumnName="IdProveedor" />
->>>>>>> tblProveedores
+
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

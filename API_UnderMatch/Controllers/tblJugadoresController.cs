@@ -116,6 +116,9 @@ namespace API_UnderMatch.Controllers
             }
         }
 
+
+         // POST: api/tblJugadores
+
         // Activate/Delete Jugadores - Activar/Eliminar jugadores
         // POST: api/tblJugadores
         [ResponseType(typeof(tblJugadores))]

@@ -35,13 +35,17 @@
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblProveedores_tblPlanteles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BDUnderMatchModel.viewJugadores" Width="1.5" PointX="10.375" PointY="6.75" />
-<<<<<<< HEAD
+
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewArbitros" Width="1.5" PointX="11.375" PointY="0.75" />
+
+
         <EntityTypeShape EntityType="BDUnderMatchModel.tblEmpleados" Width="1.5" PointX="6" PointY="6" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_tblPersona" />
-=======
+
         <EntityTypeShape EntityType="BDUnderMatchModel.viewProveedores" Width="1.5" PointX="11.375" PointY="0.75" />
->>>>>>> tblProveedores
+
+
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
