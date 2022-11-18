@@ -41,9 +41,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/tblJugadores/5
         [ResponseType(typeof(viewJugadores))]
-        public IHttpActionResult GettblJugadores(int id)
+        public IHttpActionResult GettblJugadores(int idJugador)
         {
-            tblJugadores tblJugadores = db.tblJugadores.Find(id);
+            tblJugadores tblJugadores = db.tblJugadores.Find(idJugador);
             tblPersonas tblPersonas = db.tblPersonas.Find(tblJugadores.IdPersona);
             Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Where(jE => jE.IdJugador == tblJugadores.IdJugador).First();
             tblEquipos tblEquipos = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo);
@@ -79,9 +79,9 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblJugadores/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblJugadores(int idPersona, int idJugador, string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string NumDorsal, string SobreNombre, string Posicion, int Capitan)
+        public IHttpActionResult PuttblJugadores(int idPersona, int idJugador, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, int capitan)
         {
-            db.tblJugadoresModificar(idPersona, Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, idJugador, NumDorsal, SobreNombre, Posicion, Capitan);
+            db.tblJugadoresModificar(idPersona, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, idJugador, numDorsal, sobreNombre, posicion, capitan);
             try
             {
                 db.SaveChanges();
@@ -96,11 +96,11 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblJugadores
         [ResponseType(typeof(tblJugadores))]
-        public IHttpActionResult PosttblJugadores(string Nombre, string PrimerApellido, string SegundoApellido, string FechaNacimiento, string Sexo, string Telefono, string Telefono2, string Correo, string NumDorsal, string SobreNombre, string Posicion, int Capitan)
+        public IHttpActionResult PosttblJugadores(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, int capitan)
         {
             try
             {
-                db.tblJugadoresAgregar(Nombre, PrimerApellido, SegundoApellido, FechaNacimiento, Sexo, Telefono, Telefono2, Correo, NumDorsal, SobreNombre, Posicion, Capitan);
+                db.tblJugadoresAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, numDorsal, sobreNombre, posicion, capitan);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
             }
