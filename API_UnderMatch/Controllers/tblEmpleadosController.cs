@@ -7,12 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using API_UnderMatch.Models;
 
 namespace API_UnderMatch.Controllers
-{
-    public class tblEmpleadosController : ApiController
+
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+public class tblEmpleadosController : ApiController
     {
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
 

@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Helpers;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
 using System.Web.Mvc;
@@ -16,6 +17,7 @@ using Newtonsoft.Json;
 
 namespace API_UnderMatch.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class tblProveedoresController : ApiController
     {
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
