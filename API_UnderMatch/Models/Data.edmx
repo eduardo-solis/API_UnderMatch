@@ -741,7 +741,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="SobreNombre" Type="varchar" Mode="In" />
           <Parameter Name="Posicion" Type="varchar" Mode="In" />
           <Parameter Name="Capitan" Type="int" Mode="In" />
-          <Parameter Name="IdEquipo" Type="int" Mode="In" />
         </Function>
         <Function Name="tblJugadoresEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdJugador" Type="int" Mode="In" />
@@ -761,7 +760,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="SobreNombre" Type="varchar" Mode="In" />
           <Parameter Name="Posicion" Type="varchar" Mode="In" />
           <Parameter Name="Capitan" Type="int" Mode="In" />
-          <Parameter Name="IdEquipo" Type="int" Mode="In" />
         </Function>
         <Function Name="tblProveedoresActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdProveedor" Type="int" Mode="In" />
@@ -1453,7 +1451,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="SobreNombre" Mode="In" Type="String" />
             <Parameter Name="Posicion" Mode="In" Type="String" />
             <Parameter Name="Capitan" Mode="In" Type="Int32" />
-            <Parameter Name="IdEquipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="viewJugadores" EntityType="BDUnderMatchModel.viewJugadores" />
           <FunctionImport Name="tblJugadoresEliminar">
@@ -1474,7 +1471,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="SobreNombre" Mode="In" Type="String" />
             <Parameter Name="Posicion" Mode="In" Type="String" />
             <Parameter Name="Capitan" Mode="In" Type="Int32" />
-            <Parameter Name="IdEquipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEquiposActivar">
           <Parameter Name="ID_EQUIPO" Mode="In" Type="Int32" />
@@ -1587,7 +1583,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="tblArbitrosActivar">
-            <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
+          <Parameter Name="IdArbitro" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblArbitrosAgregar">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -1622,7 +1618,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="TipoArbitro" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEmpleadosActivar">
-            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEmpleadosAgregar">
             <Parameter Name="Nombre" Mode="In" Type="String" />
@@ -1648,7 +1644,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="IdPlantel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEmpleadosEliminar">
-            <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
+          <Parameter Name="IdEmpleado" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="tblEmpleadosModificar">
             <Parameter Name="IdPersona" Mode="In" Type="Int32" />
