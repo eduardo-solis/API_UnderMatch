@@ -18,8 +18,8 @@ namespace API_UnderMatch.Models
         public tblPersonas()
         {
             this.tblArbitros = new HashSet<tblArbitros>();
-            this.tblEmpleados = new HashSet<tblEmpleados>();
             this.tblJugadores = new HashSet<tblJugadores>();
+            this.tblEmpleados = new HashSet<tblEmpleados>();
         }
     
         public int IdPersona { get; set; }
@@ -35,8 +35,8 @@ namespace API_UnderMatch.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblArbitros> tblArbitros { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblEmpleados> tblEmpleados { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblJugadores> tblJugadores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblEmpleados> tblEmpleados { get; set; }
     }
 }

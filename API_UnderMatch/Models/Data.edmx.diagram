@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="BDUnderMatchModel.Jugadores_Equipos" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblArbitros" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblCanchas" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="BDUnderMatchModel.tblEmpleados" Width="1.5" PointX="6" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblEquipos" Width="1.5" PointX="6" PointY="11.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblJugadores" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblPartidos" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
@@ -23,7 +22,6 @@
         <AssociationConnector Association="BDUnderMatchModel.FK_tblArbitro_ctgCategoria" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblEquipo_ctgCategoria" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblArbitro_ctgTipoArbitro" ManuallyRouted="false" />
-        <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblProveedor_ctgTipoProveedor" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_Jugador_Equipo_tblEquipo" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_Jugador_Equipo_tblJugador" ManuallyRouted="false" />
@@ -31,15 +29,23 @@
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblArbitros" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblCanchas_tblPlanteles" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblCanchas" ManuallyRouted="false" />
-        <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_tblPersona" ManuallyRouted="false" />
-        <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleados_tblPlanteles" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblEquipos" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblEquipos1" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblJugador_tblPersona" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" ManuallyRouted="false" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblProveedores_tblPlanteles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BDUnderMatchModel.viewJugadores" Width="1.5" PointX="10.375" PointY="6.75" />
+
         <EntityTypeShape EntityType="BDUnderMatchModel.viewArbitros" Width="1.5" PointX="11.375" PointY="0.75" />
+
+
+        <EntityTypeShape EntityType="BDUnderMatchModel.tblEmpleados" Width="1.5" PointX="6" PointY="6" />
+        <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" />
+        <AssociationConnector Association="BDUnderMatchModel.FK_tblEmpleado_tblPersona" />
+
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewProveedores" Width="1.5" PointX="11.375" PointY="0.75" />
+
+
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

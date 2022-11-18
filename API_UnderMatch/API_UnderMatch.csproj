@@ -166,10 +166,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ctgCategoriasController.cs" />
+    <Compile Include="Controllers\ctgTipoProveedoresController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\tblArbitrosController.cs" />
     <Compile Include="Controllers\tblEquiposController.cs" />
     <Compile Include="Controllers\tblJugadoresController.cs" />
+    <Compile Include="Controllers\tblProveedoresController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -234,6 +237,7 @@
     <Compile Include="Models\tblTemporadas.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validations\catCategoriasValidator.cs" />
     <Compile Include="Models\Validations\EquiposValidator.cs" />
     <Compile Include="Models\Validations\JugadoresValidator.cs" />
     <Compile Include="Models\Validations\PersonasValidator.cs" />
@@ -241,6 +245,9 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\viewJugadores.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\viewProveedores.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
