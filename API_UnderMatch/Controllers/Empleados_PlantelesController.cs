@@ -26,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/Empleados_Planteles/5
         [ResponseType(typeof(Empleados_Planteles))]
-        public IHttpActionResult GetEmpleados_Planteles(int id)
+        public IHttpActionResult GetEmpleados_Planteles(int idRelacion)
         {
-            Empleados_Planteles empleados_Planteles = db.Empleados_Planteles.Find(id);
+            Empleados_Planteles empleados_Planteles = db.Empleados_Planteles.Find(idRelacion);
             if (empleados_Planteles == null)
             {
                 return NotFound();
@@ -39,16 +39,19 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/Empleados_Planteles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEmpleados_Planteles(int id, Empleados_Planteles empleados_Planteles)
+        public IHttpActionResult PutEmpleados_Planteles(int idRelacion, int idEmpleado, int idPlantel)
         {
+
+            Empleados_Planteles empleados_Planteles = new Empleados_Planteles
+            {
+                IdRelacionEmpleadoPlantel = idRelacion,
+                IdEmpleado = idEmpleado,
+                IdPlantel = idPlantel
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != empleados_Planteles.IdRelacionEmpleadoPlantel)
-            {
-                return BadRequest();
             }
 
             db.Entry(empleados_Planteles).State = EntityState.Modified;
@@ -59,7 +62,7 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Empleados_PlantelesExists(id))
+                if (!Empleados_PlantelesExists(idRelacion))
                 {
                     return NotFound();
                 }
@@ -74,8 +77,15 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/Empleados_Planteles
         [ResponseType(typeof(Empleados_Planteles))]
-        public IHttpActionResult PostEmpleados_Planteles(Empleados_Planteles empleados_Planteles)
+        public IHttpActionResult PostEmpleados_Planteles(int idEmpleado, int idPlantel)
         {
+
+            Empleados_Planteles empleados_Planteles = new Empleados_Planteles
+            {
+                IdEmpleado = idEmpleado,
+                IdPlantel = idPlantel
+            };
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -89,9 +99,9 @@ namespace API_UnderMatch.Controllers
 
         // DELETE: api/Empleados_Planteles/5
         [ResponseType(typeof(Empleados_Planteles))]
-        public IHttpActionResult DeleteEmpleados_Planteles(int id)
+        public IHttpActionResult DeleteEmpleados_Planteles(int idRelacion)
         {
-            Empleados_Planteles empleados_Planteles = db.Empleados_Planteles.Find(id);
+            Empleados_Planteles empleados_Planteles = db.Empleados_Planteles.Find(idRelacion);
             if (empleados_Planteles == null)
             {
                 return NotFound();

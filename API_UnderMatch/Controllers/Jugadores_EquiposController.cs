@@ -26,9 +26,9 @@ namespace API_UnderMatch.Controllers
 
         // GET: api/Jugadores_Equipos/5
         [ResponseType(typeof(Jugadores_Equipos))]
-        public IHttpActionResult GetJugadores_Equipos(int id)
+        public IHttpActionResult GetJugadores_Equipos(int idRelacion)
         {
-            Jugadores_Equipos jugadores_Equipos = db.Jugadores_Equipos.Find(id);
+            Jugadores_Equipos jugadores_Equipos = db.Jugadores_Equipos.Find(idRelacion);
             if (jugadores_Equipos == null)
             {
                 return NotFound();
