@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ctgTipoArbitrosController.cs" />
     <Compile Include="Controllers\ctgTipoEmpleadosController.cs" />
     <Compile Include="Controllers\ctgTipoProveedoresController.cs" />
+    <Compile Include="Controllers\Empleados_PlantelesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Jugadores_EquiposController.cs" />
     <Compile Include="Controllers\tblArbitrosController.cs" />
