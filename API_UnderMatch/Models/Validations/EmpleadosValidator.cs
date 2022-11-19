@@ -16,35 +16,35 @@ namespace API_UnderMatch.Models
 
             [Required]
             [StringLength(100)]
-            public string CalleE;
+            public string Calle;
 
             [StringLength(50)]
-            public string NumeroE;
+            public string Numero;
 
             [StringLength(100)]
-            public string ColoniaE;
+            public string Colonia;
 
             [StringLength(5)]
-            public string CoidgoPostalE;
+            public string CodigoPostal;
 
             [StringLength(100)]
-            public string CiudadE;
+            public string Ciudad;
 
             [StringLength(100)]
-            public string EstadoE;
+            public string Estado;
 
             [StringLength(18)]
-            public string Curpe;
+            public string Curp;
 
             public int TipoEmpleado;
 
             [StringLength(13)]
-            public string RfcE;
+            public string Rfc;
             [StringLength(11)]
-            public string nSSe;
+            public string Nss;
             public decimal Salario;
             [StringLength(50)]
-            public string HorarioE;
+            public string Horario;
 
 
 
