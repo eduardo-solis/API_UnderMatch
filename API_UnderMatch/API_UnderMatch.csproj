@@ -167,6 +167,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ctgCategoriasController.cs" />
+    <Compile Include="Controllers\ctgEstadosController.cs" />
+    <Compile Include="Controllers\ctgMunicipiosController.cs" />
     <Compile Include="Controllers\ctgTipoArbitrosController.cs" />
     <Compile Include="Controllers\ctgTipoEmpleadosController.cs" />
     <Compile Include="Controllers\ctgTipoProveedoresController.cs" />
