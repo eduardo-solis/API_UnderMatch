@@ -44,6 +44,9 @@
         <AssociationConnector Association="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados" />
         <EntityTypeShape EntityType="BDUnderMatchModel.tblTemporadas" Width="1.5" PointX="12.375" PointY="12.875" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblPartidos_tblTemporadas" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.Estados_Municipios" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.ctgEstados" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.ctgMunicipios" Width="1.5" PointX="13.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

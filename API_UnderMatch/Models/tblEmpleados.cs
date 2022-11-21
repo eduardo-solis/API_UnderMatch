@@ -9,7 +9,6 @@
 
 namespace API_UnderMatch.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -36,13 +35,10 @@ namespace API_UnderMatch.Models
         public decimal Salario { get; set; }
         public string Horario { get; set; }
         public Nullable<int> Estatus { get; set; }
-
-        [JsonIgnore]
+    
         public virtual ctgTipoEmpleados ctgTipoEmpleados { get; set; }
-        [JsonIgnore]
         public virtual tblPersonas tblPersonas { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [JsonIgnore]
         public virtual ICollection<Empleados_Planteles> Empleados_Planteles { get; set; }
     }
 }

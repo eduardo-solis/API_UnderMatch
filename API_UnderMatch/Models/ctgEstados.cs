@@ -12,13 +12,9 @@ namespace API_UnderMatch.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Empleados_Planteles
+    public partial class ctgEstados
     {
-        public int IdRelacionEmpleadoPlantel { get; set; }
-        public int IdEmpleado { get; set; }
-        public int IdPlantel { get; set; }
-    
-        public virtual tblPlanteles tblPlanteles { get; set; }
-        public virtual tblEmpleados tblEmpleados { get; set; }
+        public int IdEstado { get; set; }
+        public string Nombre { get; set; }
     }
 }

@@ -9,7 +9,6 @@
 
 namespace API_UnderMatch.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -23,17 +22,14 @@ namespace API_UnderMatch.Models
         public string Numero { get; set; }
         public string Colonia { get; set; }
         public string CodigoPostal { get; set; }
-        public string Ciudad { get; set; }
-        public string Estado { get; set; }
         public int TipoProveedor { get; set; }
         public string Correo { get; set; }
         public string Telefono { get; set; }
         public int IdPlantel { get; set; }
         public Nullable<int> Estatus { get; set; }
-
-        [JsonIgnore]
+        public int IdMunicipio { get; set; }
+    
         public virtual ctgTipoProveedores ctgTipoProveedores { get; set; }
-        [JsonIgnore]
         public virtual tblPlanteles tblPlanteles { get; set; }
     }
 }

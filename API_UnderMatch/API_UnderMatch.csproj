@@ -188,6 +188,12 @@
     <Compile Include="Models\ctgCategorias.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ctgEstados.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ctgMunicipios.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ctgTipoArbitros.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -213,6 +219,9 @@
       <DependentUpon>Data.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Empleados_Planteles.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estados_Municipios.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Jugadores_Equipos.cs">

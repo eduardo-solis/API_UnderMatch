@@ -47,6 +47,9 @@ namespace API_UnderMatch.Models
         public virtual DbSet<viewEmpleados> viewEmpleados { get; set; }
         public virtual DbSet<viewProveedores> viewProveedores { get; set; }
         public virtual DbSet<tblTemporadas> tblTemporadas { get; set; }
+        public virtual DbSet<Estados_Municipios> Estados_Municipios { get; set; }
+        public virtual DbSet<ctgEstados> ctgEstados { get; set; }
+        public virtual DbSet<ctgMunicipios> ctgMunicipios { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan)
         {
@@ -247,7 +250,7 @@ namespace API_UnderMatch.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresActivar", idProveedorParameter);
         }
     
-        public virtual int tblProveedoresAgregar(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, Nullable<int> idTipoProveedor, string correo, string telefono, Nullable<int> idPlantel)
+        public virtual int tblProveedoresAgregar(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, Nullable<int> idMunicipio, Nullable<int> idTipoProveedor, string correo, string telefono, Nullable<int> idPlantel)
         {
             var rfcParameter = rfc != null ?
                 new ObjectParameter("Rfc", rfc) :
@@ -277,13 +280,9 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("CodigoPostal", codigoPostal) :
                 new ObjectParameter("CodigoPostal", typeof(string));
     
-            var ciudadParameter = ciudad != null ?
-                new ObjectParameter("Ciudad", ciudad) :
-                new ObjectParameter("Ciudad", typeof(string));
-    
-            var estadoParameter = estado != null ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(string));
+            var idMunicipioParameter = idMunicipio.HasValue ?
+                new ObjectParameter("IdMunicipio", idMunicipio) :
+                new ObjectParameter("IdMunicipio", typeof(int));
     
             var idTipoProveedorParameter = idTipoProveedor.HasValue ?
                 new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
@@ -301,7 +300,7 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("IdPlantel", idPlantel) :
                 new ObjectParameter("IdPlantel", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresAgregar", rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, ciudadParameter, estadoParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresAgregar", rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, idMunicipioParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
         }
     
         public virtual int tblProveedoresEliminar(Nullable<int> idProveedor)
@@ -313,7 +312,7 @@ namespace API_UnderMatch.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresEliminar", idProveedorParameter);
         }
     
-        public virtual int tblProveedoresModificar(Nullable<int> idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado, Nullable<int> idTipoProveedor, string correo, string telefono, Nullable<int> idPlantel)
+        public virtual int tblProveedoresModificar(Nullable<int> idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal, Nullable<int> idMunicipio, Nullable<int> idTipoProveedor, string correo, string telefono, Nullable<int> idPlantel)
         {
             var idProveedorParameter = idProveedor.HasValue ?
                 new ObjectParameter("IdProveedor", idProveedor) :
@@ -347,13 +346,9 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("CodigoPostal", codigoPostal) :
                 new ObjectParameter("CodigoPostal", typeof(string));
     
-            var ciudadParameter = ciudad != null ?
-                new ObjectParameter("Ciudad", ciudad) :
-                new ObjectParameter("Ciudad", typeof(string));
-    
-            var estadoParameter = estado != null ?
-                new ObjectParameter("Estado", estado) :
-                new ObjectParameter("Estado", typeof(string));
+            var idMunicipioParameter = idMunicipio.HasValue ?
+                new ObjectParameter("IdMunicipio", idMunicipio) :
+                new ObjectParameter("IdMunicipio", typeof(int));
     
             var idTipoProveedorParameter = idTipoProveedor.HasValue ?
                 new ObjectParameter("IdTipoProveedor", idTipoProveedor) :
@@ -371,7 +366,7 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("IdPlantel", idPlantel) :
                 new ObjectParameter("IdPlantel", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresModificar", idProveedorParameter, rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, ciudadParameter, estadoParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblProveedoresModificar", idProveedorParameter, rfcParameter, nombreParameter, razonSocialParameter, calleParameter, numeroParameter, coloniaParameter, codigoPostalParameter, idMunicipioParameter, idTipoProveedorParameter, correoParameter, telefonoParameter, idPlantelParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

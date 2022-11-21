@@ -65,7 +65,7 @@ namespace API_UnderMatch.Controllers
         // PUT: api/tblProveedores/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PuttblProveedores(int idProveedor, string rfc, string nombre, string razonSocial, string calle, string numero, string colonia,
-            string codigoPostal, string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
+            string codigoPostal, int idMunicipio, int idTipoProveedor, string correo, string telefono, int idPlantel)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace API_UnderMatch.Controllers
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. RFC existente"));
                 else
                 {
-                    db.tblProveedoresModificar(idProveedor, rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor,
+                    db.tblProveedoresModificar(idProveedor, rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, idMunicipio, idTipoProveedor,
                         correo, telefono, idPlantel);
                     db.SaveChanges();
                     return Json(new { Message = "Proveedor modificado con éxito" });
@@ -90,7 +90,7 @@ namespace API_UnderMatch.Controllers
         // POST: api/tblProveedores
         [ResponseType(typeof(tblProveedores))]
         public IHttpActionResult PosttblProveedores(string rfc, string nombre, string razonSocial, string calle, string numero, string colonia, string codigoPostal,
-            string ciudad, string estado, int idTipoProveedor, string correo, string telefono, int idPlantel)
+            int idMunicipio, int idTipoProveedor, string correo, string telefono, int idPlantel)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace API_UnderMatch.Controllers
                     return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. RFC existente"));
                 else
                 {
-                    db.tblProveedoresAgregar(rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, ciudad, estado, idTipoProveedor, correo, telefono,
+                    db.tblProveedoresAgregar(rfc.ToUpper(), nombre, razonSocial, calle, numero, colonia, codigoPostal, idMunicipio, idTipoProveedor, correo, telefono,
                         idPlantel);
                     db.SaveChanges();
                     return Json(new { Message = "Proveedor agregado con éxito" });
