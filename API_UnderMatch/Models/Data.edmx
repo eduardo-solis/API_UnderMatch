@@ -184,8 +184,7 @@
           <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdMunicipio" Type="int" Nullable="false" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblProveedores">
@@ -343,6 +342,33 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="Estatus" Type="int" />
           <Property Name="IdEquipo" Type="int" />
           <Property Name="NombreEquipo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewPlanteles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewPlanteles">
+          <Key>
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="IdMunicipio" />
+            <PropertyRef Name="Municipio" />
+            <PropertyRef Name="IdEstado" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="IdMunicipio" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="Municipio" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="80" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -927,6 +953,21 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
     [viewJugadores].[NombreEquipo] AS [NombreEquipo]
     FROM [dbo].[viewJugadores] AS [viewJugadores]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="viewPlanteles" EntityType="Self.viewPlanteles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewPlanteles].[IdPlantel] AS [IdPlantel], 
+    [viewPlanteles].[Nombre] AS [Nombre], 
+    [viewPlanteles].[Calle] AS [Calle], 
+    [viewPlanteles].[Numero] AS [Numero], 
+    [viewPlanteles].[Colonia] AS [Colonia], 
+    [viewPlanteles].[CodigoPostal] AS [CodigoPostal], 
+    [viewPlanteles].[IdMunicipio] AS [IdMunicipio], 
+    [viewPlanteles].[Estatus] AS [Estatus], 
+    [viewPlanteles].[Municipio] AS [Municipio], 
+    [viewPlanteles].[IdEstado] AS [IdEstado], 
+    [viewPlanteles].[Estado] AS [Estado]
+    FROM [dbo].[viewPlanteles] AS [viewPlanteles]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="viewProveedores" EntityType="Self.viewProveedores" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [viewProveedores].[IdProveedor] AS [IdProveedor], 
@@ -1187,12 +1228,11 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Colonia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CodigoPostal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblCanchas" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblPlanteles" ToRole="tblCanchas" />
           <NavigationProperty Name="tblProveedores" Relationship="Self.FK_tblProveedores_tblPlanteles" FromRole="tblPlanteles" ToRole="tblProveedores" />
           <Property Name="Estatus" Type="Int32" />
           <NavigationProperty Name="Empleados_Planteles" Relationship="BDUnderMatchModel.FK_Empleados_Planteles_Empleados_Planteles" FromRole="tblPlanteles" ToRole="Empleados_Planteles" />
+          <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="tblProveedores">
           <Key>
@@ -1732,6 +1772,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySet Name="Estados_Municipios" EntityType="BDUnderMatchModel.Estados_Municipios" />
           <EntitySet Name="ctgEstados" EntityType="BDUnderMatchModel.ctgEstados" />
           <EntitySet Name="ctgMunicipios" EntityType="BDUnderMatchModel.ctgMunicipios" />
+          <EntitySet Name="viewPlanteles" EntityType="BDUnderMatchModel.viewPlanteles" />
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -2032,6 +2073,31 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="viewPlanteles">
+          <Key>
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Calle" />
+            <PropertyRef Name="Numero" />
+            <PropertyRef Name="Colonia" />
+            <PropertyRef Name="CodigoPostal" />
+            <PropertyRef Name="IdMunicipio" />
+            <PropertyRef Name="Municipio" />
+            <PropertyRef Name="IdEstado" />
+            <PropertyRef Name="Estado" />
+          </Key>
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2171,6 +2237,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="tblPlanteles">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblPlanteles">
               <MappingFragment StoreEntitySet="tblPlanteles">
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
@@ -2178,9 +2245,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
                 <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProveedores">
@@ -2406,6 +2471,23 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
               <MappingFragment StoreEntitySet="ctgMunicipios">
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewPlanteles">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewPlanteles">
+              <MappingFragment StoreEntitySet="viewPlanteles">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="Colonia" ColumnName="Colonia" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -29,9 +29,8 @@ namespace API_UnderMatch.Models
         public string Numero { get; set; }
         public string Colonia { get; set; }
         public string CodigoPostal { get; set; }
-        public string Ciudad { get; set; }
-        public string Estado { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public int IdMunicipio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         [JsonIgnore]

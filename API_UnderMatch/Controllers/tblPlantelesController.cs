@@ -19,16 +19,17 @@ namespace API_UnderMatch.Controllers
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
 
         // GET: api/tblPlanteles
-        public IQueryable<tblPlanteles> GettblPlanteles()
+        public IQueryable<viewPlanteles> GettblPlanteles()
         {
-            return db.tblPlanteles;
+            return db.viewPlanteles;
         }
 
         // GET: api/tblPlanteles/5
-        [ResponseType(typeof(tblPlanteles))]
+        [ResponseType(typeof(viewPlanteles))]
         public IHttpActionResult GettblPlanteles(int idPlantel)
         {
-            tblPlanteles tblPlanteles = db.tblPlanteles.Find(idPlantel);
+            viewPlanteles tblPlanteles = db.viewPlanteles.Where(plantel => plantel.IdPlantel == idPlantel).FirstOrDefault();
+            
             if (tblPlanteles == null)
             {
                 return NotFound();
@@ -39,7 +40,7 @@ namespace API_UnderMatch.Controllers
 
         // PUT: api/tblPlanteles/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblPlanteles(int idPlantel, string nombre, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado)
+        public IHttpActionResult PuttblPlanteles(int idPlantel, string nombre, string calle, string numero, string colonia, string codigoPostal, int idMunicipio)
         {
 
             tblPlanteles tblPlanteles = new tblPlanteles
@@ -50,8 +51,7 @@ namespace API_UnderMatch.Controllers
                 Numero = numero,
                 Colonia = colonia,
                 CodigoPostal = codigoPostal,
-                Ciudad = ciudad,
-                Estado = estado,
+                IdMunicipio = idMunicipio,
                 Estatus = 1
             };
 
@@ -83,7 +83,7 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblPlanteles
         [ResponseType(typeof(tblPlanteles))]
-        public IHttpActionResult PosttblPlanteles(string nombre, string calle, string numero, string colonia, string codigoPostal, string ciudad, string estado)
+        public IHttpActionResult PosttblPlanteles(string nombre, string calle, string numero, string colonia, string codigoPostal, int idMunicipio)
         {
 
             tblPlanteles tblPlanteles = new tblPlanteles
@@ -93,8 +93,7 @@ namespace API_UnderMatch.Controllers
                 Numero = numero,
                 Colonia = colonia,
                 CodigoPostal = codigoPostal,
-                Ciudad = ciudad,
-                Estado = estado,
+                IdMunicipio = idMunicipio,
                 Estatus = 1
             };
 

@@ -279,6 +279,9 @@
     <Compile Include="Models\viewJugadores.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\viewPlanteles.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\viewProveedores.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
