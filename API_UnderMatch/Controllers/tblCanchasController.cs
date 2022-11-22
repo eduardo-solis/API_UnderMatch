@@ -19,27 +19,27 @@ namespace API_UnderMatch.Controllers
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
 
         // GET: api/tblCanchas
-        public IQueryable<tblCanchas> GettblCanchas()
+        public IQueryable<viewCanchas> GettblCanchas()
         {
-            return db.tblCanchas;
+            return db.viewCanchas;
         }
 
         // GET: api/tblCanchas/5
-        [ResponseType(typeof(tblCanchas))]
+        [ResponseType(typeof(viewCanchas))]
         public IHttpActionResult GettblCanchas(int idCancha)
         {
-            tblCanchas tblCanchas = db.tblCanchas.Find(idCancha);
-            if (tblCanchas == null)
+            viewCanchas viewCanchas = db.viewCanchas.Where(cancha => cancha.IdCancha == idCancha).FirstOrDefault();
+            if (viewCanchas == null)
             {
                 return NotFound();
             }
 
-            return Ok(tblCanchas);
+            return Ok(viewCanchas);
         }
 
         // PUT: api/tblCanchas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblCanchas(int idCancha, int idPlantel, string nombre, string tipoCancha)
+        public IHttpActionResult PuttblCanchas(int idCancha, int idPlantel, string nombre, int idTipoCancha)
         {
 
             tblCanchas tblCanchas = new tblCanchas
@@ -47,7 +47,7 @@ namespace API_UnderMatch.Controllers
                 IdCancha = idCancha,
                 IdPlantel = idPlantel,
                 Nombre = nombre,
-                TipoCancha = tipoCancha,
+                IdTipoCancha = idTipoCancha,
                 Estatus = 1
             };
 
@@ -80,14 +80,14 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblCanchas
         [ResponseType(typeof(tblCanchas))]
-        public IHttpActionResult PosttblCanchas(int idPlantel, string nombre, string tipoCancha)
+        public IHttpActionResult PosttblCanchas(int idPlantel, string nombre, int idTipoCancha)
         {
 
             tblCanchas tblCanchas = new tblCanchas
             {
                 IdPlantel = idPlantel,
                 Nombre = nombre,
-                TipoCancha = tipoCancha,
+                IdTipoCancha = idTipoCancha,
                 Estatus = 1
             };
 
@@ -123,7 +123,7 @@ namespace API_UnderMatch.Controllers
 
             db.SaveChanges();
 
-            return Ok(tblCanchas);
+            return StatusCode(HttpStatusCode.OK); ;
         }
 
         protected override void Dispose(bool disposing)

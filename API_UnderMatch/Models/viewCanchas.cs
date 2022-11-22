@@ -12,23 +12,14 @@ namespace API_UnderMatch.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblCanchas
+    public partial class viewCanchas
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblCanchas()
-        {
-            this.tblPartidos = new HashSet<tblPartidos>();
-        }
-    
         public int IdCancha { get; set; }
         public int IdPlantel { get; set; }
         public string Nombre { get; set; }
-        public Nullable<int> Estatus { get; set; }
         public int IdTipoCancha { get; set; }
-    
-        public virtual tblPlanteles tblPlanteles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblPartidos> tblPartidos { get; set; }
-        public virtual ctgTipoCanchas ctgTipoCanchas { get; set; }
+        public Nullable<int> Estatus { get; set; }
+        public string TipoCancha { get; set; }
+        public string Plantel { get; set; }
     }
 }

@@ -35,6 +35,14 @@
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
+        <EntityType Name="ctgTipoCanchas">
+          <Key>
+            <PropertyRef Name="IdTipoCancha" />
+          </Key>
+          <Property Name="IdTipoCancha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+        </EntityType>
         <EntityType Name="ctgTipoEmpleados">
           <Key>
             <PropertyRef Name="IdTipoEmpleado" />
@@ -93,7 +101,7 @@
           <Property Name="IdCancha" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdPlantel" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="TipoCancha" Type="varchar" MaxLength="50" />
+          <Property Name="IdTipoCancha" Type="int" Nullable="false" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
         <EntityType Name="tblEmpleados">
@@ -256,6 +264,25 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewArbitros' no tiene defi
           <Property Name="TipoArbitro" Type="int" Nullable="false" />
           <Property Name="Estatus" Type="int" />
           <Property Name="Telefono2" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewCanchas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewCanchas">
+          <Key>
+            <PropertyRef Name="IdCancha" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="IdTipoCancha" />
+            <PropertyRef Name="Plantel" />
+            <PropertyRef Name="TipoCancha" />
+          </Key>
+          <Property Name="IdCancha" Type="int" Nullable="false" />
+          <Property Name="IdPlantel" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdTipoCancha" Type="int" Nullable="false" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="Plantel" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="TipoCancha" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewEmpleados' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -494,6 +521,18 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             </Principal>
             <Dependent Role="tblArbitros">
               <PropertyRef Name="IdPersona" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCanchas_ctgTipoCanchas">
+          <End Role="ctgTipoCanchas" Type="Self.ctgTipoCanchas" Multiplicity="1" />
+          <End Role="tblCanchas" Type="Self.tblCanchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoCanchas">
+              <PropertyRef Name="IdTipoCancha" />
+            </Principal>
+            <Dependent Role="tblCanchas">
+              <PropertyRef Name="IdTipoCancha" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -865,6 +904,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySet Name="ctgEstados" EntityType="Self.ctgEstados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgMunicipios" EntityType="Self.ctgMunicipios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoArbitros" EntityType="Self.ctgTipoArbitros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctgTipoCanchas" EntityType="Self.ctgTipoCanchas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoEmpleados" EntityType="Self.ctgTipoEmpleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctgTipoProveedores" EntityType="Self.ctgTipoProveedores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleados_Planteles" EntityType="Self.Empleados_Planteles" Schema="dbo" store:Type="Tables" />
@@ -902,6 +942,17 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
     [viewArbitros].[Estatus] AS [Estatus], 
     [viewArbitros].[Telefono2] AS [Telefono2]
     FROM [dbo].[viewArbitros] AS [viewArbitros]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewCanchas" EntityType="Self.viewCanchas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewCanchas].[IdCancha] AS [IdCancha], 
+    [viewCanchas].[IdPlantel] AS [IdPlantel], 
+    [viewCanchas].[Nombre] AS [Nombre], 
+    [viewCanchas].[IdTipoCancha] AS [IdTipoCancha], 
+    [viewCanchas].[Estatus] AS [Estatus], 
+    [viewCanchas].[Plantel] AS [Plantel], 
+    [viewCanchas].[TipoCancha] AS [TipoCancha]
+    FROM [dbo].[viewCanchas] AS [viewCanchas]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewEmpleados" EntityType="Self.viewEmpleados" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1018,6 +1069,10 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <AssociationSet Name="FK_tblArbitro_tblPersona" Association="Self.FK_tblArbitro_tblPersona">
             <End Role="tblPersonas" EntitySet="tblPersonas" />
             <End Role="tblArbitros" EntitySet="tblArbitros" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCanchas_ctgTipoCanchas" Association="Self.FK_tblCanchas_ctgTipoCanchas">
+            <End Role="ctgTipoCanchas" EntitySet="ctgTipoCanchas" />
+            <End Role="tblCanchas" EntitySet="tblCanchas" />
           </AssociationSet>
           <AssociationSet Name="FK_tblCanchas_tblPlanteles" Association="Self.FK_tblCanchas_tblPlanteles">
             <End Role="tblPlanteles" EntitySet="tblPlanteles" />
@@ -1141,10 +1196,11 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdCancha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdPlantel" Type="Int32" Nullable="false" />
           <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TipoCancha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblPlanteles" Relationship="Self.FK_tblCanchas_tblPlanteles" FromRole="tblCanchas" ToRole="tblPlanteles" />
           <NavigationProperty Name="tblPartidos" Relationship="Self.FK_tblPartidos_tblCanchas" FromRole="tblCanchas" ToRole="tblPartidos" />
           <Property Name="Estatus" Type="Int32" />
+          <Property Name="IdTipoCancha" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ctgTipoCanchas" Relationship="BDUnderMatchModel.FK_tblCanchas_ctgTipoCanchas" FromRole="tblCanchas" ToRole="ctgTipoCanchas" />
         </EntityType>
         <EntityType Name="tblEquipos">
           <Key>
@@ -1773,6 +1829,12 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySet Name="ctgEstados" EntityType="BDUnderMatchModel.ctgEstados" />
           <EntitySet Name="ctgMunicipios" EntityType="BDUnderMatchModel.ctgMunicipios" />
           <EntitySet Name="viewPlanteles" EntityType="BDUnderMatchModel.viewPlanteles" />
+          <EntitySet Name="ctgTipoCanchas" EntityType="BDUnderMatchModel.ctgTipoCanchas" />
+          <AssociationSet Name="FK_tblCanchas_ctgTipoCanchas" Association="BDUnderMatchModel.FK_tblCanchas_ctgTipoCanchas">
+            <End Role="ctgTipoCanchas" EntitySet="ctgTipoCanchas" />
+            <End Role="tblCanchas" EntitySet="tblCanchas" />
+          </AssociationSet>
+          <EntitySet Name="viewCanchas" EntityType="BDUnderMatchModel.viewCanchas" />
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -2098,6 +2160,44 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="ctgTipoCanchas">
+          <Key>
+            <PropertyRef Name="IdTipoCancha" />
+          </Key>
+          <Property Name="IdTipoCancha" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <NavigationProperty Name="tblCanchas" Relationship="BDUnderMatchModel.FK_tblCanchas_ctgTipoCanchas" FromRole="ctgTipoCanchas" ToRole="tblCanchas" />
+        </EntityType>
+        <Association Name="FK_tblCanchas_ctgTipoCanchas">
+          <End Type="BDUnderMatchModel.ctgTipoCanchas" Role="ctgTipoCanchas" Multiplicity="1" />
+          <End Type="BDUnderMatchModel.tblCanchas" Role="tblCanchas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ctgTipoCanchas">
+              <PropertyRef Name="IdTipoCancha" />
+            </Principal>
+            <Dependent Role="tblCanchas">
+              <PropertyRef Name="IdTipoCancha" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="viewCanchas">
+          <Key>
+            <PropertyRef Name="IdCancha" />
+            <PropertyRef Name="IdPlantel" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="IdTipoCancha" />
+            <PropertyRef Name="TipoCancha" />
+            <PropertyRef Name="Plantel" />
+          </Key>
+          <Property Name="IdCancha" Type="Int32" Nullable="false" />
+          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdTipoCancha" Type="Int32" Nullable="false" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="TipoCancha" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Plantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2164,11 +2264,11 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="tblCanchas">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblCanchas">
               <MappingFragment StoreEntitySet="tblCanchas">
+                <ScalarProperty Name="IdTipoCancha" ColumnName="IdTipoCancha" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="TipoCancha" ColumnName="TipoCancha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2488,6 +2588,28 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="Calle" ColumnName="Calle" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctgTipoCanchas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.ctgTipoCanchas">
+              <MappingFragment StoreEntitySet="ctgTipoCanchas">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdTipoCancha" ColumnName="IdTipoCancha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viewCanchas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewCanchas">
+              <MappingFragment StoreEntitySet="viewCanchas">
+                <ScalarProperty Name="Plantel" ColumnName="Plantel" />
+                <ScalarProperty Name="TipoCancha" ColumnName="TipoCancha" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdTipoCancha" ColumnName="IdTipoCancha" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
+                <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

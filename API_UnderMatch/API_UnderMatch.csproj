@@ -170,6 +170,7 @@
     <Compile Include="Controllers\ctgEstadosController.cs" />
     <Compile Include="Controllers\ctgMunicipiosController.cs" />
     <Compile Include="Controllers\ctgTipoArbitrosController.cs" />
+    <Compile Include="Controllers\ctgTipoCanchasController.cs" />
     <Compile Include="Controllers\ctgTipoEmpleadosController.cs" />
     <Compile Include="Controllers\ctgTipoProveedoresController.cs" />
     <Compile Include="Controllers\Empleados_PlantelesController.cs" />
@@ -197,6 +198,9 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ctgTipoArbitros.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ctgTipoCanchas.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ctgTipoEmpleados.cs">
@@ -271,6 +275,9 @@
     <Compile Include="Models\Validations\JugadoresValidator.cs" />
     <Compile Include="Models\Validations\PersonasValidator.cs" />
     <Compile Include="Models\viewArbitros.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\viewCanchas.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\viewEmpleados.cs">

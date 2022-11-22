@@ -51,6 +51,8 @@ namespace API_UnderMatch.Models
         public virtual DbSet<ctgEstados> ctgEstados { get; set; }
         public virtual DbSet<ctgMunicipios> ctgMunicipios { get; set; }
         public virtual DbSet<viewPlanteles> viewPlanteles { get; set; }
+        public virtual DbSet<ctgTipoCanchas> ctgTipoCanchas { get; set; }
+        public virtual DbSet<viewCanchas> viewCanchas { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan)
         {
