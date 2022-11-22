@@ -612,7 +612,7 @@ namespace API_UnderMatch.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosActivar", idEmpleadoParameter);
         }
     
-        public virtual int tblEmpleadosAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, Nullable<int> tipoEmpleado, string rfcE, string nssE, Nullable<decimal> salarioE, string horarioE)
+        public virtual int tblEmpleadosAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string calleE, string numeroE, string coloniaE, string codigoPostalE, Nullable<int> idMunicipioE, string curpe, Nullable<int> tipoEmpleado, string rfcE, string nssE, Nullable<decimal> salarioE, string horarioE)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -662,13 +662,9 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("CodigoPostalE", codigoPostalE) :
                 new ObjectParameter("CodigoPostalE", typeof(string));
     
-            var ciudadEParameter = ciudadE != null ?
-                new ObjectParameter("CiudadE", ciudadE) :
-                new ObjectParameter("CiudadE", typeof(string));
-    
-            var estadoEParameter = estadoE != null ?
-                new ObjectParameter("EstadoE", estadoE) :
-                new ObjectParameter("EstadoE", typeof(string));
+            var idMunicipioEParameter = idMunicipioE.HasValue ?
+                new ObjectParameter("IdMunicipioE", idMunicipioE) :
+                new ObjectParameter("IdMunicipioE", typeof(int));
     
             var curpeParameter = curpe != null ?
                 new ObjectParameter("Curpe", curpe) :
@@ -694,7 +690,7 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("HorarioE", horarioE) :
                 new ObjectParameter("HorarioE", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, ciudadEParameter, estadoEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, idMunicipioEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter);
         }
     
         public virtual int tblEmpleadosEliminar(Nullable<int> idEmpleado)
@@ -706,7 +702,7 @@ namespace API_UnderMatch.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosEliminar", idEmpleadoParameter);
         }
     
-        public virtual int tblEmpleadosModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, Nullable<int> tipoEmpleado, string rfcE, string nssE, Nullable<decimal> salarioE, string horarioE)
+        public virtual int tblEmpleadosModificar(Nullable<int> idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, Nullable<int> idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, Nullable<int> idMunicipioE, string curpe, Nullable<int> tipoEmpleado, string rfcE, string nssE, Nullable<decimal> salarioE, string horarioE)
         {
             var idPersonaParameter = idPersona.HasValue ?
                 new ObjectParameter("IdPersona", idPersona) :
@@ -764,13 +760,9 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("CodigoPostalE", codigoPostalE) :
                 new ObjectParameter("CodigoPostalE", typeof(string));
     
-            var ciudadEParameter = ciudadE != null ?
-                new ObjectParameter("CiudadE", ciudadE) :
-                new ObjectParameter("CiudadE", typeof(string));
-    
-            var estadoEParameter = estadoE != null ?
-                new ObjectParameter("EstadoE", estadoE) :
-                new ObjectParameter("EstadoE", typeof(string));
+            var idMunicipioEParameter = idMunicipioE.HasValue ?
+                new ObjectParameter("IdMunicipioE", idMunicipioE) :
+                new ObjectParameter("IdMunicipioE", typeof(int));
     
             var curpeParameter = curpe != null ?
                 new ObjectParameter("Curpe", curpe) :
@@ -796,7 +788,7 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("HorarioE", horarioE) :
                 new ObjectParameter("HorarioE", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idEmpleadoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, ciudadEParameter, estadoEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblEmpleadosModificar", idPersonaParameter, nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, idEmpleadoParameter, calleEParameter, numeroEParameter, coloniaEParameter, codigoPostalEParameter, idMunicipioEParameter, curpeParameter, tipoEmpleadoParameter, rfcEParameter, nssEParameter, salarioEParameter, horarioEParameter);
         }
     
         public virtual int ctgCategoriasActivar(Nullable<int> idCategoria)

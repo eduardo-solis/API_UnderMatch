@@ -26,8 +26,6 @@ namespace API_UnderMatch.Models
         public string Numero { get; set; }
         public string Colonia { get; set; }
         public string CodigoPostal { get; set; }
-        public string Ciudad { get; set; }
-        public string Estado { get; set; }
         public string Curp { get; set; }
         public int TipoEmpleado { get; set; }
         public string Rfc { get; set; }
@@ -35,6 +33,7 @@ namespace API_UnderMatch.Models
         public decimal Salario { get; set; }
         public string Horario { get; set; }
         public Nullable<int> Estatus { get; set; }
+        public int IdMunicipio { get; set; }
     
         public virtual ctgTipoEmpleados ctgTipoEmpleados { get; set; }
         public virtual tblPersonas tblPersonas { get; set; }

@@ -28,7 +28,6 @@ namespace API_UnderMatch.Models
         public string Numero { get; set; }
         public string Colonia { get; set; }
         public string CodigoPostal { get; set; }
-        public string Ciudad { get; set; }
         public string Estado { get; set; }
         public string Curp { get; set; }
         public int TipoEmpleado { get; set; }
@@ -39,5 +38,8 @@ namespace API_UnderMatch.Models
         public Nullable<int> Estatus { get; set; }
         public int IdPlantel { get; set; }
         public string NombrePlantel { get; set; }
+        public int IdMunicipio { get; set; }
+        public string Municipio { get; set; }
+        public int IdEstado { get; set; }
     }
 }

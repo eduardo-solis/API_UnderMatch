@@ -114,8 +114,7 @@
           <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdMunicipio" Type="int" Nullable="false" />
           <Property Name="Curp" Type="varchar" MaxLength="18" Nullable="false" />
           <Property Name="TipoEmpleado" Type="int" Nullable="false" />
           <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
@@ -300,7 +299,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewEmpleados' no tiene def
             <PropertyRef Name="Numero" />
             <PropertyRef Name="Colonia" />
             <PropertyRef Name="CodigoPostal" />
-            <PropertyRef Name="Ciudad" />
+            <PropertyRef Name="IdMunicipio" />
+            <PropertyRef Name="Municipio" />
+            <PropertyRef Name="IdEstado" />
             <PropertyRef Name="Estado" />
             <PropertyRef Name="Curp" />
             <PropertyRef Name="TipoEmpleado" />
@@ -325,8 +326,10 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewEmpleados' no tiene def
           <Property Name="Numero" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Colonia" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="CodigoPostal" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="Ciudad" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Estado" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdMunicipio" Type="int" Nullable="false" />
+          <Property Name="Municipio" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="Estado" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="Curp" Type="varchar" MaxLength="18" Nullable="false" />
           <Property Name="TipoEmpleado" Type="int" Nullable="false" />
           <Property Name="Rfc" Type="varchar" MaxLength="13" Nullable="false" />
@@ -768,8 +771,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="NumeroE" Type="varchar" Mode="In" />
           <Parameter Name="ColoniaE" Type="varchar" Mode="In" />
           <Parameter Name="CodigoPostalE" Type="varchar" Mode="In" />
-          <Parameter Name="CiudadE" Type="varchar" Mode="In" />
-          <Parameter Name="EstadoE" Type="varchar" Mode="In" />
+          <Parameter Name="IdMunicipioE" Type="int" Mode="In" />
           <Parameter Name="Curpe" Type="varchar" Mode="In" />
           <Parameter Name="TipoEmpleado" Type="int" Mode="In" />
           <Parameter Name="RfcE" Type="varchar" Mode="In" />
@@ -795,8 +797,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="NumeroE" Type="varchar" Mode="In" />
           <Parameter Name="ColoniaE" Type="varchar" Mode="In" />
           <Parameter Name="CodigoPostalE" Type="varchar" Mode="In" />
-          <Parameter Name="CiudadE" Type="varchar" Mode="In" />
-          <Parameter Name="EstadoE" Type="varchar" Mode="In" />
+          <Parameter Name="IdMunicipioE" Type="int" Mode="In" />
           <Parameter Name="Curpe" Type="varchar" Mode="In" />
           <Parameter Name="TipoEmpleado" Type="int" Mode="In" />
           <Parameter Name="RfcE" Type="varchar" Mode="In" />
@@ -970,7 +971,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
     [viewEmpleados].[Numero] AS [Numero], 
     [viewEmpleados].[Colonia] AS [Colonia], 
     [viewEmpleados].[CodigoPostal] AS [CodigoPostal], 
-    [viewEmpleados].[Ciudad] AS [Ciudad], 
+    [viewEmpleados].[IdMunicipio] AS [IdMunicipio], 
+    [viewEmpleados].[Municipio] AS [Municipio], 
+    [viewEmpleados].[IdEstado] AS [IdEstado], 
     [viewEmpleados].[Estado] AS [Estado], 
     [viewEmpleados].[Curp] AS [Curp], 
     [viewEmpleados].[TipoEmpleado] AS [TipoEmpleado], 
@@ -1742,8 +1745,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="NumeroE" Mode="In" Type="String" />
             <Parameter Name="ColoniaE" Mode="In" Type="String" />
             <Parameter Name="CodigoPostalE" Mode="In" Type="String" />
-            <Parameter Name="CiudadE" Mode="In" Type="String" />
-            <Parameter Name="EstadoE" Mode="In" Type="String" />
+            <Parameter Name="IdMunicipioE" Mode="In" Type="Int32" />
             <Parameter Name="Curpe" Mode="In" Type="String" />
             <Parameter Name="TipoEmpleado" Mode="In" Type="Int32" />
             <Parameter Name="RfcE" Mode="In" Type="String" />
@@ -1769,8 +1771,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="NumeroE" Mode="In" Type="String" />
             <Parameter Name="ColoniaE" Mode="In" Type="String" />
             <Parameter Name="CodigoPostalE" Mode="In" Type="String" />
-            <Parameter Name="CiudadE" Mode="In" Type="String" />
-            <Parameter Name="EstadoE" Mode="In" Type="String" />
+            <Parameter Name="IdMunicipioE" Mode="In" Type="Int32" />
             <Parameter Name="Curpe" Mode="In" Type="String" />
             <Parameter Name="TipoEmpleado" Mode="In" Type="Int32" />
             <Parameter Name="RfcE" Mode="In" Type="String" />
@@ -1877,8 +1878,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
           <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
           <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
@@ -1889,6 +1888,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <NavigationProperty Name="ctgTipoEmpleados" Relationship="BDUnderMatchModel.FK_tblEmpleado_ctgTipoEmpleado" FromRole="tblEmpleados" ToRole="ctgTipoEmpleados" />
           <NavigationProperty Name="tblPersonas" Relationship="BDUnderMatchModel.FK_tblEmpleado_tblPersona" FromRole="tblEmpleados" ToRole="tblPersonas" />
           <NavigationProperty Name="Empleados_Planteles" Relationship="BDUnderMatchModel.FK_Empleados_Planteles_tblEmpleados" FromRole="tblEmpleados" ToRole="Empleados_Planteles" />
+          <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblEmpleado_ctgTipoEmpleado">
           <End Type="BDUnderMatchModel.ctgTipoEmpleados" Role="ctgTipoEmpleados" Multiplicity="1" />
@@ -1977,7 +1977,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <PropertyRef Name="Numero" />
             <PropertyRef Name="Colonia" />
             <PropertyRef Name="CodigoPostal" />
-            <PropertyRef Name="Ciudad" />
             <PropertyRef Name="Estado" />
             <PropertyRef Name="Curp" />
             <PropertyRef Name="TipoEmpleado" />
@@ -1987,6 +1986,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <PropertyRef Name="Horario" />
             <PropertyRef Name="IdPlantel" />
             <PropertyRef Name="NombrePlantel" />
+            <PropertyRef Name="IdMunicipio" />
+            <PropertyRef Name="Municipio" />
+            <PropertyRef Name="IdEstado" />
           </Key>
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
@@ -2002,8 +2004,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Numero" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CodigoPostal" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="Curp" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
           <Property Name="TipoEmpleado" Type="Int32" Nullable="false" />
           <Property Name="Rfc" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
@@ -2013,6 +2014,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Estatus" Type="Int32" />
           <Property Name="IdPlantel" Type="Int32" Nullable="false" />
           <Property Name="NombrePlantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
+          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="viewProveedores">
           <Key>
@@ -2408,6 +2412,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="tblEmpleados">
             <EntityTypeMapping TypeName="BDUnderMatchModel.tblEmpleados">
               <MappingFragment StoreEntitySet="tblEmpleados">
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="Horario" ColumnName="Horario" />
                 <ScalarProperty Name="Salario" ColumnName="Salario" />
@@ -2415,8 +2420,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="Rfc" ColumnName="Rfc" />
                 <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />
@@ -2463,6 +2466,9 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySetMapping Name="viewEmpleados">
             <EntityTypeMapping TypeName="BDUnderMatchModel.viewEmpleados">
               <MappingFragment StoreEntitySet="viewEmpleados">
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="Municipio" ColumnName="Municipio" />
+                <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
                 <ScalarProperty Name="NombrePlantel" ColumnName="NombrePlantel" />
                 <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
@@ -2473,7 +2479,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="TipoEmpleado" ColumnName="TipoEmpleado" />
                 <ScalarProperty Name="Curp" ColumnName="Curp" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
                 <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
                 <ScalarProperty Name="Colonia" ColumnName="Colonia" />
                 <ScalarProperty Name="Numero" ColumnName="Numero" />

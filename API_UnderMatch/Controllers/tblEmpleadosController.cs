@@ -21,77 +21,29 @@ public class tblEmpleadosController : ApiController
         // GET: api/tblEmpleados
         public IQueryable<viewEmpleados> GettblEmpleados()
         {
-            DbSet<viewEmpleados> viewEmpleados = db.viewEmpleados;
-
-            for (int i = 0; i < viewEmpleados.ToList().Count; i++)
-            {
-                // Se extrae el dato para manipular la informacion
-                viewEmpleados view = viewEmpleados.ToList()[i];
-                int idEmpleado = view.IdEmpleado;
-                Empleados_Planteles Empleados_Planteles = db.Empleados_Planteles.Where(eP => eP.IdEmpleado == idEmpleado).First();//Find(viewEmpleados.ToList()[i].IdEmpleado);
-                view.IdPlantel = Empleados_Planteles.IdPlantel;
-                view.NombrePlantel = db.tblPlanteles.Find(Empleados_Planteles.IdPlantel).Nombre;
-
-                // Se regresa el dato con la informacion actualizada
-                viewEmpleados.ToList()[i] = view;
-            }
-
-            //return db.viewEmpleados;
-            return viewEmpleados;
+            return db.viewEmpleados;
         }
 
         // GET: api/tblEmpleados/5
         [ResponseType(typeof(viewEmpleados))]
         public IHttpActionResult GettblEmpleados(int idEmpleado)
         {
-            tblEmpleados tblEmpleados = db.tblEmpleados.Find(idEmpleado);
-            tblPersonas tblPersonas = db.tblPersonas.Find(tblEmpleados.IdPersona);
-            Empleados_Planteles Empleados_Planteles = db.Empleados_Planteles.Where(eP => eP.IdEmpleado == tblEmpleados.IdEmpleado).First();//Find(tblEmpleados.IdEmpleado);
-            tblPlanteles tblPlanteles = db.tblPlanteles.Find(Empleados_Planteles.IdPlantel);
+            viewEmpleados viewEmpleados = db.viewEmpleados.Where(empleado => empleado.IdEmpleado == idEmpleado).FirstOrDefault();
 
-            if (tblEmpleados == null || tblPersonas == null)
+            if (viewEmpleados == null)
             {
                 return NotFound();
             }
-
-            viewEmpleados viewEmpleados = new viewEmpleados
-            {
-                IdEmpleado = tblEmpleados.IdEmpleado,
-                IdPersona = tblPersonas.IdPersona,
-                Nombre = tblPersonas.Nombre,
-                PrimerApellido = tblPersonas.PrimerApellido,
-                SegundoApellido = tblPersonas.SegundoApellido,
-                FechaNacimiento = tblPersonas.FechaNacimiento,
-                Sexo = tblPersonas.Sexo,
-                Telefono = tblPersonas.Telefono,
-                Telefono2 = tblPersonas.Telefono2,
-                Correo = tblPersonas.Correo,
-                Calle = tblEmpleados.Calle,
-                Numero = tblEmpleados.Numero,
-                Colonia = tblEmpleados.Colonia,
-                CodigoPostal = tblEmpleados.CodigoPostal,
-                Ciudad = tblEmpleados.Ciudad,
-                Estado = tblEmpleados.Estado,
-                Curp = tblEmpleados.Curp,
-                TipoEmpleado = tblEmpleados.TipoEmpleado,
-                Rfc = tblEmpleados.Rfc,
-                Nss = tblEmpleados.Nss,
-                Salario = tblEmpleados.Salario,
-                Horario = tblEmpleados.Horario,
-                Estatus = tblEmpleados.Estatus,
-                IdPlantel = tblPlanteles.IdPlantel,
-                NombrePlantel = tblPlanteles.Nombre
-            };
 
             return Ok(viewEmpleados);
         }
 
         // PUT: api/tblEmpleados/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblEmpleados(int idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, int idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
+        public IHttpActionResult PuttblEmpleados(int idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, int idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, int idMunicipioE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
         {
 
-            db.tblEmpleadosModificar(idPersona, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, idEmpleado, calleE, numeroE, coloniaE, codigoPostalE, ciudadE, estadoE, curpe, tipoEmpleado, rfcE, nssE, salarioE, horarioE);
+            db.tblEmpleadosModificar(idPersona, nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, idEmpleado, calleE, numeroE, coloniaE, codigoPostalE, idMunicipioE, curpe, tipoEmpleado, rfcE, nssE, salarioE, horarioE);
 
             try
             {
@@ -108,11 +60,11 @@ public class tblEmpleadosController : ApiController
 
         // POST: api/tblEmpleados
         [ResponseType(typeof(tblEmpleados))]
-        public IHttpActionResult PosttblEmpleados(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string calleE, string numeroE, string coloniaE, string codigoPostalE, string ciudadE, string estadoE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
+        public IHttpActionResult PosttblEmpleados(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string calleE, string numeroE, string coloniaE, string codigoPostalE, int idMunicipioE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
         {
             try
             {
-                db.tblEmpleadosAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, calleE, numeroE, coloniaE, codigoPostalE, ciudadE, estadoE, curpe, tipoEmpleado, rfcE, nssE, salarioE, horarioE);
+                db.tblEmpleadosAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, calleE, numeroE, coloniaE, codigoPostalE, idMunicipioE, curpe, tipoEmpleado, rfcE, nssE, salarioE, horarioE);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
             }
