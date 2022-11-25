@@ -23,19 +23,6 @@ namespace API_UnderMatch.Controllers
         {
             DbSet<viewJugadores> viewJugadores = db.viewJugadores;
 
-            for (int i = 0; i < viewJugadores.ToList().Count; i++)
-            {
-                // Se extrae el dato para manipular la informacion
-                viewJugadores view = viewJugadores.ToList()[i];
-                int idJugador = view.IdJugador;
-                Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Where(jE => jE.IdJugador == idJugador).First();
-                view.IdEquipo = Jugadores_Equipos.IdEquipo;
-                view.NombreEquipo = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo).Nombre;
-
-                // Se regresa el dato con la informacion actualizada
-                viewJugadores.ToList()[i] = view;
-            }
-
             return viewJugadores;
         }
 
@@ -43,36 +30,12 @@ namespace API_UnderMatch.Controllers
         [ResponseType(typeof(viewJugadores))]
         public IHttpActionResult GettblJugadores(int idJugador)
         {
-            tblJugadores tblJugadores = db.tblJugadores.Find(idJugador);
-            tblPersonas tblPersonas = db.tblPersonas.Find(tblJugadores.IdPersona);
-            Jugadores_Equipos Jugadores_Equipos = db.Jugadores_Equipos.Where(jE => jE.IdJugador == tblJugadores.IdJugador).First();
-            tblEquipos tblEquipos = db.tblEquipos.Find(Jugadores_Equipos.IdEquipo);
+            viewJugadores viewJugadores =  db.viewJugadores.Where(jugador => jugador.IdJugador == idJugador).FirstOrDefault();
 
-            if (tblJugadores == null || tblPersonas == null)
+            if (viewJugadores == null)
             {
                 return NotFound();
             }
-
-            viewJugadores viewJugadores = new viewJugadores
-            {
-                IdJugador = tblJugadores.IdJugador,
-                IdPersona = tblPersonas.IdPersona,
-                Nombre = tblPersonas.Nombre,
-                PrimerApellido = tblPersonas.PrimerApellido,
-                SegundoApellido = tblPersonas.SegundoApellido,
-                FechaNacimiento = tblPersonas.FechaNacimiento,
-                Sexo = tblPersonas.Sexo,
-                Telefono = tblPersonas.Telefono,
-                Telefono2 = tblPersonas.Telefono2,
-                Correo = tblPersonas.Correo,
-                NumDorsal = tblJugadores.NumDorsal,
-                SobreNombre = tblJugadores.SobreNombre,
-                Posicion = tblJugadores.Posicion,
-                Capitan = tblJugadores.Capitan,
-                Estatus = tblJugadores.Estatus,
-                IdEquipo = Jugadores_Equipos.IdEquipo,
-                NombreEquipo = tblEquipos.Nombre
-            };
 
             return Ok(viewJugadores);
         }
