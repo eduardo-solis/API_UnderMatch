@@ -78,7 +78,7 @@ namespace API_UnderMatch.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return StatusCode(HttpStatusCode.OK);
         }
 
         // POST: api/tblPlanteles
@@ -129,7 +129,7 @@ namespace API_UnderMatch.Controllers
 
             db.SaveChanges();
 
-            return Ok(tblPlanteles);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)
