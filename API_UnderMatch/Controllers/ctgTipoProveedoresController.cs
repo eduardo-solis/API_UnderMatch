@@ -43,6 +43,11 @@ namespace API_UnderMatch.Controllers
         {
             try
             {
+                List<ctgTipoProveedores> tipoProveedores = db.ctgTipoProveedores.Where(tipoProv => tipoProv.Nombre.ToLower() == nombre.ToLower() && tipoProv.IdTipoProveedor != idTipoProveedor).ToList();
+
+                if (tipoProveedores.Count > 0)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. Nombre existente"));
+
                 db.ctgTipoProveedoresModificar(idTipoProveedor, nombre);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
@@ -59,6 +64,11 @@ namespace API_UnderMatch.Controllers
         {
             try
             {
+                List<ctgTipoProveedores> tipoProveedores = db.ctgTipoProveedores.Where(tipoProv => tipoProv.Nombre.ToLower() == nombre.ToLower()).ToList();
+
+                if (tipoProveedores.Count > 0)
+                    return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.Conflict, "Ocurrió un error. Nombre existente"));
+
                 db.ctgTipoProveedoresAgregar(nombre);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
