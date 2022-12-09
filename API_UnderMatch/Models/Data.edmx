@@ -148,6 +148,18 @@
           <Property Name="Capitan" Type="int" />
           <Property Name="Estatus" Type="int" />
         </EntityType>
+        <EntityType Name="tblLogs">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="TablaAfectada" Type="varchar" MaxLength="50" />
+          <Property Name="Accion" Type="varchar" MaxLength="50" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="NombreUsuario" Type="varchar" MaxLength="100" />
+          <Property Name="FechaCreacion" Type="datetime" />
+        </EntityType>
         <EntityType Name="tblPartidos">
           <Key>
             <PropertyRef Name="IdPartido" />
@@ -372,6 +384,38 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene def
           <Property Name="Estatus" Type="int" />
           <Property Name="IdEquipo" Type="int" />
           <Property Name="NombreEquipo" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewPartidos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewPartidos">
+          <Key>
+            <PropertyRef Name="IdPartido" />
+            <PropertyRef Name="IdCancha" />
+            <PropertyRef Name="Dia" />
+            <PropertyRef Name="Hora" />
+            <PropertyRef Name="IdEquipo1" />
+            <PropertyRef Name="IdEquipo2" />
+          </Key>
+          <Property Name="IdPartido" Type="int" Nullable="false" />
+          <Property Name="IdCancha" Type="int" Nullable="false" />
+          <Property Name="IdTemporada" Type="int" />
+          <Property Name="Jornada" Type="int" />
+          <Property Name="Dia" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Hora" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="IdEquipo1" Type="int" Nullable="false" />
+          <Property Name="IdEquipo2" Type="int" Nullable="false" />
+          <Property Name="GolesEquipo1" Type="int" />
+          <Property Name="GolesEquipo2" Type="int" />
+          <Property Name="Ganador" Type="int" />
+          <Property Name="Perdedor" Type="int" />
+          <Property Name="IdArbitro" Type="int" />
+          <Property Name="Estatus" Type="int" />
+          <Property Name="NombreCancha" Type="varchar" MaxLength="100" />
+          <Property Name="NombreEquipo1" Type="varchar" MaxLength="100" />
+          <Property Name="NombreEquipo2" Type="varchar" MaxLength="100" />
+          <Property Name="NombreArbitro" Type="varchar" MaxLength="80" />
+          <Property Name="CostoArbitraje" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="nombreTemporada" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewPlanteles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -827,6 +871,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="SobreNombre" Type="varchar" Mode="In" />
           <Parameter Name="Posicion" Type="varchar" Mode="In" />
           <Parameter Name="Capitan" Type="int" Mode="In" />
+          <Parameter Name="IdEquipo" Type="int" Mode="In" />
         </Function>
         <Function Name="tblJugadoresEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdJugador" Type="int" Mode="In" />
@@ -847,11 +892,47 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Parameter Name="Posicion" Type="varchar" Mode="In" />
           <Parameter Name="Capitan" Type="int" Mode="In" />
         </Function>
+        <Function Name="tblLogsAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdUsuario" Type="int" Mode="In" />
+          <Parameter Name="pNombreUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="pTablaAfectada" Type="varchar" Mode="In" />
+          <Parameter Name="pAccion" Type="varchar" Mode="In" />
+          <Parameter Name="pDescripcion" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="tblPartidoActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPartido" Type="int" Mode="In" />
         </Function>
         <Function Name="tblPartidoEliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPartido" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblPartidosAgregar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdCancha" Type="int" Mode="In" />
+          <Parameter Name="pIdTemporada" Type="int" Mode="In" />
+          <Parameter Name="pJornada" Type="int" Mode="In" />
+          <Parameter Name="pDia" Type="varchar" Mode="In" />
+          <Parameter Name="pHora" Type="varchar" Mode="In" />
+          <Parameter Name="pEquipo1" Type="int" Mode="In" />
+          <Parameter Name="pEquipo2" Type="int" Mode="In" />
+          <Parameter Name="pGolesEquipo1" Type="int" Mode="In" />
+          <Parameter Name="pGolesEquipo2" Type="int" Mode="In" />
+          <Parameter Name="pGanador" Type="int" Mode="In" />
+          <Parameter Name="pPerdedor" Type="int" Mode="In" />
+          <Parameter Name="pArbitro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tblPartidosModificar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pIdPartido" Type="int" Mode="In" />
+          <Parameter Name="pIdCancha" Type="int" Mode="In" />
+          <Parameter Name="pIdTemporada" Type="int" Mode="In" />
+          <Parameter Name="pJornada" Type="int" Mode="In" />
+          <Parameter Name="pDia" Type="varchar" Mode="In" />
+          <Parameter Name="pHora" Type="varchar" Mode="In" />
+          <Parameter Name="pEquipo1" Type="int" Mode="In" />
+          <Parameter Name="pEquipo2" Type="int" Mode="In" />
+          <Parameter Name="pGolesEquipo1" Type="int" Mode="In" />
+          <Parameter Name="pGolesEquipo2" Type="int" Mode="In" />
+          <Parameter Name="pGanador" Type="int" Mode="In" />
+          <Parameter Name="pPerdedor" Type="int" Mode="In" />
+          <Parameter Name="pArbitro" Type="int" Mode="In" />
         </Function>
         <Function Name="tblPlantelActivar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdPlantel" Type="int" Mode="In" />
@@ -916,6 +997,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <EntitySet Name="tblEmpleados" EntityType="Self.tblEmpleados" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblEquipos" EntityType="Self.tblEquipos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblJugadores" EntityType="Self.tblJugadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLogs" EntityType="Self.tblLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPartidos" EntityType="Self.tblPartidos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPersonas" EntityType="Self.tblPersonas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPlanteles" EntityType="Self.tblPlanteles" Schema="dbo" store:Type="Tables" />
@@ -1006,6 +1088,30 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
     [viewJugadores].[IdEquipo] AS [IdEquipo], 
     [viewJugadores].[NombreEquipo] AS [NombreEquipo]
     FROM [dbo].[viewJugadores] AS [viewJugadores]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewPartidos" EntityType="Self.viewPartidos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewPartidos].[IdPartido] AS [IdPartido], 
+    [viewPartidos].[IdCancha] AS [IdCancha], 
+    [viewPartidos].[IdTemporada] AS [IdTemporada], 
+    [viewPartidos].[Jornada] AS [Jornada], 
+    [viewPartidos].[Dia] AS [Dia], 
+    [viewPartidos].[Hora] AS [Hora], 
+    [viewPartidos].[IdEquipo1] AS [IdEquipo1], 
+    [viewPartidos].[IdEquipo2] AS [IdEquipo2], 
+    [viewPartidos].[GolesEquipo1] AS [GolesEquipo1], 
+    [viewPartidos].[GolesEquipo2] AS [GolesEquipo2], 
+    [viewPartidos].[Ganador] AS [Ganador], 
+    [viewPartidos].[Perdedor] AS [Perdedor], 
+    [viewPartidos].[IdArbitro] AS [IdArbitro], 
+    [viewPartidos].[Estatus] AS [Estatus], 
+    [viewPartidos].[NombreCancha] AS [NombreCancha], 
+    [viewPartidos].[NombreEquipo1] AS [NombreEquipo1], 
+    [viewPartidos].[NombreEquipo2] AS [NombreEquipo2], 
+    [viewPartidos].[NombreArbitro] AS [NombreArbitro], 
+    [viewPartidos].[CostoArbitraje] AS [CostoArbitraje], 
+    [viewPartidos].[nombreTemporada] AS [nombreTemporada]
+    FROM [dbo].[viewPartidos] AS [viewPartidos]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewPlanteles" EntityType="Self.viewPlanteles" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1565,6 +1671,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="SobreNombre" Mode="In" Type="String" />
             <Parameter Name="Posicion" Mode="In" Type="String" />
             <Parameter Name="Capitan" Mode="In" Type="Int32" />
+            <Parameter Name="IdEquipo" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="viewJugadores" EntityType="BDUnderMatchModel.viewJugadores" />
           <FunctionImport Name="tblJugadoresEliminar">
@@ -1836,6 +1943,44 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <End Role="tblCanchas" EntitySet="tblCanchas" />
           </AssociationSet>
           <EntitySet Name="viewCanchas" EntityType="BDUnderMatchModel.viewCanchas" />
+          <EntitySet Name="viewPartidos" EntityType="BDUnderMatchModel.viewPartidos" />
+          <FunctionImport Name="tblPartidosAgregar">
+            <Parameter Name="pIdCancha" Mode="In" Type="Int32" />
+            <Parameter Name="pIdTemporada" Mode="In" Type="Int32" />
+            <Parameter Name="pJornada" Mode="In" Type="Int32" />
+            <Parameter Name="pDia" Mode="In" Type="String" />
+            <Parameter Name="pHora" Mode="In" Type="String" />
+            <Parameter Name="pEquipo1" Mode="In" Type="Int32" />
+            <Parameter Name="pEquipo2" Mode="In" Type="Int32" />
+            <Parameter Name="pGolesEquipo1" Mode="In" Type="Int32" />
+            <Parameter Name="pGolesEquipo2" Mode="In" Type="Int32" />
+            <Parameter Name="pGanador" Mode="In" Type="Int32" />
+            <Parameter Name="pPerdedor" Mode="In" Type="Int32" />
+            <Parameter Name="pArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tblPartidosModificar">
+            <Parameter Name="pIdPartido" Mode="In" Type="Int32" />
+            <Parameter Name="pIdCancha" Mode="In" Type="Int32" />
+            <Parameter Name="pIdTemporada" Mode="In" Type="Int32" />
+            <Parameter Name="pJornada" Mode="In" Type="Int32" />
+            <Parameter Name="pDia" Mode="In" Type="String" />
+            <Parameter Name="pHora" Mode="In" Type="String" />
+            <Parameter Name="pEquipo1" Mode="In" Type="Int32" />
+            <Parameter Name="pEquipo2" Mode="In" Type="Int32" />
+            <Parameter Name="pGolesEquipo1" Mode="In" Type="Int32" />
+            <Parameter Name="pGolesEquipo2" Mode="In" Type="Int32" />
+            <Parameter Name="pGanador" Mode="In" Type="Int32" />
+            <Parameter Name="pPerdedor" Mode="In" Type="Int32" />
+            <Parameter Name="pArbitro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblLogs" EntityType="BDUnderMatchModel.tblLogs" />
+          <FunctionImport Name="tblLogsAgregar">
+            <Parameter Name="pIdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="pNombreUsuario" Mode="In" Type="String" />
+            <Parameter Name="pTablaAfectada" Mode="In" Type="String" />
+            <Parameter Name="pAccion" Mode="In" Type="String" />
+            <Parameter Name="pDescripcion" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -2201,6 +2346,48 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Estatus" Type="Int32" />
           <Property Name="TipoCancha" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Plantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="viewPartidos">
+          <Key>
+            <PropertyRef Name="IdPartido" />
+            <PropertyRef Name="IdCancha" />
+            <PropertyRef Name="Dia" />
+            <PropertyRef Name="Hora" />
+            <PropertyRef Name="IdEquipo1" />
+            <PropertyRef Name="IdEquipo2" />
+          </Key>
+          <Property Name="IdPartido" Type="Int32" Nullable="false" />
+          <Property Name="IdCancha" Type="Int32" Nullable="false" />
+          <Property Name="IdTemporada" Type="Int32" />
+          <Property Name="Jornada" Type="Int32" />
+          <Property Name="Dia" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Hora" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IdEquipo1" Type="Int32" Nullable="false" />
+          <Property Name="IdEquipo2" Type="Int32" Nullable="false" />
+          <Property Name="GolesEquipo1" Type="Int32" />
+          <Property Name="GolesEquipo2" Type="Int32" />
+          <Property Name="Ganador" Type="Int32" />
+          <Property Name="Perdedor" Type="Int32" />
+          <Property Name="IdArbitro" Type="Int32" />
+          <Property Name="Estatus" Type="Int32" />
+          <Property Name="NombreCancha" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreEquipo1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreEquipo2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="NombreArbitro" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="CostoArbitraje" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="nombreTemporada" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblLogs">
+          <Key>
+            <PropertyRef Name="IdBitacora" />
+          </Key>
+          <Property Name="IdBitacora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUsuario" Type="Int32" />
+          <Property Name="TablaAfectada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Accion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2618,6 +2805,48 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="viewPartidos">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewPartidos">
+              <MappingFragment StoreEntitySet="viewPartidos">
+                <ScalarProperty Name="nombreTemporada" ColumnName="nombreTemporada" />
+                <ScalarProperty Name="CostoArbitraje" ColumnName="CostoArbitraje" />
+                <ScalarProperty Name="NombreArbitro" ColumnName="NombreArbitro" />
+                <ScalarProperty Name="NombreEquipo2" ColumnName="NombreEquipo2" />
+                <ScalarProperty Name="NombreEquipo1" ColumnName="NombreEquipo1" />
+                <ScalarProperty Name="NombreCancha" ColumnName="NombreCancha" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="IdArbitro" ColumnName="IdArbitro" />
+                <ScalarProperty Name="Perdedor" ColumnName="Perdedor" />
+                <ScalarProperty Name="Ganador" ColumnName="Ganador" />
+                <ScalarProperty Name="GolesEquipo2" ColumnName="GolesEquipo2" />
+                <ScalarProperty Name="GolesEquipo1" ColumnName="GolesEquipo1" />
+                <ScalarProperty Name="IdEquipo2" ColumnName="IdEquipo2" />
+                <ScalarProperty Name="IdEquipo1" ColumnName="IdEquipo1" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="Dia" ColumnName="Dia" />
+                <ScalarProperty Name="Jornada" ColumnName="Jornada" />
+                <ScalarProperty Name="IdTemporada" ColumnName="IdTemporada" />
+                <ScalarProperty Name="IdCancha" ColumnName="IdCancha" />
+                <ScalarProperty Name="IdPartido" ColumnName="IdPartido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tblPartidosAgregar" FunctionName="BDUnderMatchModel.Store.tblPartidosAgregar" />
+          <FunctionImportMapping FunctionImportName="tblPartidosModificar" FunctionName="BDUnderMatchModel.Store.tblPartidosModificar" />
+          <EntitySetMapping Name="tblLogs">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.tblLogs">
+              <MappingFragment StoreEntitySet="tblLogs">
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="TablaAfectada" ColumnName="TablaAfectada" />
+                <ScalarProperty Name="IdUsuario" ColumnName="IdUsuario" />
+                <ScalarProperty Name="IdBitacora" ColumnName="IdBitacora" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tblLogsAgregar" FunctionName="BDUnderMatchModel.Store.tblLogsAgregar" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

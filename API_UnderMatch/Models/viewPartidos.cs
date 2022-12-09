@@ -9,11 +9,10 @@
 
 namespace API_UnderMatch.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPartidos
+    public partial class viewPartidos
     {
         public int IdPartido { get; set; }
         public int IdCancha { get; set; }
@@ -21,24 +20,19 @@ namespace API_UnderMatch.Models
         public Nullable<int> Jornada { get; set; }
         public string Dia { get; set; }
         public string Hora { get; set; }
-        public int Equipo1 { get; set; }
-        public int Equipo2 { get; set; }
+        public int IdEquipo1 { get; set; }
+        public int IdEquipo2 { get; set; }
         public Nullable<int> GolesEquipo1 { get; set; }
         public Nullable<int> GolesEquipo2 { get; set; }
         public Nullable<int> Ganador { get; set; }
         public Nullable<int> Perdedor { get; set; }
         public Nullable<int> IdArbitro { get; set; }
         public Nullable<int> Estatus { get; set; }
-
-        [JsonIgnore]
-        public virtual tblArbitros tblArbitros { get; set; }
-        [JsonIgnore]
-        public virtual tblCanchas tblCanchas { get; set; }
-        [JsonIgnore]
-        public virtual tblEquipos tblEquipos { get; set; }
-        [JsonIgnore]
-        public virtual tblEquipos tblEquipos1 { get; set; }
-        [JsonIgnore]
-        public virtual tblTemporadas tblTemporadas { get; set; }
+        public string NombreCancha { get; set; }
+        public string NombreEquipo1 { get; set; }
+        public string NombreEquipo2 { get; set; }
+        public string NombreArbitro { get; set; }
+        public Nullable<decimal> CostoArbitraje { get; set; }
+        public string nombreTemporada { get; set; }
     }
 }

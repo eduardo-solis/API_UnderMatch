@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9be20788055d4171bba5cef9c008d185" Name="Diagram1">
+      <Diagram DiagramId="9be20788055d4171bba5cef9c008d185" Name="Diagram1" ZoomLevel="93">
         <EntityTypeShape EntityType="BDUnderMatchModel.ctgCategorias" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.ctgTipoArbitros" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="BDUnderMatchModel.ctgTipoEmpleados" Width="1.5" PointX="3.75" PointY="10.25" IsExpanded="true" />
@@ -51,6 +51,8 @@
         <EntityTypeShape EntityType="BDUnderMatchModel.ctgTipoCanchas" Width="1.5" PointX="14.375" PointY="10.875" />
         <AssociationConnector Association="BDUnderMatchModel.FK_tblCanchas_ctgTipoCanchas" />
         <EntityTypeShape EntityType="BDUnderMatchModel.viewCanchas" Width="1.5" PointX="14.375" PointY="13.75" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.viewPartidos" Width="1.5" PointX="16.375" PointY="0.75" />
+        <EntityTypeShape EntityType="BDUnderMatchModel.tblLogs" Width="1.5" PointX="16.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

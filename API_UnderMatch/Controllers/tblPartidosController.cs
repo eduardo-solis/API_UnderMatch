@@ -19,22 +19,42 @@ namespace API_UnderMatch.Controllers
         private BDUnderMatchEntities1 db = new BDUnderMatchEntities1();
 
         // GET: api/tblPartidos
-        public IQueryable<tblPartidos> GettblPartidos()
+        public IQueryable<viewPartidos> GettblPartidos()
         {
-            return db.tblPartidos;
+            DbSet<viewPartidos> viewPartidos = db.viewPartidos;
+            return viewPartidos;
         }
 
         // GET: api/tblPartidos/5
-        [ResponseType(typeof(tblPartidos))]
+        [ResponseType(typeof(viewPartidos))]
         public IHttpActionResult GettblPartidos(int idPartido)
         {
-            tblPartidos tblPartidos = db.tblPartidos.Find(idPartido);
-            if (tblPartidos == null)
+            viewPartidos viewPartidos = db.viewPartidos.Where(partido => partido.IdPartido == idPartido).FirstOrDefault();
+
+            if (viewPartidos == null)
             {
                 return NotFound();
             }
 
-            return Ok(tblPartidos);
+            return Ok(viewPartidos);
+        }
+
+        // GET: api/tblPartidos/5
+        [ResponseType(typeof(viewPartidos))]
+        public IHttpActionResult GettblPartidosByJugador(int idEquipo)
+        {
+            DbSet<viewPartidos> viewPartidos = db.viewPartidos;
+            //viewPartidos viewPartidos = (viewPartidos)db.viewPartidos.Where(partido => partido.IdEquipo1 == idEquipo || partido.IdEquipo2 == idEquipo);
+            var vistaPartidos = from vp in viewPartidos
+                                       where vp.IdEquipo1 == idEquipo
+                                       || vp.IdEquipo2 == idEquipo
+                                       select vp;
+            if (viewPartidos == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(viewPartidos.ToList());
         }
 
         // PUT: api/tblPartidos/5
@@ -45,30 +65,8 @@ namespace API_UnderMatch.Controllers
             )
         {
 
-            tblPartidos tblPartidos = new tblPartidos
-            {
-                IdPartido = idPartido,
-                IdCancha = idCancha,
-                IdTemporada = idTemporada,
-                Jornada = jornada,
-                Dia = dia,
-                Hora = hora,
-                Equipo1 = equipo1,
-                Equipo2 = equipo2,
-                GolesEquipo1 = golesEquipo1,
-                GolesEquipo2 = golesEquipo2,
-                Ganador = ganador,
-                Perdedor = perdedor,
-                IdArbitro = idArbitro,
-                Estatus = 1
-            };
+            db.tblPartidosModificar(idPartido, idCancha, idTemporada, jornada, dia, hora, equipo1, equipo2, golesEquipo1, golesEquipo2, ganador, perdedor, idArbitro);
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            db.Entry(tblPartidos).State = EntityState.Modified;
 
             try
             {
@@ -76,14 +74,8 @@ namespace API_UnderMatch.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!tblPartidosExists(idPartido))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound();
+
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -96,33 +88,20 @@ namespace API_UnderMatch.Controllers
             int equipo2, int golesEquipo1, int golesEquipo2, int ganador, int perdedor, int idArbitro
             )
         {
+            db.tblPartidosAgregar(idCancha,idTemporada,jornada,dia,hora,equipo1,equipo2,golesEquipo1,golesEquipo2,ganador,perdedor,idArbitro);
 
-            tblPartidos tblPartidos = new tblPartidos
-            {
-                IdCancha = idCancha,
-                IdTemporada = idTemporada,
-                Jornada = jornada,
-                Dia = dia,
-                Hora = hora,
-                Equipo1 = equipo1,
-                Equipo2 = equipo2,
-                GolesEquipo1 = golesEquipo1,
-                GolesEquipo2 = golesEquipo2,
-                Ganador = ganador,
-                Perdedor = perdedor,
-                IdArbitro = idArbitro,
-                Estatus = 1
-            };
 
-            if (!ModelState.IsValid)
+            try
             {
-                return BadRequest(ModelState);
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                return NotFound();
+
             }
 
-            db.tblPartidos.Add(tblPartidos);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = tblPartidos.IdPartido }, tblPartidos);
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // DELETE: api/tblPartidos/5
@@ -146,7 +125,7 @@ namespace API_UnderMatch.Controllers
 
             db.SaveChanges();
 
-            return Ok(tblPartidos);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

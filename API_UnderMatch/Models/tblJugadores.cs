@@ -9,6 +9,7 @@
 
 namespace API_UnderMatch.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
@@ -27,9 +28,11 @@ namespace API_UnderMatch.Models
         public string Posicion { get; set; }
         public Nullable<int> Capitan { get; set; }
         public Nullable<int> Estatus { get; set; }
-    
+
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jugadores_Equipos> Jugadores_Equipos { get; set; }
+        [JsonIgnore]
         public virtual tblPersonas tblPersonas { get; set; }
     }
 }

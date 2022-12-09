@@ -181,6 +181,7 @@
     <Compile Include="Controllers\tblEmpleadosController.cs" />
     <Compile Include="Controllers\tblEquiposController.cs" />
     <Compile Include="Controllers\tblJugadoresController.cs" />
+    <Compile Include="Controllers\tblLogsController.cs" />
     <Compile Include="Controllers\tblPartidosController.cs" />
     <Compile Include="Controllers\tblPlantelesController.cs" />
     <Compile Include="Controllers\tblProveedoresController.cs" />
@@ -254,6 +255,9 @@
     <Compile Include="Models\tblJugadores.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblLogs.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblPartidos.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -284,6 +288,9 @@
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\viewJugadores.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\viewPartidos.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\viewPlanteles.cs">
@@ -366,6 +373,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
+    <Folder Include="Views\tblLogs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

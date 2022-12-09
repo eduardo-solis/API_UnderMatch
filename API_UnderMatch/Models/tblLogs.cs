@@ -9,20 +9,17 @@
 
 namespace API_UnderMatch.Models
 {
-    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     
-    public partial class Empleados_Planteles
+    public partial class tblLogs
     {
-        public int IdRelacionEmpleadoPlantel { get; set; }
-        public int IdEmpleado { get; set; }
-        public int IdPlantel { get; set; }
-
-        [JsonIgnore]
-        public virtual tblPlanteles tblPlanteles { get; set; }
-
-        [JsonIgnore]
-        public virtual tblEmpleados tblEmpleados { get; set; }
+        public int IdBitacora { get; set; }
+        public Nullable<int> IdUsuario { get; set; }
+        public string TablaAfectada { get; set; }
+        public string Accion { get; set; }
+        public string Descripcion { get; set; }
+        public string NombreUsuario { get; set; }
+        public Nullable<System.DateTime> FechaCreacion { get; set; }
     }
 }

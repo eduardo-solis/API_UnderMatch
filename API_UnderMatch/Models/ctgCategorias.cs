@@ -26,6 +26,7 @@ namespace API_UnderMatch.Models
         public string Categoria { get; set; }
         public Nullable<int> Estatus { get; set; }
 
+
         [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblArbitros> tblArbitros { get; set; }

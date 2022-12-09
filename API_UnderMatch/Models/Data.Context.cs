@@ -53,8 +53,10 @@ namespace API_UnderMatch.Models
         public virtual DbSet<viewPlanteles> viewPlanteles { get; set; }
         public virtual DbSet<ctgTipoCanchas> ctgTipoCanchas { get; set; }
         public virtual DbSet<viewCanchas> viewCanchas { get; set; }
+        public virtual DbSet<viewPartidos> viewPartidos { get; set; }
+        public virtual DbSet<tblLogs> tblLogs { get; set; }
     
-        public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan)
+        public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("Nombre", nombre) :
@@ -104,7 +106,11 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("Capitan", capitan) :
                 new ObjectParameter("Capitan", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, numDorsalParameter, sobreNombreParameter, posicionParameter, capitanParameter);
+            var idEquipoParameter = idEquipo.HasValue ?
+                new ObjectParameter("IdEquipo", idEquipo) :
+                new ObjectParameter("IdEquipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblJugadoresAgregar", nombreParameter, primerApellidoParameter, segundoApellidoParameter, fechaNacimientoParameter, sexoParameter, telefonoParameter, telefono2Parameter, correoParameter, numDorsalParameter, sobreNombreParameter, posicionParameter, capitanParameter, idEquipoParameter);
         }
     
         public virtual int tblJugadoresEliminar(Nullable<int> idJugador)
@@ -915,6 +921,141 @@ namespace API_UnderMatch.Models
                 new ObjectParameter("IdPartido", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPartidoActivar", idPartidoParameter);
+        }
+    
+        public virtual int tblPartidosAgregar(Nullable<int> pIdCancha, Nullable<int> pIdTemporada, Nullable<int> pJornada, string pDia, string pHora, Nullable<int> pEquipo1, Nullable<int> pEquipo2, Nullable<int> pGolesEquipo1, Nullable<int> pGolesEquipo2, Nullable<int> pGanador, Nullable<int> pPerdedor, Nullable<int> pArbitro)
+        {
+            var pIdCanchaParameter = pIdCancha.HasValue ?
+                new ObjectParameter("pIdCancha", pIdCancha) :
+                new ObjectParameter("pIdCancha", typeof(int));
+    
+            var pIdTemporadaParameter = pIdTemporada.HasValue ?
+                new ObjectParameter("pIdTemporada", pIdTemporada) :
+                new ObjectParameter("pIdTemporada", typeof(int));
+    
+            var pJornadaParameter = pJornada.HasValue ?
+                new ObjectParameter("pJornada", pJornada) :
+                new ObjectParameter("pJornada", typeof(int));
+    
+            var pDiaParameter = pDia != null ?
+                new ObjectParameter("pDia", pDia) :
+                new ObjectParameter("pDia", typeof(string));
+    
+            var pHoraParameter = pHora != null ?
+                new ObjectParameter("pHora", pHora) :
+                new ObjectParameter("pHora", typeof(string));
+    
+            var pEquipo1Parameter = pEquipo1.HasValue ?
+                new ObjectParameter("pEquipo1", pEquipo1) :
+                new ObjectParameter("pEquipo1", typeof(int));
+    
+            var pEquipo2Parameter = pEquipo2.HasValue ?
+                new ObjectParameter("pEquipo2", pEquipo2) :
+                new ObjectParameter("pEquipo2", typeof(int));
+    
+            var pGolesEquipo1Parameter = pGolesEquipo1.HasValue ?
+                new ObjectParameter("pGolesEquipo1", pGolesEquipo1) :
+                new ObjectParameter("pGolesEquipo1", typeof(int));
+    
+            var pGolesEquipo2Parameter = pGolesEquipo2.HasValue ?
+                new ObjectParameter("pGolesEquipo2", pGolesEquipo2) :
+                new ObjectParameter("pGolesEquipo2", typeof(int));
+    
+            var pGanadorParameter = pGanador.HasValue ?
+                new ObjectParameter("pGanador", pGanador) :
+                new ObjectParameter("pGanador", typeof(int));
+    
+            var pPerdedorParameter = pPerdedor.HasValue ?
+                new ObjectParameter("pPerdedor", pPerdedor) :
+                new ObjectParameter("pPerdedor", typeof(int));
+    
+            var pArbitroParameter = pArbitro.HasValue ?
+                new ObjectParameter("pArbitro", pArbitro) :
+                new ObjectParameter("pArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPartidosAgregar", pIdCanchaParameter, pIdTemporadaParameter, pJornadaParameter, pDiaParameter, pHoraParameter, pEquipo1Parameter, pEquipo2Parameter, pGolesEquipo1Parameter, pGolesEquipo2Parameter, pGanadorParameter, pPerdedorParameter, pArbitroParameter);
+        }
+    
+        public virtual int tblPartidosModificar(Nullable<int> pIdPartido, Nullable<int> pIdCancha, Nullable<int> pIdTemporada, Nullable<int> pJornada, string pDia, string pHora, Nullable<int> pEquipo1, Nullable<int> pEquipo2, Nullable<int> pGolesEquipo1, Nullable<int> pGolesEquipo2, Nullable<int> pGanador, Nullable<int> pPerdedor, Nullable<int> pArbitro)
+        {
+            var pIdPartidoParameter = pIdPartido.HasValue ?
+                new ObjectParameter("pIdPartido", pIdPartido) :
+                new ObjectParameter("pIdPartido", typeof(int));
+    
+            var pIdCanchaParameter = pIdCancha.HasValue ?
+                new ObjectParameter("pIdCancha", pIdCancha) :
+                new ObjectParameter("pIdCancha", typeof(int));
+    
+            var pIdTemporadaParameter = pIdTemporada.HasValue ?
+                new ObjectParameter("pIdTemporada", pIdTemporada) :
+                new ObjectParameter("pIdTemporada", typeof(int));
+    
+            var pJornadaParameter = pJornada.HasValue ?
+                new ObjectParameter("pJornada", pJornada) :
+                new ObjectParameter("pJornada", typeof(int));
+    
+            var pDiaParameter = pDia != null ?
+                new ObjectParameter("pDia", pDia) :
+                new ObjectParameter("pDia", typeof(string));
+    
+            var pHoraParameter = pHora != null ?
+                new ObjectParameter("pHora", pHora) :
+                new ObjectParameter("pHora", typeof(string));
+    
+            var pEquipo1Parameter = pEquipo1.HasValue ?
+                new ObjectParameter("pEquipo1", pEquipo1) :
+                new ObjectParameter("pEquipo1", typeof(int));
+    
+            var pEquipo2Parameter = pEquipo2.HasValue ?
+                new ObjectParameter("pEquipo2", pEquipo2) :
+                new ObjectParameter("pEquipo2", typeof(int));
+    
+            var pGolesEquipo1Parameter = pGolesEquipo1.HasValue ?
+                new ObjectParameter("pGolesEquipo1", pGolesEquipo1) :
+                new ObjectParameter("pGolesEquipo1", typeof(int));
+    
+            var pGolesEquipo2Parameter = pGolesEquipo2.HasValue ?
+                new ObjectParameter("pGolesEquipo2", pGolesEquipo2) :
+                new ObjectParameter("pGolesEquipo2", typeof(int));
+    
+            var pGanadorParameter = pGanador.HasValue ?
+                new ObjectParameter("pGanador", pGanador) :
+                new ObjectParameter("pGanador", typeof(int));
+    
+            var pPerdedorParameter = pPerdedor.HasValue ?
+                new ObjectParameter("pPerdedor", pPerdedor) :
+                new ObjectParameter("pPerdedor", typeof(int));
+    
+            var pArbitroParameter = pArbitro.HasValue ?
+                new ObjectParameter("pArbitro", pArbitro) :
+                new ObjectParameter("pArbitro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblPartidosModificar", pIdPartidoParameter, pIdCanchaParameter, pIdTemporadaParameter, pJornadaParameter, pDiaParameter, pHoraParameter, pEquipo1Parameter, pEquipo2Parameter, pGolesEquipo1Parameter, pGolesEquipo2Parameter, pGanadorParameter, pPerdedorParameter, pArbitroParameter);
+        }
+    
+        public virtual int tblLogsAgregar(Nullable<int> pIdUsuario, string pNombreUsuario, string pTablaAfectada, string pAccion, string pDescripcion)
+        {
+            var pIdUsuarioParameter = pIdUsuario.HasValue ?
+                new ObjectParameter("pIdUsuario", pIdUsuario) :
+                new ObjectParameter("pIdUsuario", typeof(int));
+    
+            var pNombreUsuarioParameter = pNombreUsuario != null ?
+                new ObjectParameter("pNombreUsuario", pNombreUsuario) :
+                new ObjectParameter("pNombreUsuario", typeof(string));
+    
+            var pTablaAfectadaParameter = pTablaAfectada != null ?
+                new ObjectParameter("pTablaAfectada", pTablaAfectada) :
+                new ObjectParameter("pTablaAfectada", typeof(string));
+    
+            var pAccionParameter = pAccion != null ?
+                new ObjectParameter("pAccion", pAccion) :
+                new ObjectParameter("pAccion", typeof(string));
+    
+            var pDescripcionParameter = pDescripcion != null ?
+                new ObjectParameter("pDescripcion", pDescripcion) :
+                new ObjectParameter("pDescripcion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tblLogsAgregar", pIdUsuarioParameter, pNombreUsuarioParameter, pTablaAfectadaParameter, pAccionParameter, pDescripcionParameter);
         }
     }
 }

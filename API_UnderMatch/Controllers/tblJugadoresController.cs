@@ -40,6 +40,20 @@ namespace API_UnderMatch.Controllers
             return Ok(viewJugadores);
         }
 
+        // GET: api/tblJugadores/5
+        [ResponseType(typeof(viewJugadores))]
+        public IHttpActionResult GettblJugadoresAuth(string pEmail, string pPassword)
+        {
+            viewJugadores viewJugadores = db.viewJugadores.Where(jugador => jugador.Correo == pEmail && jugador.Telefono == pPassword).FirstOrDefault();
+
+            if (viewJugadores == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(viewJugadores);
+        }
+
         // PUT: api/tblJugadores/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PuttblJugadores(int idPersona, int idJugador, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, int capitan)
@@ -59,11 +73,11 @@ namespace API_UnderMatch.Controllers
 
         // POST: api/tblJugadores
         [ResponseType(typeof(tblJugadores))]
-        public IHttpActionResult PosttblJugadores(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, int capitan)
+        public IHttpActionResult PosttblJugadores(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, int capitan, int idEquipo)
         {
             try
             {
-                db.tblJugadoresAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, numDorsal, sobreNombre, posicion, capitan);
+                db.tblJugadoresAgregar(nombre, primerApellido, segundoApellido, fechaNacimiento, sexo, telefono, telefono2, correo, numDorsal, sobreNombre, posicion, capitan, idEquipo);
                 db.SaveChanges();
                 return StatusCode(HttpStatusCode.OK);
             }

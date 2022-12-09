@@ -38,6 +38,8 @@ public class tblEmpleadosController : ApiController
             return Ok(viewEmpleados);
         }
 
+
+
         // PUT: api/tblEmpleados/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PuttblEmpleados(int idPersona, string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, int idEmpleado, string calleE, string numeroE, string coloniaE, string codigoPostalE, int idMunicipioE, string curpe, int tipoEmpleado, string rfcE, string nssE, decimal salarioE, string horarioE)
@@ -72,6 +74,18 @@ public class tblEmpleadosController : ApiController
             {
                 return BadRequest("Algo salio mal\n" + e);
             }
+        }
+
+        public IHttpActionResult GettblEmpleadosAuth(string pEmail, string pPassword)
+        {
+            viewEmpleados viewEmpleados = db.viewEmpleados.Where(empleado => empleado.Correo == pEmail && empleado.Curp == pPassword).FirstOrDefault();
+
+            if (viewEmpleados == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(viewEmpleados);
         }
 
         // DELETE: api/tblEmpleados
