@@ -21,7 +21,6 @@ namespace API_UnderMatch.Models
 
         [JsonIgnore]
         public virtual tblPlanteles tblPlanteles { get; set; }
-
         [JsonIgnore]
         public virtual tblEmpleados tblEmpleados { get; set; }
     }

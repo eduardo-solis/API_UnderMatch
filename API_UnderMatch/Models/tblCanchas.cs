@@ -26,11 +26,12 @@ namespace API_UnderMatch.Models
         public string Nombre { get; set; }
         public Nullable<int> Estatus { get; set; }
         public int IdTipoCancha { get; set; }
+    
 
         [JsonIgnore]
         public virtual tblPlanteles tblPlanteles { get; set; }
-        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [JsonIgnore]
         public virtual ICollection<tblPartidos> tblPartidos { get; set; }
         [JsonIgnore]
         public virtual ctgTipoCanchas ctgTipoCanchas { get; set; }

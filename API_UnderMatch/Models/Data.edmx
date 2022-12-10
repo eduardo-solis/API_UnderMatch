@@ -321,8 +321,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewEmpleados' no tiene def
             <PropertyRef Name="Nss" />
             <PropertyRef Name="Salario" />
             <PropertyRef Name="Horario" />
-            <PropertyRef Name="IdPlantel" />
-            <PropertyRef Name="NombrePlantel" />
           </Key>
           <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
@@ -349,8 +347,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewEmpleados' no tiene def
           <Property Name="Salario" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="Horario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Estatus" Type="int" />
-          <Property Name="IdPlantel" Type="int" Nullable="false" />
-          <Property Name="NombrePlantel" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewJugadores' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -416,6 +412,28 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewPartidos' no tiene defi
           <Property Name="NombreArbitro" Type="varchar" MaxLength="80" />
           <Property Name="CostoArbitraje" Type="decimal" Precision="18" Scale="2" />
           <Property Name="nombreTemporada" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewPersonas' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="viewPersonas">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+          </Key>
+          <Property Name="IdPersona" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="PrimerApellido" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="SegundoApellido" Type="varchar" MaxLength="80" />
+          <Property Name="FechaNacimiento" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Sexo" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Telefono" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Telefono2" Type="varchar" MaxLength="10" />
+          <Property Name="Correo" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewPlanteles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
@@ -1063,9 +1081,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
     [viewEmpleados].[Nss] AS [Nss], 
     [viewEmpleados].[Salario] AS [Salario], 
     [viewEmpleados].[Horario] AS [Horario], 
-    [viewEmpleados].[Estatus] AS [Estatus], 
-    [viewEmpleados].[IdPlantel] AS [IdPlantel], 
-    [viewEmpleados].[NombrePlantel] AS [NombrePlantel]
+    [viewEmpleados].[Estatus] AS [Estatus]
     FROM [dbo].[viewEmpleados] AS [viewEmpleados]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewJugadores" EntityType="Self.viewJugadores" store:Type="Views" store:Schema="dbo">
@@ -1112,6 +1128,19 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
     [viewPartidos].[CostoArbitraje] AS [CostoArbitraje], 
     [viewPartidos].[nombreTemporada] AS [nombreTemporada]
     FROM [dbo].[viewPartidos] AS [viewPartidos]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="viewPersonas" EntityType="Self.viewPersonas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [viewPersonas].[IdPersona] AS [IdPersona], 
+    [viewPersonas].[Nombre] AS [Nombre], 
+    [viewPersonas].[PrimerApellido] AS [PrimerApellido], 
+    [viewPersonas].[SegundoApellido] AS [SegundoApellido], 
+    [viewPersonas].[FechaNacimiento] AS [FechaNacimiento], 
+    [viewPersonas].[Sexo] AS [Sexo], 
+    [viewPersonas].[Telefono] AS [Telefono], 
+    [viewPersonas].[Telefono2] AS [Telefono2], 
+    [viewPersonas].[Correo] AS [Correo]
+    FROM [dbo].[viewPersonas] AS [viewPersonas]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="viewPlanteles" EntityType="Self.viewPlanteles" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1981,6 +2010,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <Parameter Name="pAccion" Mode="In" Type="String" />
             <Parameter Name="pDescripcion" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="viewPersonas" EntityType="BDUnderMatchModel.viewPersonas" />
         </EntityContainer>
         <EntityType Name="viewJugadores">
           <Key>
@@ -2129,8 +2159,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             <PropertyRef Name="Nss" />
             <PropertyRef Name="Salario" />
             <PropertyRef Name="Horario" />
-            <PropertyRef Name="IdPlantel" />
-            <PropertyRef Name="NombrePlantel" />
             <PropertyRef Name="IdMunicipio" />
             <PropertyRef Name="Municipio" />
             <PropertyRef Name="IdEstado" />
@@ -2157,8 +2185,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Salario" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Horario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="Int32" />
-          <Property Name="IdPlantel" Type="Int32" Nullable="false" />
-          <Property Name="NombrePlantel" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IdMunicipio" Type="Int32" Nullable="false" />
           <Property Name="Municipio" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="IdEstado" Type="Int32" Nullable="false" />
@@ -2388,6 +2414,26 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
           <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="NombreUsuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="viewPersonas">
+          <Key>
+            <PropertyRef Name="IdPersona" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="PrimerApellido" />
+            <PropertyRef Name="FechaNacimiento" />
+            <PropertyRef Name="Sexo" />
+            <PropertyRef Name="Telefono" />
+            <PropertyRef Name="Correo" />
+          </Key>
+          <Property Name="IdPersona" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="PrimerApellido" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="SegundoApellido" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="FechaNacimiento" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Sexo" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2656,8 +2702,6 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
                 <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
                 <ScalarProperty Name="Municipio" ColumnName="Municipio" />
                 <ScalarProperty Name="IdMunicipio" ColumnName="IdMunicipio" />
-                <ScalarProperty Name="NombrePlantel" ColumnName="NombrePlantel" />
-                <ScalarProperty Name="IdPlantel" ColumnName="IdPlantel" />
                 <ScalarProperty Name="Estatus" ColumnName="Estatus" />
                 <ScalarProperty Name="Horario" ColumnName="Horario" />
                 <ScalarProperty Name="Salario" ColumnName="Salario" />
@@ -2847,6 +2891,21 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="tblLogsAgregar" FunctionName="BDUnderMatchModel.Store.tblLogsAgregar" />
+          <EntitySetMapping Name="viewPersonas">
+            <EntityTypeMapping TypeName="BDUnderMatchModel.viewPersonas">
+              <MappingFragment StoreEntitySet="viewPersonas">
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Telefono2" ColumnName="Telefono2" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+                <ScalarProperty Name="SegundoApellido" ColumnName="SegundoApellido" />
+                <ScalarProperty Name="PrimerApellido" ColumnName="PrimerApellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdPersona" ColumnName="IdPersona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2862,7 +2921,7 @@ advertencia 6002: La tabla o vista 'BDUnderMatch.dbo.viewProveedores' no tiene d
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
       </DesignerInfoPropertySet>

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\tblJugadoresController.cs" />
     <Compile Include="Controllers\tblLogsController.cs" />
     <Compile Include="Controllers\tblPartidosController.cs" />
+    <Compile Include="Controllers\tblPersonasController.cs" />
     <Compile Include="Controllers\tblPlantelesController.cs" />
     <Compile Include="Controllers\tblProveedoresController.cs" />
     <Compile Include="Controllers\tblTemporadasController.cs" />
@@ -293,6 +294,9 @@
     <Compile Include="Models\viewPartidos.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\viewPersonas.cs">
+      <DependentUpon>Data.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\viewPlanteles.cs">
       <DependentUpon>Data.tt</DependentUpon>
     </Compile>
@@ -349,6 +353,7 @@
     <Content Include="Models\Data.edmx.diagram">
       <DependentUpon>Data.edmx</DependentUpon>
     </Content>
+    <Content Include="BDScript\BDUnderMatch.bak" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -374,6 +379,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\tblLogs\" />
+    <Folder Include="Views\tblPersonas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

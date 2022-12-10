@@ -36,8 +36,6 @@ namespace API_UnderMatch.Models
         public decimal Salario { get; set; }
         public string Horario { get; set; }
         public Nullable<int> Estatus { get; set; }
-        public int IdPlantel { get; set; }
-        public string NombrePlantel { get; set; }
         public int IdMunicipio { get; set; }
         public string Municipio { get; set; }
         public int IdEstado { get; set; }

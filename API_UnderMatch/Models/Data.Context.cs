@@ -55,6 +55,7 @@ namespace API_UnderMatch.Models
         public virtual DbSet<viewCanchas> viewCanchas { get; set; }
         public virtual DbSet<viewPartidos> viewPartidos { get; set; }
         public virtual DbSet<tblLogs> tblLogs { get; set; }
+        public virtual DbSet<viewPersonas> viewPersonas { get; set; }
     
         public virtual int tblJugadoresAgregar(string nombre, string primerApellido, string segundoApellido, string fechaNacimiento, string sexo, string telefono, string telefono2, string correo, string numDorsal, string sobreNombre, string posicion, Nullable<int> capitan, Nullable<int> idEquipo)
         {
