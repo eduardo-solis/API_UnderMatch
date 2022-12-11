@@ -55,8 +55,8 @@ namespace API_UnderMatch.Controllers
             {
                 return BadRequest(ModelState);
             }
-
-            db.tblLogs.Add(tblLogs);
+            db.tblLogsAgregar(idUsuario, nombreUsuario, tablaAfectada, accion, descripcion);
+            //db.tblLogs.Add(tblLogs);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = tblLogs.IdBitacora }, tblLogs);
